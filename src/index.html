@@ -4,10 +4,50 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="style.css">
     <title>Document</title>
   </head>
   <body>
     <div id="root"></div>
+    <div class='container'>
+      <div class='card'>
+        <h1> Registrar </h1>
+        
+        <div id='msgError'></div>
+        <div id='msgSuccess'></div>
+        
+                <div class="label-float">
+                   <input type="text" id="nome" placeholder=" " required>
+                   <label id="labelNome" for="nome">Nome e Sobrenome</label>
+                </div>
+    
+                <div class="label-float">
+                   <input type="text" id="usuario" placeholder=" " required>
+                   <label id="labelUsuario" for="usuario">E-mail</label>
+                </div>
+                
+                <div class="label-float">
+                   <input type="password" id="senha" placeholder=" " required>
+                   <label id="labelSenha" for="senha">Senha</label>
+                   <i id="verSenha" class="fa fa-eye" aria-hidden="true"></i>
+                   
+                </div>
+    
+                <div class="label-float">
+                   <input type="password" id="confirmSenha" placeholder=" " required>
+                   <label id="labelConfirmSenha" for="confirmSenha">Confirmar Senha</label>
+                   <i id="verConfirmSenha" class="fa fa-eye" aria-hidden="true"></i>
+                </div>
+                
+                <div class='justify-center'>
+                   <button onclick='cadastrar()'>Cadastrar</button>
+                </div>
+                <div class="justify-center">
+                  <a href="#" class="gplogin social"><i class="fa fa-google-plus"></i><span>Sign in with Google</span></a>
+                </div>
+        
+      </div>
+      </div>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="/__/firebase/8.7.1/firebase-app.js"></script>
