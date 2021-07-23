@@ -1,0 +1,141 @@
+/*Geral*/
+/*Reset css*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;  /*box-sizing do tamanho das bordas da caixa serve para input pra igualar o tamanho com p*/
+    font-family: Helvetica; /*mudar depois*/
+    color: #323232;
+    border: none;
+  }
+  
+  body {
+      background-image: url("../img/more-leaf.jpg");
+      background-size: cover;
+     /* background-position-y: -400px; mexe na imagem na vertical, acredito que tem que ajustar no media query pra celular*/
+  }
+  
+  textarea:focus, input:focus {
+      outline: none; /*pra não ficar aquela linha azul quando clica no input e txtarea*/
+  }
+  
+  a, label {
+      font-size: .8rem; 
+  }
+  
+  a:hover {
+      color: #49462c;
+  }
+  
+  /*container login*/
+  
+  .login-container {
+      background-color: rgb(238, 236, 232);
+      width: 400px;
+      
+      margin-left: auto;
+      margin-right: auto; /*ambas margins auto fazem com que o elemento centralize na tela*/
+      padding: 20px 30px; /*elementos afastados das bordas*/
+      margin-top: 5vh; /*medida proporcional a tela do usuario*/
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 4px 3px 38px 1px #757140;
+      -webkit-box-shadow: 4px 3px 38px 1px #757140;
+      -moz-box-shadow: 4px 3px 38px 1px #757140;
+  }
+  
+  .login-container h1 {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 2rem;
+  }
+  
+  
+  /*formulário*/
+  
+  form {
+      margin-top: 30px;
+      margin-bottom: 40px; /*afasta do form do titulo e das redes sociais div*/
+  }
+  
+  label, input {
+      display: block; /*pra ficar um embaixo do outro*/
+      width: 100%; /*100% do espaço de 400px - padding*/
+      text-align: left;
+  }
+  
+  label {
+      font-weight: bold;
+  }
+  
+  input {
+      background-color: rgb(238, 236, 232);
+      border-bottom: 2px solid #323232;
+      padding: 10px;
+      font-size: 1rem;
+      margin-bottom: 20px;
+  }
+  
+  input:focus {
+      border-bottom: 2px solid #757140; /*muda a cor da borda bottom*/ 
+  }
+  
+  #forgot-pass {
+      text-align: right;
+      display: block;
+  }
+  
+  input[type="submit"] {
+      /*usou o type pra acessar apenas o estilo desse input mas podia dar uma id pra ele*/
+      text-align: center;
+      text-transform: uppercase;
+      font-weight: bold;
+      border: none;
+      height: 40px;
+      border-radius: 20px;
+      margin-top: 30px;
+      color: #fff;
+      background-color: #757140;
+      cursor: pointer; /*pra aparecer a mãozinha*/
+  }
+  input[type="submit"]:hover {
+      background-color: #3a371c;
+      transition: .5s; /*pra acontecer a mudança de cor mais lentamente*/
+  }
+
+
+
+
+.fa-eye {
+    display: block;
+    text-align: right;
+    margin-top: 5px;
+    cursor: pointer;
+    
+}
+  
+  /*login google plus*/
+  #social-container, #social-container p {
+      margin-bottom: 20px;
+  }
+  
+  #social-container i {
+      height: 40px;
+      width: 40px;
+      background-color: #fff;
+      border-radius: 50%; /*para o icone ficar redondo*/
+      line-height: 30px; /*assim o texto G vai para o centro*/
+      color: rgb(243, 26, 26);
+      margin: 0 5px;
+      cursor: pointer;
+  }
+   /*Registrar*/
+  
+   #register-contaiper p {
+       margin-bottom: 10px;
+   }
+  
+   /*Media Query*/
+  
+   @media (max-width: 480px) {
+  
+   }
