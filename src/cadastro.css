@@ -102,13 +102,10 @@
       transition: .5s; /*pra acontecer a mudança de cor mais lentamente*/
   }
 
-
-
-
 .fa-eye {
     display: block;
     text-align: right;
-    margin-top: 5px;
+    margin-top: 1px;
     cursor: pointer;
     
 }
