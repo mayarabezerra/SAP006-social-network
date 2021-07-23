@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&display=swap');
+
 /*Geral*/
 /*Reset css*/
 *{
@@ -72,6 +74,21 @@ input {
     padding: 10px;
     font-size: 1rem;
     margin-bottom: 20px;
+    width: 100%;
+}
+.input-icons i{
+    position: absolute;
+    margin-left: 120px;
+}
+.input-icons {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.fa-eye {
+    padding: 10px;
+    color: #ed6737;
+    min-width: 50px;
 }
 
 input:focus {
@@ -100,13 +117,7 @@ input[type="submit"]:hover {
     background-color: #e63232;
     transition: .5s; /*pra acontecer a mudança de cor mais lentamente*/
 }
-.fa-eye {
-    display: block;
-    text-align: right;
-    margin-top: 5px;
-    cursor: pointer;
-    
-}
+
 
 /*login google plus*/
 #social-container, #social-container p {
@@ -116,7 +127,6 @@ input[type="submit"]:hover {
 #social-container i {
     height: 40px;
     width: 40px;
-    background-color: #fff;
     border-radius: 50%; /*para o icone ficar redondo*/
     line-height: 30px; /*assim o texto G vai para o centro*/
     color: rgb(243, 26, 26);

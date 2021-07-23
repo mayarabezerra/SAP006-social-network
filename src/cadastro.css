@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&display=swap');
 /*Geral*/
 /*Reset css*/
 *{
@@ -72,8 +73,23 @@
       border-bottom: 2px solid #323232;
       padding: 10px;
       font-size: 1rem;
-      margin-bottom: 20px;
-  }
+      margin-bottom: 10px;
+      width: 100%;
+    }
+    .input-icons i{
+        position: absolute;
+        margin-left: 290px;
+    }
+    .input-icons {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    .fa-eye {
+        padding: 10px;
+        color: #757140;
+        min-width: 50px;
+    }
   
   input:focus {
       border-bottom: 2px solid #757140; /*muda a cor da borda bottom*/ 
@@ -118,7 +134,6 @@
   #social-container i {
       height: 40px;
       width: 40px;
-      background-color: #fff;
       border-radius: 50%; /*para o icone ficar redondo*/
       line-height: 30px; /*assim o texto G vai para o centro*/
       color: rgb(243, 26, 26);
@@ -127,7 +142,7 @@
   }
    /*Registrar*/
   
-   #register-contaiper p {
+   #register-container p {
        margin-bottom: 10px;
    }
   
