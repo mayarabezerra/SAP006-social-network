@@ -1,28 +1,30 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Nunito', sans-serif;
   }
   
+  
   body {
-    background: url(img/backgroung.jpg);
+    background: url(img/background3.jpg);
     background-repeat: no-repeat;
     background-size: cover;
-    background-attachment: fixed
+    background-attachment: fixed;
   }
   
   .container {
     display: flex;
     justify-content: center;
     width: 100%;
-    margin-top: 100px;
+    margin-top: 250px;
+    
   }
   
   .card {
-    background-color: #ffffff80;
+    background-color: #fcf9f9ea;
     padding: 30px;
-    border-radius: 4%;
-    box-shadow: 3px 3px 1px 0px #77777760;
+    border-radius: 3%;
+    box-shadow: 3px 3px 1px 0px #2e3a0498;
     width: 400px;
   }
   
@@ -60,7 +62,7 @@
   
   .label-float label{
     color: #49462c;
-    pointer-event: none;
+    pointer-events: none;
     position: absolute;
     top: 0;
     left: 0;
@@ -124,3 +126,5 @@
     border-radius: 4px;
     display: none;
   }
+
+  
