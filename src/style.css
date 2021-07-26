@@ -1,130 +1,201 @@
-* {
-    margin: 0;
-    padding: 0;
-    font-family: 'Nunito', sans-serif;
-  }
-  
-  
-  body {
-    background: url(img/background3.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-  }
-  
-  .container {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    margin-top: 250px;
-    
-  }
-  
-  .card {
-    background-color: #fcf9f9ea;
-    padding: 30px;
-    border-radius: 3%;
-    box-shadow: 3px 3px 1px 0px #2e3a0498;
-    width: 400px;
-  }
-  
-  h1{
-    text-align: center;
-    margin-bottom: 20px;
-    color: #49462c;
-  }
-  
-  .label-float input{
-    width: 100%;
-    padding: 5px 5px;
-    display: inline-block;
-    border: 0;
-    border-bottom: 2px solid #49462c;
-    background-color: transparent;
-    outline: none;
-    min-width: 180px;
-    font-size: 16px;
-    transition: all .3s ease-out;
-    border-radius: 0;
-    
-  }
-  
-  .label-float{
-    position: relative;
-    padding-top: 13px;
-    margin-top: 5%;
-    margin-bottom: 5%;
-  }
-  
-  .label-float input:focus{
-    border-bottom: 2px solid #49462c;
-  }
-  
-  .label-float label{
-    color: #49462c;
-    pointer-events: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    margin-top: 13px;
-    transition: all .3s ease-out;
-  }
-  
-  .label-float input:focus + label,
-  .label-float input:valid + label{
-    font-size: 13px;
-    margin-top: 0;
-    color: #49462c
-  }
-  
-  button{
-    background-color: transparent;
-    border-color: #49462c;
-    color: #49462c;
-    padding: 7px;
-    font-weight: bold;
-    font-size: 12pt;
-    margin-top: 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    outline: none;
-    transition: all .4s ease-out;
-  }
-  
-  button:hover{
-    background-color: #49462c;
-    color: #fff;
-  }
-  
-  .justify-center{
-    display: flex;
-    justify-content: center;
-  }
-  
-  .fa-eye{
-    position: absolute;
-    top: 15px;
-    right: 10px;
-    cursor: pointer;
-    color: #49462c;
-  }
-  
-  #msgError{
-    text-align: center;
-    color: #ff0000;
-    background-color: #ffbbbb;
-    padding: 10px;
-    border-radius: 4px;
-    display: none;
-  }
-  
-  #msgSuccess{
-    text-align: center;
-    color: #00bb00;
-    background-color: #bbffbe;
-    padding: 10px;
-    border-radius: 4px;
-    display: none;
-  }
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&display=swap');
 
+/*Geral*/
+/*Reset css*/
+html{
+  scroll-behavior: smooth;
+}
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;  /*box-sizing do tamanho das bordas da caixa serve para input pra igualar o tamanho com p*/
+  font-family: Helvetica; /*mudar depois*/
+  color: #323232;
+  border: none;
+}
+
+.two-section {
+  background-image: url("../img/fruits.jpg");
+  background-size: cover;
+  background-position-y: -400px; /*mexe na imagem na vertical, acredito que tem que ajustar no media query pra celular*/
+}
+
+.three-section {
+  background-image: url("../img/more-leaf.jpg");
+  background-size: cover;
+ /* background-position-y: -400px; mexe na imagem na vertical, acredito que tem que ajustar no media query pra celular*/
+}
+
+main {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+}
+
+textarea:focus, input:focus {
+  outline: none; /*pra não ficar aquela linha azul quando clica no input e txtarea*/
+}
+
+a, label {
+  font-size: .8rem; 
+}
+
+a:hover {
+  color: #49462c;
+}
+
+.login-container {
+  background-color: rgb(238, 236, 232);
+  width: 400px;
+  height: 500px;
+  margin-left: auto;
+  margin-right: auto; /*ambas margins auto fazem com que o elemento centralize na tela*/
+  padding: 20px 30px; /*elementos afastados das bordas*/
+  margin-top: 20vh; /*medida proporcional a tela do usuario*/
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 4px 3px 38px 1px rgba(241,132,14,0.75);
+  -webkit-box-shadow: 4px 3px 38px 1px rgba(241,132,14,0.75);
+  -moz-box-shadow: 4px 3px 38px 1px rgba(241,132,14,0.75);
+}
+
+.register-container {
+  background-color: rgb(238, 236, 232);
+  width: 400px;
+  height: 700px;
+  margin-left: auto;
+  margin-right: auto; /*ambas margins auto fazem com que o elemento centralize na tela*/
+  padding: 20px 30px; /*elementos afastados das bordas*/
+  margin-top: 5vh; /*medida proporcional a tela do usuario*/
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 4px 3px 38px 1px #757140;
+  -webkit-box-shadow: 4px 3px 38px 1px #757140;
+  -moz-box-shadow: 4px 3px 38px 1px #757140;
+}
+
+.login-container .register-container h1 {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 2rem;
+}
+
+form {
+  margin-top: 30px;
+  margin-bottom: 40px; /*afasta do form do titulo e das redes sociais div*/
+}
+
+label, input {
+  display: block; /*pra ficar um embaixo do outro*/
+  width: 100%; /*100% do espaço de 400px - padding*/
+  text-align: left;
+}
+
+label {
+  font-weight: bold;
+}
+
+input {
+  background-color: rgb(238, 236, 232);
+  border-bottom: 2px solid #323232;
+  padding: 10px;
+  font-size: 1rem;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.input-icons-login i{
+  position: absolute;
+  margin-left: 120px;
+}
+
+.input-icons-register i{
+  position: absolute;
+  margin-left: 290px;
+}
+
+.input-icons-login .input-icons-register {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.fa-eye {
+  padding: 10px;
+  color: #080808;
+  min-width: 50px;
+  cursor: pointer;
+}
+
+input:focus {
+  border-bottom: 2px solid #757140; /*muda a cor da borda bottom*/ 
+}
+
+#forgot-pass {
+  text-align: right;
+  display: block;
+}
+
+input[type="submit"] {
+  /*usou o type pra acessar apenas o estilo desse input mas podia dar uma id pra ele*/
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  border: none;
+  height: 40px;
+  border-radius: 20px;
+  margin-top: 30px;
+  color: #fff;
+  background-color: #757140;
+  cursor: pointer; /*pra aparecer a mãozinha*/
+}
+input[type="submit"]:hover {
+  background-color: #3a371c;
+  transition: .5s; /*pra acontecer a mudança de cor mais lentamente*/
+}
+
+#social-container, #social-container p {
+  margin-bottom: 20px;
+}
+#social-container i {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%; /*para o icone ficar redondo*/
+  line-height: 30px; /*assim o texto G vai para o centro*/
+  color: rgb(243, 26, 26);
+  padding-bottom: 10px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+/*Registrar*/
+
+#register-container #login-container p {
+   margin-bottom: 10px;
+}
+
+/*Scroll*/
+
+section {
+  height: 100vh;
   
+}
+
+.holding-content {
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+  
+ 
+
+}
+
+/*About*/
+.content {
+  background-image: url("img/govegan1.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: Helvetica;
+}
+.about-container {
+  display: flex;
+  flex-direction: column;
+  width: 450px;
+  height: 550px;
+}
