@@ -5,28 +5,24 @@ import { myFunction } from './lib/index.js';
 myFunction();*/
 
 //NÃO SEI SE ISSO DEVE FICAR NA MAIN
-let btnEyeOne = document.querySelector('#eye-one');
-let btnEyeTwO = document.querySelector('#eye-two');
 
-btnEyeOne.addEventListener('click', () => {
-    let inputPassword = document.querySelector('.password')
+const btnEye = document.querySelectorAll('.fa-eye');
 
-    if(inputPassword.getAttribute('type') == 'password') {
-        inputPassword.setAttribute('type', 'text')
-    } else {
-        inputPassword.setAttribute('type', 'password')
-    }
-});
 
-btnEyeTwO.addEventListener('click', () => {
-    let inputPasswordTwO = document.querySelector('.password-two')
 
-    if(inputPasswordTwO.getAttribute('type') == 'password') {
-        inputPasswordTwO.setAttribute('type', 'text')
-    } else {
-        inputPasswordTwO.setAttribute('type', 'password')
-    }
-})
+for(const eye of btnEye) {
+    eye.addEventListener("click", () =>{
+        const inputPassword = document.querySelectorAll('.password')
+        for(const transformPassword of inputPassword){
+            if (transformPassword.getAttribute('type') == 'password') {
+                transformPassword.setAttribute('type', 'text')
+            } else {
+                transformPassword.setAttribute('type', 'password')
+            }
+        };
+    });
+        
+}
 
 
 function login() {

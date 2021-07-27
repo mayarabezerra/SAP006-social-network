@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <section class="section-exemple">
+        <div class="shadow"></div>
+        <div class="container-login">
+            <div class="content-login">
+                <section id="login-container" class="login-container"> <!--Container que engloba todo o login-->
+                    <h1>Login</h1>
+                    <form action="">
+                        <label for="email">E-mail</label>
+                        <input type="email" name="email" id="email" placeholder="nome@email.com" autocomplete="off"> <!--name é utilizado pra resgatar o valor no backend-->
+                        <label for="password">Senha</label>
+                        <div class="input-icons-login">
+                            <i class="fa fa-eye" aria-hidden="true" id="eye-one" class="hidden"></i>
+                            <input type="password" name="password" class="password" placeholder="Digite sua Senha">
+                        </div>
+                        <a href="#" id="forgot-pass">Esqueceu a senha?</a>
+                        <input type="submit" value="Login" class="submit-btn" onclick="login()">
+                    </form>
+                    <div id="social-container">
+                        <p>Ou faça login com sua conta do Google</p>
+                        <i class="fa fa-google-plus-official fa-3x" aria-hidden="true"></i>
+                    </div>
+                    <div id="register-container" class="bottom-container">
+                        <p>Ainda não tem uma conta?</p>
+                        <a href="cadastro.html">Cadastrar</a>
+                        <a href="index.html">Phenomena</a>
+                    </div>
+                    </section>
+            </div>
+            <!--<div class="imgContainer">
+                <img src="img/skull.jpg" alt="">
+            </div>-->
+        </div>
+    </section>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="/__/firebase/8.7.1/firebase-app.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="/__/firebase/8.7.0/firebase-auth.js"></script>
+    <!-- Initialize Firebase -->
+    <script src="/__/firebase/init.js"></script>
+    <script type="module" src="main.js"></script>
+
+</body>
+</html>
