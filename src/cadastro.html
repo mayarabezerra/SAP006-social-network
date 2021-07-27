@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Cadastrar</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <section class="section-exemple-two">
+      <div class="shadow-two"></div>
+      <div class="container-register">
+          <div class="content-register">
+              <section class="three-section">
+                      <section id="register-container" class="register-container"> <!--Container que engloba todo o login-->
+                          <h1>Cadastrar</h1>
+                          <form action="" id="register-now">
+                              <label for="text">Nome e Sobrenome</label>
+                              <input type="text" name="name" id="name" placeholder="Exemplo: Gabriel Neves">
+                              <label for="email">E-mail</label>
+                              <input type="email" name="email" id="email-one" placeholder="nome@email.com" autocomplete="off"> 
+                              <label for="email">Confirmar e-mail</label>
+                              <input type="email" name="email" id="email-two" placeholder="nome@email.com" autocomplete="off"> 
+                              <label for="password">Senha</label>
+                              <div class="input-icons-register">
+                                  <i class="fa fa-eye" aria-hidden="true" id="eye-one" class="hidden" style="display: block;
+                                  text-align: right;
+                                  margin-top: 1px;
+                                  cursor: pointer;"></i>
+                                  <input type="password" name="password" class="password" placeholder="Digite sua Senha">
+                              </div>
+                              <label for="password">Confirmar senha</label>
+                              <div class="input-icons-register">
+                                  <i class="fa fa-eye" aria-hidden="true" id="eye-two" class="hidden"style="display: block;
+                                  text-align: right;
+                                  margin-top: 1px;
+                                  cursor: pointer;"></i>
+                                  <input type="password" name="password" class="password" placeholder="Confirmar senha">
+                              </div>
+                              <input type="submit" value="Cadastrar" class="register-btn">
+                          </form>
+                          <div id="social-container">
+                              <p>Cadastrar com sua conta do Google</p>
+                              <i class="fa fa-google-plus-official fa-3x" aria-hidden="true"></i>
+                          </div>
+                          <div id="register-container">
+                              <p>Já tem uma conta?</p>
+                              <a href="login.html">Login</a>
+                              <a href="about.html">Phenomena</a>
+                          </div>
+                          </section>
+              </section>
+          </div>
+         <!--<div class="imgContainer">
+              <img src="img/red-moon.jpg" alt="">
+          </div>-->
+      </div>
+  </section>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="/__/firebase/8.7.1/firebase-app.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="/__/firebase/8.7.0/firebase-auth.js"></script>
+    <!-- Initialize Firebase -->
+    <script src="/__/firebase/init.js"></script>
+    <script type="module" src="main.js"></script>
+  </body>
+</html>

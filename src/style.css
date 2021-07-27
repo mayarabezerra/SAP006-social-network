@@ -1,0 +1,249 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&display=swap');
+
+/*Geral*/
+/*Reset css*/
+html{
+  scroll-behavior: smooth;
+}
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;  /*box-sizing do tamanho das bordas da caixa serve para input pra igualar o tamanho com p*/
+  font-family: Helvetica; /*mudar depois*/
+  color:#fff;
+  border: none;
+}
+
+.section-exemple {
+  width: 100%;
+  background-color: #131312;
+  position: relative;
+}
+
+.section-exemple-two {
+width: 100%;
+background-color: #220000;
+position: relative;
+}
+
+
+section img {
+  width: 60%;
+  height: 60%;
+  border-radius: 50%;
+  box-shadow: 4px 3px 38px 1px rgb(218 217 210 / 79%);
+  -webkit-box-shadow: 4px 3px 38px 1px rgb(220 220 219 / 75%);
+  -moz-box-shadow: 4px 3px 38px 1px rgba(241,132,14,0.75);
+}
+section .container-login > *{
+  margin: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  align-content: space-around;
+  flex-direction: row;
+  justify-content: space-around;
+  
+}
+
+section .container-register > *{
+margin: 2rem;
+display: flex;
+flex-wrap: wrap;
+align-content: space-around;
+flex-direction: row;
+justify-content: space-around;
+align-items: center;
+}
+
+section .container-login  {
+  padding: 0.8rem;
+  /*display: grid;
+  align-items: start;
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: center;*/
+  min-height: 100vh;
+}
+
+section .container-register {
+  padding: 3rem;
+  /*display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  justify-content: center;*/
+  min-height: 100vh;
+}
+
+.shadow {
+  position: absolute;
+  bottom: 100%;
+  height: 300px;
+  width: 100%;
+  left: 0;
+  z-index: 20;  
+  background: linear-gradient(to top, #131312, transparent);
+}
+
+.shadow-two {
+position: absolute;
+bottom: 100%;
+height: 50px;
+width: 100%;
+left: 0;
+z-index: 20;  
+background: linear-gradient(to top, #220000, transparent);
+}
+
+/*FORM LOGIN*/
+textarea:focus, input:focus {
+  outline: none; /*pra não ficar aquela linha azul quando clica no input e txtarea*/
+}
+
+ label {
+  font-size: .8rem; 
+}
+
+a {
+  color: #fff4f4;
+  font-size: .9rem;
+  cursor: pointer;
+  padding-right: 5px;
+  padding-left: 5px;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  z-index: 20;
+}
+a:hover {
+  color: #c2c2bf;
+}
+
+.login-container {
+  background-color: rgb(11 11 11);
+  width: 400px;
+  height: 500px;
+  margin-bottom: 140px;
+  margin-left: auto;
+  margin-right: auto; /*ambas margins auto fazem com que o elemento centralize na tela*/
+  padding: 20px 30px; /*elementos afastados das bordas*/
+  /*margin-top: 20vh; medida proporcional a tela do usuario*/
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 4px 3px 38px 1px rgb(239 234 228 / 75%);
+  -webkit-box-shadow: 4px 3px 38px 1px rgb(218 215 211 / 75%);
+  -moz-box-shadow: 4px 3px 38px 1px rgba(250, 16, 16, 0.75);
+  overflow: visible;
+}
+
+
+
+.register-container {
+  background-color: rgb(11 11 11);;
+  width: 400px;
+  height: 700px;
+  margin-left: auto;
+  margin-right: auto; /*ambas margins auto fazem com que o elemento centralize na tela*/
+  padding: 20px 30px; /*elementos afastados das bordas*/
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 4px 3px 38px 1px #f03232e8;
+  -webkit-box-shadow: 4px 3px 38px 1px #f03232e8;
+  -moz-box-shadow: 4px 3px 38px 1px #f03232e8;
+}
+
+.login-container .register-container h1 {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 2rem;
+}
+
+form {
+  margin-top: 30px;
+  margin-bottom: 40px; /*afasta do form do titulo e das redes sociais div*/
+}
+
+label, input {
+  display: block; /*pra ficar um embaixo do outro*/
+  width: 100%; /*100% do espaço de 400px - padding*/
+  text-align: left;
+}
+
+label {
+  font-weight: bold;
+}
+
+input {
+  background-color: rgb(11 11 11);;
+  border: none;
+  border-bottom: 2px solid #f3eaea;
+  padding: 10px;
+  font-size: 1rem;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.input-icons-login i{
+  position: absolute;
+  margin-left: 120px;
+}
+
+.input-icons-register i{
+  position: absolute;
+  margin-left: 290px;
+}
+
+.input-icons-login .input-icons-register {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.fa-eye {
+  padding: 10px;
+  color: #f8f8f8;
+  min-width: 50px;
+  cursor: pointer;
+}
+
+input:focus {
+  border-bottom: 2px solid #f81818; /*muda a cor da borda bottom*/ 
+}
+
+#forgot-pass {
+  text-align: right;
+  display: block;
+}
+
+input[type="submit"] {
+  /*usou o type pra acessar apenas o estilo desse input mas podia dar uma id pra ele*/
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  border: none;
+  height: 40px;
+  border-radius: 20px;
+  margin-top: 18px;
+  color: #fff;
+  background-color: #900000;
+  cursor: pointer; /*pra aparecer a mãozinha*/
+}
+input[type="submit"]:hover {
+  background-color: #fa0800;
+  transition: .5s; /*pra acontecer a mudança de cor mais lentamente*/
+}
+
+#social-container, #social-container p {
+  margin-bottom: 5px;
+}
+#social-container i {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%; /*para o icone ficar redondo*/
+  line-height: 30px; /*assim o texto G vai para o centro*/
+  color: rgb(243, 26, 26);
+  padding-bottom: 10px;
+  margin: 0 5px;
+  cursor: pointer;
+ 
+}
+
+.bottom-container #login-container p {
+  margin-bottom: 10px;
+}
