@@ -1,3 +1,5 @@
+import {createNewUserWithEmail} from '../../services/index.js'
+
 export const registerUsuario = () => {
     const rootElement = document.createElement('div');
     const contentRegister = `
@@ -43,8 +45,8 @@ export const registerUsuario = () => {
                           </div>
                           <div id="register-container">
                               <p>Já tem uma conta?</p>
-                              <a href="./pages/login/index.js">Login</a>
-                              <a href="./pages/about/index.js">Phenomena</a>
+                              <a href="/login">Login</a>
+                              <a href="/">Phenomena</a>
                           </div>
                           </section>
               </section>
@@ -59,4 +61,5 @@ export const registerUsuario = () => {
  rootElement.innerHTML = contentRegister
  return rootElement
 }
+
 

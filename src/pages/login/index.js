@@ -24,8 +24,8 @@ export const loginUsuario = () => {
                 </div>
                 <div id="register-container" class="bottom-container">
                     <p>Ainda não tem uma conta?</p>
-                    <a href="./pages/register/index.js">Cadastrar</a>
-                    <a href="./pages/about/index.js">Phenomena</a>
+                    <a href="/register">Cadastrar</a>
+                    <a href="/">Phenomena</a>
                 </div>
                 </section>
         <!--</div>

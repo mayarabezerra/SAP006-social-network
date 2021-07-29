@@ -8,8 +8,8 @@ export const aboutUs = () => {
         <div class="glitch-img"></div>
         <div class="glitch-img"></div>
         <div class="links-about">
-            <a href="./pages/login/index.js" class="neon-button">Login</a>
-            <a href="./pages/register/index.js" class="neon-button">Cadastrar</a>
+            <a href= "/login" class="neon-button">Login</a>
+            <a href="/register" class="neon-button">Cadastrar</a>
         </div>
     </div>
     <h2 class="content-title">PHENOMENA</h2>
