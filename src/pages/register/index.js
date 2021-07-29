@@ -1,4 +1,4 @@
-export const register = () => {
+export const registerUsuario = () => {
     const rootElement = document.createElement('div');
     const contentRegister = `
     <section class="section-exemple-two">
@@ -57,5 +57,6 @@ export const register = () => {
     `
 
  rootElement.innerHTML = contentRegister
+ return rootElement
 }
 

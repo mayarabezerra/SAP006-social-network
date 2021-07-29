@@ -18,4 +18,6 @@ export const aboutUs = () => {
     </div>`;
 
     rootElement.innerHTML = containerElement
+
+    return rootElement
 }

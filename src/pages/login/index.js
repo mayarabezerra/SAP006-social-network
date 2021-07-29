@@ -1,4 +1,4 @@
-export const loging = () => {
+export const loginUsuario = () => {
     const newRootElement = document.createElement('div');
     const contentnewElement = `
     <section class="section-exemple">
@@ -36,5 +36,6 @@ export const loging = () => {
 </section>`;
   
 newRootElement.innerHTML = contentnewElement;
+return newRootElement
 };
 
