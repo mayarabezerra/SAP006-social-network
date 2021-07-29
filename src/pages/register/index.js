@@ -1,4 +1,4 @@
-import {createNewUserWithEmail} from '../../services/index.js'
+/*import {createNewUserWithEmail} from '../../services/index.js'*/
 
 export const registerUsuario = () => {
     const rootElement = document.createElement('div');
@@ -63,3 +63,27 @@ export const registerUsuario = () => {
 }
 
 
+/*
+const inputEmail = document.querySelector('#input-email');
+//const labelEmail = document.querySelector('#label-email');
+const btnRegisterNewUser = document.querySelector('#btn-register')
+
+const validateEmail = (event) => {
+    const input = event.currentTarget;
+    const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const emailTest = regex.test(input.value)
+
+    if(!emailTest) {
+        btnRegisterNewUser.setAttribute("disabled", "disabled");
+        input.nextElementSibling.classList.add('error');
+    } else {
+        btnRegisterNewUser.removeAttribute("disabled");
+        input.nextElementSibling.classList.remove('error');
+    }
+
+    return emailTest;
+}
+
+inputEmail.addEventListener('input', validateEmail);
+
+*/

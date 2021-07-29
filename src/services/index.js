@@ -1,7 +1,23 @@
 //Firebase
+export const loginOfUser = (email,password) => {
+  firebase
+  .auth()
+  .signInWithEmailAndPassword(email,password)
+  .then((userCredential) => {
+    let user = userCredential.user
+    console.log('uhuuuuuu', user)
+    //window.location.replace('/feed')
+  })
 
-function createNewUserWithEmail () {
-    firebase.auth().createUserWithEmailAndPassword(inputEmail.value, inputPassword.value)
+  .catch((error) =>{
+    let errorCode = error.code;
+    let errorMessage = error.message;
+    console.log('viiiish', errorCode, errorMessage);
+  })
+}
+
+/*function createNewUserWithEmail () {
+    firebase.auth().createUserWithEmailAndPassword(email, password)
     .then((userCredential) => {
       var user = userCredential.user;
       //window.location.replace('dashboard.html')
@@ -15,4 +31,4 @@ function createNewUserWithEmail () {
       // ..
     });
   
-};
+};*/

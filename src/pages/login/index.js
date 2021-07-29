@@ -1,3 +1,6 @@
+import {navigateTo} from '../../routes.js'
+import{loginOfUser} from '../../services/index.js'
+
 export const loginUsuario = () => {
     const newRootElement = document.createElement('div');
     const contentnewElement = `
@@ -17,7 +20,7 @@ export const loginUsuario = () => {
                     </div>
                     <a href="#" id="forgot-pass">Esqueceu a senha?</a> 
                 </form>
-                <input type="submit" value="Login" class="submit-btn">
+                <input type="submit" value="login" class="submit-btn">
                 <div id="social-container">
                     <p>Ou faça login com sua conta do Google</p>
                     <i class="fa fa-google-plus-official fa-3x" aria-hidden="true"></i>
@@ -36,6 +39,23 @@ export const loginUsuario = () => {
 </section>`;
   
 newRootElement.innerHTML = contentnewElement;
+const email = document.getElementById('email');
+const password = document.querySelector('.password');
+const btn = newRootElement.querySelector('.submit-btn');
+console.log(btn);
+
+
+
+/*btn.addEventListener('click', () =>{
+    loginOfUser(email,password)
+    navigateTo('/feed')
+})*/
+
+
+btn.addEventListener('click', () => {
+    navigateTo('/feed')
+})
 return newRootElement
 };
+
 
