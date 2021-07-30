@@ -40,8 +40,8 @@ export const loginUsuario = () => {
 </section>`;
   
 newRootElement.innerHTML = contentnewElement;
-const email = document.getElementById('email');
-const password = document.querySelector('.password');
+const email = newRootElement.querySelector('#email');
+const password = newRootElement.querySelector('.password');
 const btn = newRootElement.querySelector('.submit-btn');
 const logGoogle = newRootElement.querySelector('#btn-google')
 console.log(btn);
@@ -50,16 +50,11 @@ logGoogle.addEventListener('click' , () => {
     loginWithGoogle ();
 })
 
-
-/*btn.addEventListener('click', () =>{
-    loginOfUser(email,password)
-    navigateTo('/feed')
-})*/
-
-
-btn.addEventListener('click', () => {
+btn.addEventListener('click' , () => {
+    loginOfUser (email.value , password.value)
     navigateTo('/feed')
 })
+
 return newRootElement
 };
 

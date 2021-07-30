@@ -1,19 +1,20 @@
 //Firebase
 export const loginOfUser = (email,password) => {
-  firebase
+  const loginWithEmail = firebase
   .auth()
   .signInWithEmailAndPassword(email,password)
   .then((userCredential) => {
-    let user = userCredential.user
+    const user = userCredential.user
     console.log('uhuuuuuu', user)
     //window.location.replace('/feed')
   })
 
   .catch((error) =>{
-    let errorCode = error.code;
-    let errorMessage = error.message;
+    const errorCode = error.code;
+    const errorMessage = error.message;
     console.log('viiiish', errorCode, errorMessage);
   })
+  return loginWithEmail
 }
 
 export const loginWithGoogle = () => {
@@ -29,19 +30,32 @@ const provider = new firebase.auth.GoogleAuthProvider();
     return provider
 }
 
-/*function createNewUserWithEmail () {
-    firebase.auth().createUserWithEmailAndPassword(email, password)
+export const createNewUserWithEmailAndPassword = () => {
+   const newUser = firebase.auth().createUserWithEmailAndPassword(fullName, email, password, confirmPassword )
     .then((userCredential) => {
-      var user = userCredential.user;
+      const user = userCredential.user;
       //window.location.replace('dashboard.html')
       console.log(user)
       // ...
     })
     .catch((error) => {
-      var errorCode = error.code;
-      var errorMessage = error.message;
+      const errorCode = error.code;
+      const errorMessage = error.message;
       console.log(errorCode, errorMessage)
       // ..
     });
-  
-};*/
+  return newUser
+};
+
+export const registerWithGoogle = () => {
+  const providerRegister = new firebase.auth.GoogleAuthProvider();
+      providerRegister.addScope('https://www.googleapis.com/auth/userinfo.email');
+      firebase.auth().signInWithPopup(providerRegister)
+      .then(result => {
+          console.log(result);
+      }) .catch(err =>{
+          alert('Erro ao logar');
+          console.log(err);
+      })
+      return providerRegister
+  }

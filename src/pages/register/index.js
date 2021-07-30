@@ -1,4 +1,6 @@
-/*import {createNewUserWithEmail} from '../../services/index.js'*/
+import {navigateTo} from '../../routes.js'
+import {createNewUserWithEmailAndPassword} from '../../services/index.js'
+import {registerWithGoogle} from '../../services/index.js'
 
 export const registerUsuario = () => {
     const rootElement = document.createElement('div');
@@ -8,40 +10,36 @@ export const registerUsuario = () => {
       <div class="container-register">
           <div class="content-register">
               <section class="three-section">
-                      <section id="register-container" class="register-container"> <!--Container que engloba todo o login-->
+                      <section id="register-container" class="register-container"> 
                           <h1>Cadastrar</h1>
                           <form action="" id="register-now">
                               <label for="text" id="label-name">Nome e Sobrenome</label>
                               <input type="text" name="name" id="name" placeholder="Exemplo: Regan McNeil" >
                               <label for="email" id="label-email">E-mail</label>
-                              <input type="email" name="email" id="input-email" placeholder="nome@email.com" autocomplete="off" required> 
+                              <input type="email" name="email" id="input-email" placeholder="nome@email.com" autocomplete="off">
                               
-                             <!--
-                                 <label for="email">Confirmar e-mail</label>
-                              <input type="email" name="email" id="email-two" placeholder="nome@email.com" autocomplete="off" required> 
-                             --> 
                               <label for="password" id="label-password">Senha</label>
                               <div class="input-icons-register">
                                   <i class="fa fa-eye" aria-hidden="true" id="eye-one" class="hidden" style="display: block;
                                   text-align: right;
                                   margin-top: 1px;
                                   cursor: pointer;"></i>
-                                  <input type="password" name="password" class="password" id="input-password" placeholder="Digite sua Senha">
+                                  <input type="password" name="password" class="password" id="input_password" placeholder="Digite sua Senha">
                               </div>
-                              <label for="password" id="label-confirm-password">Confirmar senha</label>
+                              <label for="password" id="label-confirm-password" >Confirmar senha</label>
                               <div class="input-icons-register">
                                   <i class="fa fa-eye" aria-hidden="true" id="eye-two" class="hidden"style="display: block;
                                   text-align: right;
                                   margin-top: 1px;
                                   cursor: pointer;"></i>
-                                  <input type="password" name="password" class="password" id="confirm-password" placeholder="Confirmar senha">
+                                  <input type="password" name="password"  class="password" id="confirm_password" placeholder="Confirmar senha">
                               </div>
                               
                           </form>
-                          <input type="submit" value="Cadastrar" class="register-btn" id="btn-register">
+                          <input type="submit" value="Cadastrar" class="register_btn" id="btn-register">
                           <div id="social-container">
                               <p>Cadastrar com sua conta do Google</p>
-                              <i class="fa fa-google-plus-official fa-3x" aria-hidden="true"></i>
+                              <button class="fa fa-google-plus-official fa-3x" aria-hidden="true" id="btngoogle"></button>
                           </div>
                           <div id="register-container">
                               <p>Já tem uma conta?</p>
@@ -59,8 +57,30 @@ export const registerUsuario = () => {
     `
 
  rootElement.innerHTML = contentRegister
+ const registerGoogle = rootElement.querySelector('#btngoogle')
+ const emailTwo = rootElement.querySelector('#email_two')
+ const passwordTwo = rootElement.querySelector('#input_password')
+ const btnTwo = rootElement.querySelector('.register_btn')
+ const name = rootElement.querySelector('#name')
+ const confirmPas = rootElement.querySelector('#confirm_password')
+
+ btnTwo.addEventListener('click' , () => {
+    createNewUserWithEmailAndPassword (name.value, emailTwo.value, passwordTwo.value, confirmPas.value)
+    navigateTo('/feed')
+})
+
+registerGoogle.addEventListener('click' , () => {
+    registerWithGoogle ()
+    navigateTo('/feed');
+})
+
+
  return rootElement
 }
+
+
+
+
 
 
 /*
