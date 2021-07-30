@@ -57,17 +57,18 @@ export const registerUsuario = () => {
     `
 
  rootElement.innerHTML = contentRegister
- const registerGoogle = rootElement.querySelector('#btngoogle')
- const emailTwo = rootElement.querySelector('#email_two')
- const passwordTwo = rootElement.querySelector('#input_password')
- const btnTwo = rootElement.querySelector('.register_btn')
- const name = rootElement.querySelector('#name')
- const confirmPas = rootElement.querySelector('#confirm_password')
+ const registerGoogle = rootElement.querySelector('#btngoogle');
+ const emailTwo = rootElement.querySelector('#input-email');
+ const passwordTwo = rootElement.querySelector('#input_password');
+ const btnTwo = rootElement.querySelector('.register_btn');
+ /*const name = rootElement.querySelector('#name')
+ const confirmPas = rootElement.querySelector('#confirm_password')*/
 
  btnTwo.addEventListener('click' , () => {
-    createNewUserWithEmailAndPassword (name.value, emailTwo.value, passwordTwo.value, confirmPas.value)
+    
+    createNewUserWithEmailAndPassword(emailTwo.value, passwordTwo.value);
     navigateTo('/feed')
-})
+});
 
 registerGoogle.addEventListener('click' , () => {
     registerWithGoogle ()
@@ -75,7 +76,7 @@ registerGoogle.addEventListener('click' , () => {
 })
 
 
- return rootElement
+ return rootElement;
 }
 
 
