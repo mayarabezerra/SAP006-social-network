@@ -1,5 +1,6 @@
 import {navigateTo} from '../../routes.js'
 import{loginOfUser} from '../../services/index.js'
+import {loginWithGoogle} from '../../services/index.js'
 
 export const loginUsuario = () => {
     const newRootElement = document.createElement('div');
@@ -23,7 +24,7 @@ export const loginUsuario = () => {
                 <input type="submit" value="login" class="submit-btn">
                 <div id="social-container">
                     <p>Ou faça login com sua conta do Google</p>
-                    <i class="fa fa-google-plus-official fa-3x" aria-hidden="true"></i>
+                    <button class="fa fa-google-plus-official fa-3x" aria-hidden="true" id="btn-google" ></button>
                 </div>
                 <div id="register-container" class="bottom-container">
                     <p>Ainda não tem uma conta?</p>
@@ -42,8 +43,12 @@ newRootElement.innerHTML = contentnewElement;
 const email = document.getElementById('email');
 const password = document.querySelector('.password');
 const btn = newRootElement.querySelector('.submit-btn');
+const logGoogle = newRootElement.querySelector('#btn-google')
 console.log(btn);
 
+logGoogle.addEventListener('click' , () => {
+    loginWithGoogle ();
+})
 
 
 /*btn.addEventListener('click', () =>{
