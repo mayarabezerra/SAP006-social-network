@@ -1,6 +1,3 @@
-// aqui você exportará as funções que precisa
+// funções firebase
 
-export const myFunction = () => {
-  // aqui vai seu código
-  console.log('Olá mundo!');
-};
+
