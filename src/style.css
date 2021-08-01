@@ -211,20 +211,22 @@ input:focus {
   display: block;
 }
 
-input[type="submit"] {
+.register_btn {
   /*usou o type pra acessar apenas o estilo desse input mas podia dar uma id pra ele*/
   text-align: center;
   text-transform: uppercase;
   font-weight: bold;
+  font-size: 1rem;
   border: none;
   height: 40px;
+  width: 100%;
+  margin-bottom: 20px;
   border-radius: 20px;
-  margin-top: 18px;
   color: #fff;
   background-color: #900000;
   cursor: pointer; /*pra aparecer a mãozinha*/
 }
-input[type="submit"]:hover {
+.register_btn:hover {
   background-color: #fa0800;
   transition: .5s; /*pra acontecer a mudança de cor mais lentamente*/
 }
@@ -255,4 +257,17 @@ input[type="submit"]:hover {
 
 .bottom-container #login-container p {
   margin-bottom: 10px;
+}
+
+.msg-error .msg-success {
+  text-align: center;
+  padding: 10px;
+}
+
+ .msg-error{
+  color: #ff0000;
+}
+
+.msg-success {
+  color: #00bb00;
 }

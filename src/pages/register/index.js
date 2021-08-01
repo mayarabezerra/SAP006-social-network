@@ -12,6 +12,8 @@ export const registerUsuario = () => {
               <section class="three-section">
                       <section id="register-container" class="register-container"> 
                           <h1>Cadastrar</h1>
+                          <div class="msg-error"></div>
+                          <div class="msg-success"></div>
                           <form action="" id="register-now">
                               <label for="text" id="label-name">Nome e Sobrenome</label>
                               <input type="text" name="name" id="name" placeholder="Exemplo: Regan McNeil" >
@@ -36,7 +38,7 @@ export const registerUsuario = () => {
                               </div>
                               
                           </form>
-                          <input type="submit" value="Cadastrar" class="register_btn" id="btn-register">
+                          <button type="submit" class="register_btn" id="btn-register" disabled="disabled">Cadastrar</button>
                           <div id="social-container">
                               <p>Cadastrar com sua conta do Google</p>
                               <button class="fa fa-google-plus-official fa-3x" aria-hidden="true" id="btngoogle"></button>
@@ -70,7 +72,11 @@ export const registerUsuario = () => {
  const btnTwo = rootElement.querySelector('.register_btn');
  const btnEye = rootElement.querySelector('.fa-eye');
  const registerGoogle = rootElement.querySelector('#btngoogle');
- const useButton = btnTwo
+ const msgError= rootElement.querySelector('.msg-error');
+ const msgSuccess = rootElement.querySelector('.msg-success');
+ let nameValid = false;
+ let passwordValid = false;
+ let confirmPasswordValide = false;
 
 /*Function */
 
@@ -80,52 +86,71 @@ export const registerUsuario = () => {
      const emailTest = regex.test(input.value)
 
      if(!emailTest) {
-         useButton.setAttribute('disabled', 'disabled');
+         btnTwo.setAttribute('disabled', 'disabled');
          labelEmail.innerHTML = '<strong> <label style = "color: red"> *Insira um email valido*</label></strong>'
      } else {
-         useButton.removeAttribute('disabled', 'disabled');
+         btnTwo.removeAttribute('disabled', 'disabled');
          labelEmail.innerHTML = 'Email';
+     }
+ };
+
+ function isItValid() {
+     if (nameValid && passwordValid && confirmPasswordValide) {
+        msgSuccess.setAttribute('style', 'display: block')
+        msgSuccess.innerHTML = '<strong>Cadastrando usuário...</strong>'
+        msgError.setAttribute('style', 'display: none');
+        msgError.innerHTML = '';
+        createNewUserWithEmailAndPassword(emailTwo.value, passwordTwo.value);
+        navigateTo('/feed') 
+     } else {
+         alert('erro')
+         console.log('erro')
+         msgError.setAttribute('style', 'display: block')
+         msgSuccess.innerHTML = '<strong>Preencha corretamente...</strong>'
+         msgSuccess.setAttribute('style', 'display: none')
+         msgSuccess.innerHTML = '';
      }
  };
 
 /*Listeners */
 
 nameOfUser.addEventListener('keyup', () =>{
-     if(nameOfUser.value.length <= 5) {
+     if (nameOfUser.value.length <= 5) {
         labelOfName.innerHTML = '<strong> <label style = "color: red"> *Insira no mínimo 5 caracteres*</label></strong>'
-        useButton.setAttribute('disabled', 'disabled');
+        btnTwo.setAttribute('disabled', 'disabled');
+        nameValid = false;
      } else {
-        useButton.removeAttribute('disabled', 'disabled');
-        labelOfName.innerHTML = 'Nome e Sobrenome';  
+        labelOfName.innerHTML = 'Nome e Sobrenome';
+        btnTwo.removeAttribute('disabled', 'disabled');
+        nameValid = true;
      }
  });
 
 emailTwo.addEventListener('input', validateEmail);
 
-passwordConfirm.addEventListener('keyup', () =>{
-    if(passwordTwo.value != passwordConfirm.value) {
-        labelPasswordConfirm.innerHTML = '<strong> <label style = "color: red"> *As senhas não conferem*</label></strong>'
-        useButton.setAttribute('disabled', 'disabled');
-    } else {
-        useButton.removeAttribute('disabled', 'disabled');
-        labelPasswordConfirm.innerHTML = 'Confirmar senha';  
-    }
-});
-
 passwordTwo.addEventListener('keyup', () =>{
-    if(passwordTwo.value.length <= 8) {
+    if (passwordTwo.value.length <= 8) {
        labelPasswordTwo.innerHTML = '<strong> <label style = "color: red"> *Insira no mínimo 8 caracteres*</label></strong>'
-       useButton.setAttribute('disabled', 'disabled');
+       btnTwo.setAttribute('disabled', 'disabled');
+       passwordValid = false;
     } else {
-       useButton.removeAttribute('disabled', 'disabled');
        labelPasswordTwo.innerHTML = 'Senha';  
+       passwordValid = true;
     }
 });
 
-btnTwo.addEventListener('click' , () => {
-    createNewUserWithEmailAndPassword(emailTwo.value, passwordTwo.value);
-    navigateTo('/feed')
+passwordConfirm.addEventListener('click', () =>{
+    if (passwordTwo.value != passwordConfirm.value) {
+        labelPasswordConfirm.innerHTML = '<strong> <label style = "color: red"> *As senhas não conferem*</label></strong>'
+        confirmPasswordValide = false;
+    } else {   
+        labelPasswordConfirm.innerHTML = 'Confirmar senha';  
+        btnTwo.removeAttribute('disabled', 'disabled');
+        confirmPasswordValide = true;
+    }
 });
+
+btnTwo.addEventListener('click', isItValid)
 
 registerGoogle.addEventListener('click' , () => {
     registerWithGoogle ()

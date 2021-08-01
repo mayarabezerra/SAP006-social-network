@@ -31,7 +31,7 @@ const provider = new firebase.auth.GoogleAuthProvider();
 }
 
 export const createNewUserWithEmailAndPassword = (email, password) => {
-   const newUser = firebase.auth().createUserWithEmailAndPassword( email, password)
+   const newUser = firebase.auth().createUserWithEmailAndPassword(email, password)
     .then((userCredential) => {
       const user = userCredential.user;
       //window.location.replace('dashboard.html')
