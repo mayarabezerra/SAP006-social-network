@@ -10,7 +10,7 @@ html{
   padding: 0;
   box-sizing: border-box;  /*box-sizing do tamanho das bordas da caixa serve para input pra igualar o tamanho com p*/
   font-family: Helvetica; /*mudar depois*/
-  /*color:#fff;*/
+  color:#fff;
   border: none;
 }
 
@@ -203,7 +203,7 @@ input {
 }
 
 input:focus {
-  border-bottom: 2px solid #f81818; /*muda a cor da borda bottom*/ 
+  border-bottom: 2px solid #807e7e; /*muda a cor da borda bottom*/ 
 }
 
 #forgot-pass {
@@ -227,6 +227,15 @@ input[type="submit"] {
 input[type="submit"]:hover {
   background-color: #fa0800;
   transition: .5s; /*pra acontecer a mudança de cor mais lentamente*/
+}
+
+.register_btn:disabled{
+  background-color: #a0a0a0;
+  cursor: not-allowed
+}
+
+.register_btn:disabled:hover{
+  background-color: #a0a0a0;
 }
 
 #social-container, #social-container p {

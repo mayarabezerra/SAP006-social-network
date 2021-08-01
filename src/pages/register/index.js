@@ -28,7 +28,7 @@ export const registerUsuario = () => {
                               </div>
                               <label for="password" id="label-confirm-password" >Confirmar senha</label>
                               <div class="input-icons-register">
-                                  <i class="fa fa-eye" aria-hidden="true" id="eye-two" class="hidden"style="display: block;
+                                  <i class="fa fa-eye" aria-hidden="true" id="eye-two" class="hidden" style="display: block;
                                   text-align: right;
                                   margin-top: 1px;
                                   cursor: pointer;"></i>
@@ -57,15 +57,72 @@ export const registerUsuario = () => {
     `
 
  rootElement.innerHTML = contentRegister
- const registerGoogle = rootElement.querySelector('#btngoogle');
- const emailTwo = rootElement.querySelector('#input-email');
- const passwordTwo = rootElement.querySelector('#input_password');
- const btnTwo = rootElement.querySelector('.register_btn');
- /*const name = rootElement.querySelector('#name')
- const confirmPas = rootElement.querySelector('#confirm_password')*/
 
- btnTwo.addEventListener('click' , () => {
-    
+ 
+ const nameOfUser = rootElement.querySelector('#name');
+ const labelOfName = rootElement.querySelector('#label-name');
+ const emailTwo = rootElement.querySelector('#input-email');
+ const labelEmail = rootElement.querySelector('#label-email');
+ const passwordTwo = rootElement.querySelector('#input_password');
+ const labelPasswordTwo = rootElement.querySelector('#label-password');
+ const passwordConfirm = rootElement.querySelector('#confirm_password');
+ const labelPasswordConfirm = rootElement.querySelector('#label-confirm-password');
+ const btnTwo = rootElement.querySelector('.register_btn');
+ const btnEye = rootElement.querySelector('.fa-eye');
+ const registerGoogle = rootElement.querySelector('#btngoogle');
+ const useButton = btnTwo
+
+/*Function */
+
+ const validateEmail = (event) => {
+     const input = event.currentTarget;
+     const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+     const emailTest = regex.test(input.value)
+
+     if(!emailTest) {
+         useButton.setAttribute('disabled', 'disabled');
+         labelEmail.innerHTML = '<strong> <label style = "color: red"> *Insira um email valido*</label></strong>'
+     } else {
+         useButton.removeAttribute('disabled', 'disabled');
+         labelEmail.innerHTML = 'Email';
+     }
+ };
+
+/*Listeners */
+
+nameOfUser.addEventListener('keyup', () =>{
+     if(nameOfUser.value.length <= 5) {
+        labelOfName.innerHTML = '<strong> <label style = "color: red"> *Insira no mínimo 5 caracteres*</label></strong>'
+        useButton.setAttribute('disabled', 'disabled');
+     } else {
+        useButton.removeAttribute('disabled', 'disabled');
+        labelOfName.innerHTML = 'Nome e Sobrenome';  
+     }
+ });
+
+emailTwo.addEventListener('input', validateEmail);
+
+passwordConfirm.addEventListener('keyup', () =>{
+    if(passwordTwo.value != passwordConfirm.value) {
+        labelPasswordConfirm.innerHTML = '<strong> <label style = "color: red"> *As senhas não conferem*</label></strong>'
+        useButton.setAttribute('disabled', 'disabled');
+    } else {
+        useButton.removeAttribute('disabled', 'disabled');
+        labelPasswordConfirm.innerHTML = 'Confirmar senha';  
+    }
+});
+
+passwordTwo.addEventListener('keyup', () =>{
+    if(passwordTwo.value.length <= 8) {
+       labelPasswordTwo.innerHTML = '<strong> <label style = "color: red"> *Insira no mínimo 8 caracteres*</label></strong>'
+       useButton.setAttribute('disabled', 'disabled');
+    } else {
+       useButton.removeAttribute('disabled', 'disabled');
+       labelPasswordTwo.innerHTML = 'Senha';  
+    }
+});
+
+btnTwo.addEventListener('click' , () => {
     createNewUserWithEmailAndPassword(emailTwo.value, passwordTwo.value);
     navigateTo('/feed')
 });
@@ -75,36 +132,17 @@ registerGoogle.addEventListener('click' , () => {
     navigateTo('/feed');
 })
 
-
- return rootElement;
-}
-
-
-
-
-
-
-/*
-const inputEmail = document.querySelector('#input-email');
-//const labelEmail = document.querySelector('#label-email');
-const btnRegisterNewUser = document.querySelector('#btn-register')
-
-const validateEmail = (event) => {
-    const input = event.currentTarget;
-    const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    const emailTest = regex.test(input.value)
-
-    if(!emailTest) {
-        btnRegisterNewUser.setAttribute("disabled", "disabled");
-        input.nextElementSibling.classList.add('error');
+btnEye.addEventListener('click', () =>{
+    const eyePassword = document.querySelectorAll('.password')
+    eyePassword.forEach( btn => {
+     if(btn.getAttribute('type') == 'password') {
+        btn.setAttribute('type', 'text')
     } else {
-        btnRegisterNewUser.removeAttribute("disabled");
-        input.nextElementSibling.classList.remove('error');
+        btn.setAttribute('type', 'password')
     }
+    })
+   
+});
 
-    return emailTest;
+return rootElement;
 }
-
-inputEmail.addEventListener('input', validateEmail);
-
-*/
