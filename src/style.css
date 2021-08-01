@@ -10,7 +10,7 @@ html{
   padding: 0;
   box-sizing: border-box;  /*box-sizing do tamanho das bordas da caixa serve para input pra igualar o tamanho com p*/
   font-family: Helvetica; /*mudar depois*/
-  /*color:#fff;*/
+  color:#fff;
   border: none;
 }
 
@@ -246,4 +246,22 @@ input[type="submit"]:hover {
 
 .bottom-container #login-container p {
   margin-bottom: 10px;
+}
+
+.text-error {
+text-align: center;
+color:#ff0000;
+background-color: #f8bfbf;
+padding: 10px;
+border-radius: 4px;
+display: none;
+}
+
+.text-success {
+text-align: center;
+color: #00bb00;
+background-color: #bbffbe;
+padding: 10px;
+border-radius: 4px;
+display: none;
 }

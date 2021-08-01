@@ -11,10 +11,12 @@ export const loginUsuario = () => {
         <div class="content-login">
             <section id="login-container" class="login-container"> <!--Container que engloba todo o login-->
                 <h1>Login</h1>
+                <div id="msgError" class="text-error"></div>
+                <div id="msgSuccess" class="text-success"></div>
                 <form action="">
-                    <label for="email">E-mail</label>
+                    <label for="email" id="labelEmail">E-mail</label>
                     <input type="email" name="email" id="email" placeholder="nome@email.com" autocomplete="off"> <!--name é utilizado pra resgatar o valor no backend-->
-                    <label for="password">Senha</label>
+                    <label for="password" id="labelPassword">Senha</label>
                     <div class="input-icons-login">
                         <i class="fa fa-eye" aria-hidden="true" id="eye-one" class="hidden"></i>
                         <input type="password" name="password" class="password" placeholder="Digite sua Senha">
@@ -43,8 +45,18 @@ newRootElement.innerHTML = contentnewElement;
 const email = newRootElement.querySelector('#email');
 const password = newRootElement.querySelector('.password');
 const btn = newRootElement.querySelector('.submit-btn');
-const logGoogle = newRootElement.querySelector('#btn-google')
-console.log(btn);
+const logGoogle = newRootElement.querySelector('#btn-google');
+
+let labelEmail = newRootElement.querySelector('#labelEmail');
+let labelPassword = newRootElement.querySelector('#labelPassword');
+
+let validPassword = false;
+let validEmail = false;
+
+let msgError = newRootElement.querySelector('#msgError');
+let msgSuccess = newRootElement.querySelector('#msgSuccess')
+
+
 
 logGoogle.addEventListener('click' , () => {
     loginWithGoogle ();
@@ -55,7 +67,53 @@ btn.addEventListener('click' , () => {
     navigateTo('/feed')
 })
 
+email.addEventListener('keyup', () => {
+
+ if(email.value.length <= 2){
+    labelEmail.setAttribute('style', 'color: red')
+    labelEmail.innerHTML = 'Insira um e-mail válido'
+    email.setAttribute('style', 'border-color: red')
+    validEmail = false;
+    } else {
+        labelEmail.setAttribute('style', 'color: green')
+        labelEmail.innerHTML = 'e-mail válido'
+        labelEmail.setAttribute('style', 'border-color: green')
+        validEmail = true;
+    }
+    
+})
+
+password.addEventListener('keyup', () => {
+    
+    if(password.value.length <= 8){
+      labelPassword.setAttribute('style', 'color: red')
+      labelPassword.innerHTML = 'Senha menor que 8 caractéres'
+      password.setAttribute('style', 'border-color: red')
+      validPassword = false;
+    } else {
+        labelPassword.setAttribute('style', 'color:green')
+        labelPassword.innerHTML = 'Senha válida'
+        password.setAttribute('style', 'border-color: green')
+        validPassword = true;
+     }
+    
+})
+
+
+function validLogin() {
+
+    if(validPassword && validEmail){
+    msgSuccess.setAttribute('style, display: block')
+    msgSuccess.innerHTML = 'Login válido'
+    msgError.innerHTML = ''
+    msgError.setAttribute('style, display: block')
+ }else{
+    msgError.setAttribute('style, display: block')
+    msgError.innerHTML = 'Preencha todos os campos corretamente'
+    msgSuccess.innerHTML = ''
+    msgSuccess.setAttribute('style, display: block')
+ }
+ } 
+
 return newRootElement
 };
-
-
