@@ -42,46 +42,55 @@ export const loginUsuario = () => {
 </section>`;
   
 newRootElement.innerHTML = contentnewElement;
+
 const email = newRootElement.querySelector('#email');
 const password = newRootElement.querySelector('.password');
 const btn = newRootElement.querySelector('.submit-btn');
 const logGoogle = newRootElement.querySelector('#btn-google');
+const btnEye = newRootElement.querySelector('.fa-eye');
 
-let labelEmail = newRootElement.querySelector('#labelEmail');
-let labelPassword = newRootElement.querySelector('#labelPassword');
+const labelEmail = newRootElement.querySelector('#labelEmail');
+const labelPassword = newRootElement.querySelector('#labelPassword');
+
+const msgError = newRootElement.querySelector('#msgError');
+const msgSuccess = newRootElement.querySelector('#msgSuccess')
 
 let validPassword = false;
 let validEmail = false;
 
-let msgError = newRootElement.querySelector('#msgError');
-let msgSuccess = newRootElement.querySelector('#msgSuccess')
+const validateEmail = (event) => {
+    const input = event.currentTarget;
+    const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const emailTest = regex.test(input.value)
 
+    if(!emailTest) {
+        btn.setAttribute('disabled', 'disabled');
+        labelEmail.innerHTML = '<strong> <label style = "color: red"> *Insira um email valido*</label></strong>'
+    } else {
+        btnTwo.removeAttribute('disabled', 'disabled');
+        labelEmail.innerHTML = 'Email';
+    }
+};
 
+function validateLogin() {
 
-logGoogle.addEventListener('click' , () => {
-    loginWithGoogle ();
-})
-
-btn.addEventListener('click' , () => {
+    if(validPassword && validEmail){
+    msgSuccess.setAttribute('style', 'display: block')
+    msgSuccess.innerHTML = 'Login válido'
+    msgError.innerHTML = ''
+    msgError.setAttribute('style', 'display: block')
     loginOfUser (email.value , password.value)
     navigateTo('/feed')
-})
+ }else{
+    msgError.setAttribute('style, display: block')
+    msgError.innerHTML = 'Preencha todos os campos corretamente'
+    msgSuccess.innerHTML = ''
+    msgSuccess.setAttribute('style, display: block')
+ }
+ } 
 
-email.addEventListener('keyup', () => {
 
- if(email.value.length <= 2){
-    labelEmail.setAttribute('style', 'color: red')
-    labelEmail.innerHTML = 'Insira um e-mail válido'
-    email.setAttribute('style', 'border-color: red')
-    validEmail = false;
-    } else {
-        labelEmail.setAttribute('style', 'color: green')
-        labelEmail.innerHTML = 'e-mail válido'
-        labelEmail.setAttribute('style', 'border-color: green')
-        validEmail = true;
-    }
-    
-})
+email.addEventListener('input', validateEmail);
 
 password.addEventListener('keyup', () => {
     
@@ -99,21 +108,21 @@ password.addEventListener('keyup', () => {
     
 })
 
+btn.addEventListener('click', validateLogin)
 
-function validLogin() {
+logGoogle.addEventListener('click' , () => {
+    loginWithGoogle ();
+})
+ 
+ btnEye.addEventListener('click', () =>{
+    let eyePassword = document.querySelector('.password')
 
-    if(validPassword && validEmail){
-    msgSuccess.setAttribute('style, display: block')
-    msgSuccess.innerHTML = 'Login válido'
-    msgError.innerHTML = ''
-    msgError.setAttribute('style, display: block')
- }else{
-    msgError.setAttribute('style, display: block')
-    msgError.innerHTML = 'Preencha todos os campos corretamente'
-    msgSuccess.innerHTML = ''
-    msgSuccess.setAttribute('style, display: block')
- }
- } 
+     if(eyePassword.getAttribute('type') == 'password') {
+        eyePassword.setAttribute('type', 'text')
+    } else {
+        eyePassword.setAttribute('type', 'password')
+    }
+    })
 
 return newRootElement
 };
