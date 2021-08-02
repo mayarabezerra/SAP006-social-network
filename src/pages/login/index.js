@@ -23,7 +23,8 @@ export const loginUsuario = () => {
                     </div>
                     <a href="#" id="forgot-pass">Esqueceu a senha?</a> 
                 </form>
-                <input type="submit" value="login" class="submit-btn">
+                <button type="submit" class="register_btn" id="submit-btn" disabled="disabled">Login</button>
+
                 <div id="social-container">
                     <p>Ou faça login com sua conta do Google</p>
                     <button class="fa fa-google-plus-official fa-3x" aria-hidden="true" id="btn-google" ></button>
@@ -45,7 +46,7 @@ newRootElement.innerHTML = contentnewElement;
 
 const email = newRootElement.querySelector('#email');
 const password = newRootElement.querySelector('.password');
-const btn = newRootElement.querySelector('.submit-btn');
+const btn = newRootElement.querySelector('#submit-btn');
 const logGoogle = newRootElement.querySelector('#btn-google');
 const btnEye = newRootElement.querySelector('.fa-eye');
 
@@ -56,7 +57,6 @@ const msgError = newRootElement.querySelector('#msgError');
 const msgSuccess = newRootElement.querySelector('#msgSuccess')
 
 let validPassword = false;
-let validEmail = false;
 
 const validateEmail = (event) => {
     const input = event.currentTarget;
@@ -67,48 +67,47 @@ const validateEmail = (event) => {
         btn.setAttribute('disabled', 'disabled');
         labelEmail.innerHTML = '<strong> <label style = "color: red"> *Insira um email valido*</label></strong>'
     } else {
-        btnTwo.removeAttribute('disabled', 'disabled');
+        btn.removeAttribute('disabled', 'disabled');
         labelEmail.innerHTML = 'Email';
     }
 };
 
 function validateLogin() {
 
-    if(validPassword && validEmail){
+    if(validPassword){
     msgSuccess.setAttribute('style', 'display: block')
-    msgSuccess.innerHTML = 'Login válido'
+    msgSuccess.innerHTML = '<strong>Login válido</strong>'
+    msgError.setAttribute('style', 'display: none')
     msgError.innerHTML = ''
-    msgError.setAttribute('style', 'display: block')
     loginOfUser (email.value , password.value)
     navigateTo('/feed')
  }else{
-    msgError.setAttribute('style, display: block')
-    msgError.innerHTML = 'Preencha todos os campos corretamente'
+    msgError.setAttribute('style', 'display: block')
+    msgError.innerHTML = '<strong>Preencha todos os campos corretamente</strong>'
+    msgSuccess.setAttribute('style', 'display: none')
     msgSuccess.innerHTML = ''
-    msgSuccess.setAttribute('style, display: block')
  }
  } 
 
-
-email.addEventListener('input', validateEmail);
+ email.addEventListener('input', validateEmail);
+ btn.addEventListener('click', validateLogin);
 
 password.addEventListener('keyup', () => {
     
     if(password.value.length <= 8){
       labelPassword.setAttribute('style', 'color: red')
-      labelPassword.innerHTML = 'Senha menor que 8 caractéres'
+      labelPassword.innerHTML = '<label>Senha menor que 8 caracteres</label>'
       password.setAttribute('style', 'border-color: red')
       validPassword = false;
     } else {
         labelPassword.setAttribute('style', 'color:green')
-        labelPassword.innerHTML = 'Senha válida'
+        labelPassword.innerHTML = '<label>Senha válida</label>'
         password.setAttribute('style', 'border-color: green')
         validPassword = true;
      }
     
 })
 
-btn.addEventListener('click', validateLogin)
 
 logGoogle.addEventListener('click' , () => {
     loginWithGoogle ();

@@ -120,7 +120,7 @@ a:hover {
 .login-container {
   background-color: rgb(11 11 11);
   width: 400px;
-  height: 500px;
+  height: 530px;
   margin-bottom: 140px;
   margin-left: auto;
   margin-right: auto; /*ambas margins auto fazem com que o elemento centralize na tela*/
@@ -211,22 +211,33 @@ input:focus {
   display: block;
 }
 
-input[type="submit"] {
+.register_btn{
   /*usou o type pra acessar apenas o estilo desse input mas podia dar uma id pra ele*/
   text-align: center;
   text-transform: uppercase;
   font-weight: bold;
+  font-size: 1rem;
   border: none;
   height: 40px;
+  width: 100%;
+  margin-bottom: 20px;
   border-radius: 20px;
-  margin-top: 18px;
   color: #fff;
   background-color: #900000;
   cursor: pointer; /*pra aparecer a mãozinha*/
 }
-input[type="submit"]:hover {
+.register_btn:hover {
   background-color: #fa0800;
   transition: .5s; /*pra acontecer a mudança de cor mais lentamente*/
+}
+
+.register_btn:disabled {
+  background-color: #a0a0a0;
+  cursor: not-allowed;
+}
+
+.register_btn:disabled:hover{
+background-color: #7c7a7a;
 }
 
 #social-container, #social-container p {
@@ -251,7 +262,6 @@ input[type="submit"]:hover {
 .text-error {
 text-align: center;
 color:#ff0000;
-background-color: #f8bfbf;
 padding: 10px;
 border-radius: 4px;
 display: none;
@@ -260,7 +270,6 @@ display: none;
 .text-success {
 text-align: center;
 color: #00bb00;
-background-color: #bbffbe;
 padding: 10px;
 border-radius: 4px;
 display: none;
