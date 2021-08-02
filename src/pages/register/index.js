@@ -12,8 +12,6 @@ export const registerUsuario = () => {
               <section class="three-section">
                       <section id="register-container" class="register-container"> 
                           <h1>Cadastrar</h1>
-                          <div class="msg-error"></div>
-                          <div class="msg-success"></div>
                           <form action="" id="register-now">
                               <label for="text" id="label-name">Nome e Sobrenome</label>
                               <input type="text" name="name" id="name" placeholder="Exemplo: Regan McNeil" >
@@ -50,6 +48,8 @@ export const registerUsuario = () => {
                           </div>
                           </section>
               </section>
+              <div class="msg-error"></div>
+             <div class="msg-success"></div>
           </div>
          <!--<div class="imgContainer">
               <img src="img/red-moon.jpg" alt="">
@@ -70,7 +70,7 @@ export const registerUsuario = () => {
  const passwordConfirm = rootElement.querySelector('#confirm_password');
  const labelPasswordConfirm = rootElement.querySelector('#label-confirm-password');
  const btnTwo = rootElement.querySelector('.register_btn');
- const btnEye = rootElement.querySelector('.fa-eye');
+ const btnEye = rootElement.querySelectorAll('.fa-eye');
  const registerGoogle = rootElement.querySelector('#btngoogle');
  const msgError= rootElement.querySelector('.msg-error');
  const msgSuccess = rootElement.querySelector('.msg-success');
@@ -97,18 +97,18 @@ export const registerUsuario = () => {
  function isItValid() {
      if (nameValid && passwordValid && confirmPasswordValide) {
         msgSuccess.setAttribute('style', 'display: block')
-        msgSuccess.innerHTML = '<strong>Cadastrando usuário...</strong>'
+        msgSuccess.innerHTML = '<strong>Cadastrado com sucesso</strong>'
         msgError.setAttribute('style', 'display: none');
         msgError.innerHTML = '';
         createNewUserWithEmailAndPassword(emailTwo.value, passwordTwo.value);
-        navigateTo('/feed') 
+        //navigateTo('/feed') 
      } else {
-         alert('erro')
-         console.log('erro')
+         //alert('erro')
          msgError.setAttribute('style', 'display: block')
-         msgSuccess.innerHTML = '<strong>Preencha corretamente...</strong>'
+         msgError.innerHTML = '<strong>Preencha corretamente...</strong>'
          msgSuccess.setAttribute('style', 'display: none')
          msgSuccess.innerHTML = '';
+         console.log('erro')
      }
  };
 
@@ -131,7 +131,6 @@ emailTwo.addEventListener('input', validateEmail);
 passwordTwo.addEventListener('keyup', () =>{
     if (passwordTwo.value.length <= 8) {
        labelPasswordTwo.innerHTML = '<strong> <label style = "color: red"> *Insira no mínimo 8 caracteres*</label></strong>'
-       btnTwo.setAttribute('disabled', 'disabled');
        passwordValid = false;
     } else {
        labelPasswordTwo.innerHTML = 'Senha';  
@@ -145,7 +144,6 @@ passwordConfirm.addEventListener('click', () =>{
         confirmPasswordValide = false;
     } else {   
         labelPasswordConfirm.innerHTML = 'Confirmar senha';  
-        btnTwo.removeAttribute('disabled', 'disabled');
         confirmPasswordValide = true;
     }
 });
@@ -157,17 +155,18 @@ registerGoogle.addEventListener('click' , () => {
     navigateTo('/feed');
 })
 
-btnEye.addEventListener('click', () =>{
-    const eyePassword = document.querySelectorAll('.password')
-    eyePassword.forEach( btn => {
-     if(btn.getAttribute('type') == 'password') {
-        btn.setAttribute('type', 'text')
-    } else {
-        btn.setAttribute('type', 'password')
-    }
-    })
-   
+btnEye.forEach(btn  =>{
+    btn.addEventListener('click', ()=> {
+        const eyePassword = document.querySelectorAll('.password')
+        eyePassword.forEach( btnT => {
+        if(btnT.getAttribute('type') == 'password') {
+            btnT.setAttribute('type', 'text')
+        } else {
+            btnT.setAttribute('type', 'password')
+        }
+    })})   
 });
+
 
 return rootElement;
 }

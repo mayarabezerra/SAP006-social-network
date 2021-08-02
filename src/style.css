@@ -258,16 +258,3 @@ input:focus {
 .bottom-container #login-container p {
   margin-bottom: 10px;
 }
-
-.msg-error .msg-success {
-  text-align: center;
-  padding: 10px;
-}
-
- .msg-error{
-  color: #ff0000;
-}
-
-.msg-success {
-  color: #00bb00;
-}

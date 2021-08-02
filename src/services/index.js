@@ -12,6 +12,7 @@ export const loginOfUser = (email,password) => {
   .catch((error) =>{
     const errorCode = error.code;
     const errorMessage = error.message;
+    alert('error')
     console.log('viiiish', errorCode, errorMessage);
   })
   return loginWithEmail
@@ -58,4 +59,11 @@ export const registerWithGoogle = () => {
           console.log(err);
       })
       return providerRegister
-  }
+  };
+
+  /*Sign-out */
+  firebase.auth().signOut().then(() => {
+    // Sign-out successful.
+  }).catch((error) => {
+    // An error happened.
+  });
