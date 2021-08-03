@@ -270,12 +270,15 @@ input:focus {
 
 @media (min-width:320px) and (max-width: 430px) {
  .register-container{
-  width: 334px;
-  margin-right: 10px;
+  width: 300px;
+ }
+
+ .login-container{
+  width: 300px;
  }
 
  .input-icons-register i {
-  margin-left: 223px;
+  margin-left: 194px;
  }
 
 .input-icons-login i {
