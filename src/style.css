@@ -258,19 +258,3 @@ background-color: #7c7a7a;
 .bottom-container #login-container p {
   margin-bottom: 10px;
 }
-
-.text-error {
-text-align: center;
-color:#ff0000;
-padding: 10px;
-border-radius: 4px;
-display: none;
-}
-
-.text-success {
-text-align: center;
-color: #00bb00;
-padding: 10px;
-border-radius: 4px;
-display: none;
-}

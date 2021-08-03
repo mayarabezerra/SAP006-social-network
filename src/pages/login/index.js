@@ -76,16 +76,16 @@ function validateLogin() {
 
     if(validPassword){
     msgSuccess.setAttribute('style', 'display: block')
-    msgSuccess.innerHTML = '<strong>Login válido</strong>'
+    msgSuccess.innerHTML = '<strong><Label style="margin-top: 10px;">Login válido</label></strong>'
     msgError.setAttribute('style', 'display: none')
-    msgError.innerHTML = ''
+    msgError.innerHTML = '';
     loginOfUser (email.value , password.value)
     navigateTo('/feed')
  }else{
     msgError.setAttribute('style', 'display: block')
-    msgError.innerHTML = '<strong>Preencha todos os campos corretamente</strong>'
+    msgError.innerHTML = '<strong><Label style="margin-top: 15px; font-size: 1.1rem; color: red; text-align: center">Preencha todos os campos corretamente</label></strong>'
     msgSuccess.setAttribute('style', 'display: none')
-    msgSuccess.innerHTML = ''
+    msgSuccess.innerHTML = '';
  }
  } 
 
@@ -96,12 +96,12 @@ password.addEventListener('keyup', () => {
     
     if(password.value.length <= 8){
       labelPassword.setAttribute('style', 'color: red')
-      labelPassword.innerHTML = '<label>Senha menor que 8 caracteres</label>'
+      labelPassword.innerHTML = '<strong><label>Senha menor que 8 caracteres</label></strong>'
       password.setAttribute('style', 'border-color: red')
       validPassword = false;
     } else {
         labelPassword.setAttribute('style', 'color:green')
-        labelPassword.innerHTML = '<label>Senha válida</label>'
+        labelPassword.innerHTML = '<strong><label>Senha válida</label></strong>'
         password.setAttribute('style', 'border-color: green')
         validPassword = true;
      }
