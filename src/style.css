@@ -27,7 +27,7 @@ position: relative;
 }
 
 
-section img {
+imgContainer {
   width: 60%;
   height: 60%;
   border-radius: 50%;
@@ -35,6 +35,7 @@ section img {
   -webkit-box-shadow: 4px 3px 38px 1px rgb(220 220 219 / 75%);
   -moz-box-shadow: 4px 3px 38px 1px rgba(241,132,14,0.75);
 }
+
 section .container-login > *{
   margin: 2rem;
   display: flex;
@@ -58,20 +59,25 @@ align-items: center;
 
 section .container-login  {
   padding: 0.8rem;
-  /*display: grid;
-  align-items: start;
+  display: grid;
   grid-template-columns: repeat(2, 1fr);
-  justify-content: center;*/
+  align-items: center;
+  justify-content: space-evenly;
   min-height: 100vh;
 }
 
 section .container-register {
   padding: 3rem;
-  /*display: grid;
+  display: grid;
   grid-template-columns: repeat(2, 1fr);
   align-items: center;
-  justify-content: center;*/
+  justify-content: space-evenly;
   min-height: 100vh;
+}
+
+.skull {
+  height: 300px;
+  width: 300px;
 }
 
 .shadow {
@@ -274,4 +280,37 @@ input:focus {
 .input-icons-login i {
   margin-left: 85px;
 }
+
+section .container-register {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
+
+section .container-login{
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+}
+
+@media (min-width:440px) and (max-width: 780px) {
+
+  section .container-register {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: row;
+  }
+
+  section .container-login{
+    display: flex;
+    min-height: 100vh;
+    flex-direction: row;
+  }
+  .skull {
+    height: 296px;
+    width: 249px;
+}
+}
+
