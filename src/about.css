@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Playfair+Display:900');
 @import url('https://fonts.googleapis.com/css?family=IM+Fell+English');
+@font-face {
+	font-family: 'Melted Monster';
+	src: url('font/Melted Monster.ttf') format('truetype');
+}
 main{display:block;}html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;}body{margin:0;}
 *,
 *::after,
@@ -25,6 +29,7 @@ body {
 	position: relative;
 	display: flex;
 	justify-content: center;
+	margin-top: 21%;
 	align-items: center;
 	margin: 0 auto;
 	min-height: 100vh;
@@ -33,26 +38,47 @@ body {
     display: flex;
     align-items: flex-end;
     z-index: 20;
-    justify-content: center;
+    /*justify-content: center;
     margin-right: auto;
-    margin-left: auto;
+    margin-left: auto;*/
+	margin-top: 5%;
+	margin-left: 204px;
 }
 .links-about a {
-    font-family: fangsong;
+    font-family: 'Melted Monster';
+	letter-spacing: 4px;
     font-size: 2rem;
-    font-weight: bolder;
+    /*font-weight: bolder;*/
     padding: 20px;
     margin-right: 20px;
     margin-left: 20px;
     margin-top: 10px;
-    border: white;
+    border: rgb(247, 243, 243);
     border-style: solid;
-    border-radius: 5px;
+	border-radius: 27px;
+	/*border-width: 0.5px;*/
     z-index: 20;
-    color: white;
+    color: rgb(255, 255, 255);
     text-decoration: none;
-    background: black;
+
 }
+
+.click-link {
+	width: 1px;
+    height: 16px;
+    display: flex;
+    margin-top: 15vh;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    align-content: flex-start;
+}
+
+.dont-click {
+	text-align: center;
+	color: rgb(231, 222, 222);
+}
+
 .links-about a:hover {
     background-image: linear-gradient(to top,  rgb(119, 21, 21), rgb(247, 34, 34));
 }
@@ -65,10 +91,18 @@ body {
 }
 
 .content-title {
+	font-family: 'Melted Monster', 'Playfair Display', serif;
+	background-image: linear-gradient(#DB0C04, #B50A04, #750602, #380301);
+  /* agora colocamos o fundo gradiente dentro do texto com essa propriedade */
+    background-clip: text;
+    -webkit-background-clip: text;
+  /* a cor do texto deve estar como transparent */
+    color: transparent;
+	/*color: #DB0C04;*/
+	letter-spacing: 1.8rem;
 	font-size: 12vw;
-	margin: 35vh 0 0 0;
+	margin: 15vh 0 0 0;
 	position: relative;
-	font-family: 'Playfair Display', serif;
 	animation-delay: calc(2s + 4s * 0.2);
 }
 
@@ -77,7 +111,7 @@ body {
 	position: absolute;
 	font-size: 1.5em;
 	top: 4em;
-	right: 10vw;
+	right: 5vw;
 	max-width: 500px;
 	text-align: right;
 	font-weight: 400;
@@ -162,6 +196,59 @@ body {
 		min-height: 0;
 	}
 }
+
+@media (min-width:320px) and (max-width:768px){ 
+	.content-title{
+		margin: 35vh 0 0 0;
+		letter-spacing: 0.8rem;
+	} 
+
+	.links-about{
+		justify-content: center;
+		margin-right: auto;
+		margin-left: auto;
+		margin-top: 10%;	
+	}
+
+
+ .links-about a {
+    font-size: 1.5rem;
+    padding: 20px;
+    margin-left: 20px;
+    margin-top: 10px;
+    border: white;
+    border-style: solid;
+	border-width: 0.5px;
+    z-index: 20;
+    color: white;
+    text-decoration: none;
+
+}
+ }
+
+@media (max-width:1024px) {
+ .links-about {
+	display: flex;
+    align-items: flex-end;
+    z-index: 20;
+	margin-top: 8%;
+    margin-left: 30px;
+ }
+ .links-about a {
+	margin-right: 11px;
+    margin-left: -6px;
+	letter-spacing: 1px;
+}
+
+};
+@media (max-width: 1440px){
+	.content-title {
+		font-size: 15vw;
+		margin: 13vh 0 0 0;
+
+	}
+}
+
 
 /* Animations */
 

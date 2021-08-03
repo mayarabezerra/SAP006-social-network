@@ -1,4 +1,4 @@
-import {navigateTo} from '../../routes.js'
+//import {navigateTo} from '../../routes.js'
 import {createNewUserWithEmailAndPassword} from '../../services/index.js'
 import {registerWithGoogle} from '../../services/index.js'
 
@@ -12,6 +12,8 @@ export const registerUsuario = () => {
               <section class="three-section">
                       <section id="register-container" class="register-container"> 
                           <h1>Cadastrar</h1>
+                          <div class="msg-error"></div>
+                          <div class="msg-success"></div>
                           <form action="" id="register-now">
                               <label for="text" id="label-name">Nome e Sobrenome</label>
                               <input type="text" name="name" id="name" placeholder="Exemplo: Regan McNeil" >
@@ -48,12 +50,10 @@ export const registerUsuario = () => {
                           </div>
                           </section>
               </section>
-              <div class="msg-error"></div>
-             <div class="msg-success"></div>
           </div>
-         <!--<div class="imgContainer">
-              <img src="img/red-moon.jpg" alt="">
-          </div>-->
+         <div class="imgContainer">
+             <!-- <img src="img/red-moon.jpg" alt="">-->
+          </div>
       </div>
   </section>
     `
@@ -97,20 +97,27 @@ export const registerUsuario = () => {
  function isItValid() {
      if (nameValid && passwordValid && confirmPasswordValide) {
         msgSuccess.setAttribute('style', 'display: block')
-        msgSuccess.innerHTML = '<strong>Cadastrado com sucesso</strong>'
+        alert('Cadastrado com sucesso, agora faça login') 
         msgError.setAttribute('style', 'display: none');
         msgError.innerHTML = '';
-        createNewUserWithEmailAndPassword(emailTwo.value, passwordTwo.value);
-        //navigateTo('/feed') 
+        createNewUserWithEmailAndPassword(emailTwo.value, passwordTwo.value); 
      } else {
          //alert('erro')
          msgError.setAttribute('style', 'display: block')
-         msgError.innerHTML = '<strong>Preencha corretamente...</strong>'
+         msgError.innerHTML = '<strong> <label style="margin-top: 15px; font-size: 1.1rem; color: red; text-align: center"> Preencha corretamente...</label></strong>'
          msgSuccess.setAttribute('style', 'display: none')
          msgSuccess.innerHTML = '';
          console.log('erro')
      }
  };
+
+const animation = bodymovin.loadAnimation({
+    container: rootElement.querySelector('#imgContainer'),
+    renderer: 'svg/canvas/html',
+    loop: true,
+    autoplay:true,
+    path:'36570-ah-a-ghost.jason'
+})
 
 /*Listeners */
 
@@ -138,7 +145,7 @@ passwordTwo.addEventListener('keyup', () =>{
     }
 });
 
-passwordConfirm.addEventListener('click', () =>{
+passwordConfirm.addEventListener('keyup', () =>{
     if (passwordTwo.value != passwordConfirm.value) {
         labelPasswordConfirm.innerHTML = '<strong> <label style = "color: red"> *As senhas não conferem*</label></strong>'
         confirmPasswordValide = false;
@@ -152,7 +159,6 @@ btnTwo.addEventListener('click', isItValid)
 
 registerGoogle.addEventListener('click' , () => {
     registerWithGoogle ()
-    navigateTo('/feed');
 })
 
 btnEye.forEach(btn  =>{
@@ -166,7 +172,6 @@ btnEye.forEach(btn  =>{
         }
     })})   
 });
-
 
 return rootElement;
 }
