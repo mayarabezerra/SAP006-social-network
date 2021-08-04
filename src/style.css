@@ -27,7 +27,7 @@ position: relative;
 }
 
 
-section img {
+imgContainer {
   width: 60%;
   height: 60%;
   border-radius: 50%;
@@ -35,6 +35,7 @@ section img {
   -webkit-box-shadow: 4px 3px 38px 1px rgb(220 220 219 / 75%);
   -moz-box-shadow: 4px 3px 38px 1px rgba(241,132,14,0.75);
 }
+
 section .container-login > *{
   margin: 2rem;
   display: flex;
@@ -58,20 +59,25 @@ align-items: center;
 
 section .container-login  {
   padding: 0.8rem;
-  /*display: grid;
-  align-items: start;
+  display: grid;
   grid-template-columns: repeat(2, 1fr);
-  justify-content: center;*/
+  align-items: center;
+  justify-content: space-evenly;
   min-height: 100vh;
 }
 
 section .container-register {
   padding: 3rem;
-  /*display: grid;
+  display: grid;
   grid-template-columns: repeat(2, 1fr);
   align-items: center;
-  justify-content: center;*/
+  justify-content: space-evenly;
   min-height: 100vh;
+}
+
+.skull {
+  height: 300px;
+  width: 300px;
 }
 
 .shadow {
@@ -120,7 +126,7 @@ a:hover {
 .login-container {
   background-color: rgb(11 11 11);
   width: 400px;
-  height: 530px;
+  height: 535px;
   margin-bottom: 140px;
   margin-left: auto;
   margin-right: auto; /*ambas margins auto fazem com que o elemento centralize na tela*/
@@ -203,7 +209,7 @@ input {
 }
 
 input:focus {
-  border-bottom: 2px solid #f81818; /*muda a cor da borda bottom*/ 
+  border-bottom: 2px solid #807e7e; /*muda a cor da borda bottom*/ 
 }
 
 #forgot-pass {
@@ -211,7 +217,7 @@ input:focus {
   display: block;
 }
 
-.register_btn{
+.register_btn {
   /*usou o type pra acessar apenas o estilo desse input mas podia dar uma id pra ele*/
   text-align: center;
   text-transform: uppercase;
@@ -231,13 +237,13 @@ input:focus {
   transition: .5s; /*pra acontecer a mudança de cor mais lentamente*/
 }
 
-.register_btn:disabled {
+.register_btn:disabled{
   background-color: #a0a0a0;
-  cursor: not-allowed;
+  cursor: not-allowed
 }
 
 .register_btn:disabled:hover{
-background-color: #7c7a7a;
+  background-color: #7c7a7a;
 }
 
 #social-container, #social-container p {
@@ -258,3 +264,56 @@ background-color: #7c7a7a;
 .bottom-container #login-container p {
   margin-bottom: 10px;
 }
+
+/*Responsive*/
+
+@media (min-width:320px) and (max-width: 430px) {
+ .register-container{
+  width: 300px;
+ }
+
+ .login-container{
+  width: 300px;
+ }
+ 
+ .input-icons-register i {
+  margin-left: 194px;
+ }
+
+.input-icons-login i {
+  margin-left: 85px;
+}
+
+section .container-register {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+section .container-login{
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+}
+
+@media (min-width:440px) and (max-width: 780px) {
+
+  section .container-register {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: row;
+  }
+
+  section .container-login{
+    display: flex;
+    min-height: 100vh;
+    flex-direction: row;
+  }
+  .skull {
+    height: 296px;
+    width: 249px;
+}
+}
+

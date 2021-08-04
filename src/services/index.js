@@ -1,3 +1,4 @@
+import {navigateTo} from '../../routes.js'
 //Firebase
 export const loginOfUser = (email,password) => {
   const loginWithEmail = firebase
@@ -5,6 +6,7 @@ export const loginOfUser = (email,password) => {
   .signInWithEmailAndPassword(email,password)
   .then((userCredential) => {
     const user = userCredential.user
+    navigateTo('/feed')
     console.log('uhuuuuuu', user)
     //window.location.replace('/feed')
   })
@@ -12,6 +14,7 @@ export const loginOfUser = (email,password) => {
   .catch((error) =>{
     const errorCode = error.code;
     const errorMessage = error.message;
+    alert('Email ou senha inválido');
     console.log('viiiish', errorCode, errorMessage);
   })
   return loginWithEmail
@@ -22,6 +25,7 @@ const provider = new firebase.auth.GoogleAuthProvider();
     provider.addScope('https://www.googleapis.com/auth/userinfo.email');
     firebase.auth().signInWithPopup(provider)
     .then(result => {
+       navigateTo('/feed');
         console.log(result);
     }) .catch(err =>{
         alert('Erro ao logar');
@@ -31,10 +35,10 @@ const provider = new firebase.auth.GoogleAuthProvider();
 }
 
 export const createNewUserWithEmailAndPassword = (email, password) => {
-   const newUser = firebase.auth().createUserWithEmailAndPassword( email, password)
+   const newUser = firebase.auth().createUserWithEmailAndPassword(email, password)
     .then((userCredential) => {
       const user = userCredential.user;
-      //window.location.replace('dashboard.html')
+      navigateTo('/login')
       console.log(user)
       // ...
     })
@@ -52,10 +56,18 @@ export const registerWithGoogle = () => {
       providerRegister.addScope('https://www.googleapis.com/auth/userinfo.email');
       firebase.auth().signInWithPopup(providerRegister)
       .then(result => {
+          navigateTo('/feed');
           console.log(result);
       }) .catch(err =>{
           alert('Erro ao logar');
           console.log(err);
       })
       return providerRegister
-  }
+  };
+
+  /*Sign-out */
+  firebase.auth().signOut().then(() => {
+    // Sign-out successful.
+  }).catch((error) => {
+    // An error happened.
+  });
