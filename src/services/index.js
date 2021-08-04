@@ -1,4 +1,5 @@
 import {navigateTo} from '../../routes.js'
+
 //Firebase
 export const loginOfUser = (email,password) => {
   const loginWithEmail = firebase
@@ -36,11 +37,9 @@ const provider = new firebase.auth.GoogleAuthProvider();
 
 export const createNewUserWithEmailAndPassword = (email, password) => {
    const newUser = firebase.auth().createUserWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      navigateTo('/login')
-      console.log(user)
-      // ...
+    .then(() => {
+      console.log('yasss')
+      sendVerificationEmail();
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -65,9 +64,57 @@ export const registerWithGoogle = () => {
       return providerRegister
   };
 
-  /*Sign-out */
+  export const keepLoggedUser = (persistence) => {
+    firebase.auth().setPersistence(persistence)
+     .then(() => {
+      const provider = new firebase.auth();
+      return firebase.auth().signInWithRedirect(provider);
+     })
+     .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+     });
+     return keepLoggedUser
+   };
+
+  /*Sign-out 
   firebase.auth().signOut().then(() => {
     // Sign-out successful.
   }).catch((error) => {
     // An error happened.
   });
+*/
+ /*email autentication*/  
+
+ export const sendVerificationEmail = () => {
+  //Built in firebase function responsible for sending the verification email
+  firebase.auth().currentUser.sendEmailVerification()
+  .then(() => {
+      console.log('Verification Email Sent Successfully !');
+      //redirecting the user to the profile page once everything is done correctly
+     navigateTo('/login');
+  })
+  .catch(error => {
+      console.error(error);
+  })
+}
+
+/*antigo createNewUser
+export const createNewUserWithEmailAndPassword = (email, password) => {
+   const newUser = firebase.auth().createUserWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      navigateTo('/login')
+      console.log(user)
+      // ...
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorCode, errorMessage)
+      // ..
+    });
+  return newUser
+}; */
+
+
