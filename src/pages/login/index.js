@@ -3,6 +3,7 @@ import{loginOfUser} from '../../services/index.js'
 import {loginWithGoogle} from '../../services/index.js'
 import {keepLoggedUser} from '../../services/index.js'
 
+
 export const loginUsuario = () => {
     const newRootElement = document.createElement('div');
     const contentnewElement = `
@@ -23,7 +24,9 @@ export const loginUsuario = () => {
                         <input type="password" name="password" class="password" placeholder="Digite sua Senha">
                     </div>
                     <a href="#" id="forgot-pass">Esqueceu a senha?</a> 
-                    
+               
+                    <a href="/forgot" id="forgot-pass">Esqueceu a senha?</a> 
+
                 </form>
                 <div class="checkbox">
                     <label class="logged">Manter-se conectado</label>
@@ -157,9 +160,18 @@ logGoogle.addEventListener('click' , () => {
     } else {
         eyePassword.setAttribute('type', 'password')
     }
+
     
     })
 
 
 return newRootElement
 };
+
+    });
+
+
+
+
+ 
+

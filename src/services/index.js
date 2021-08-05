@@ -64,6 +64,7 @@ export const registerWithGoogle = () => {
       return providerRegister
   };
 
+
   export const keepLoggedUser = (persistence) => {
     firebase.auth().setPersistence(persistence)
      .then(() => {
@@ -77,13 +78,36 @@ export const registerWithGoogle = () => {
      return keepLoggedUser
    };
 
+
   /*Sign-out 
   firebase.auth().signOut().then(() => {
     // Sign-out successful.
   }).catch((error) => {
     // An error happened.
   });
+
 */
+
+
+
+export const reset = (email) => {
+  const forgotPassword = firebase.auth().sendPasswordResetEmail(email)
+    .then(() => {
+      alert('E-mail enviado com sucesso!');
+       })
+    .catch(err =>{
+      alert('Erro ao logar');
+      console.log(err);
+    })
+      return forgotPassword
+    }
+
+    /*.catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+       })*/
+
+
  /*email autentication*/  
 
  export const sendVerificationEmail = () => {
