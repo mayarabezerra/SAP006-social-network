@@ -1,6 +1,7 @@
 //import {navigateTo} from '../../routes.js'
 import{loginOfUser} from '../../services/index.js'
 import {loginWithGoogle} from '../../services/index.js'
+
 export const loginUsuario = () => {
     const newRootElement = document.createElement('div');
     const contentnewElement = `
@@ -20,7 +21,7 @@ export const loginUsuario = () => {
                         <i class="fa fa-eye" aria-hidden="true" id="eye-one" class="hidden"></i>
                         <input type="password" name="password" class="password" placeholder="Digite sua Senha">
                     </div>
-                    <a href="#" id="forgot-pass">Esqueceu a senha?</a> 
+                    <a href="/forgot" id="forgot-pass">Esqueceu a senha?</a> 
                 </form>
                 <button type="submit" class="register_btn" id="submit-btn" disabled="disabled">Login</button>
                 <div id="social-container">
@@ -131,7 +132,9 @@ btnEye.addEventListener('click', () =>{
     }
     });
 
+
 return newRootElement
 };
 
 
+ 

@@ -69,7 +69,25 @@ export const registerWithGoogle = () => {
   }).catch((error) => {
     // An error happened.
   });
-*/
+
+
+export const reset = (email) => {
+  const forgotPassword = firebase.auth().sendPasswordResetEmail(email)
+    .then(() => {
+      alert('E-mail enviado com sucesso!');
+       })
+    .catch(err =>{
+      alert('Erro ao logar');
+      console.log(err);
+    })
+      return forgotPassword
+    }
+
+    /*.catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+       })*/
+
  /*email autentication*/  
 
  export const sendVerificationEmail = () => {
