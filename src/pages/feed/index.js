@@ -20,6 +20,36 @@ export const feedConstruct =  () => {
       </ul>
     </nav>
   </header>
+  <main class="layout-feed">
+        <div class="container-text-feed">
+            <form>
+               <div class="inline-img"> <img src="./img/avatar.png" class="img-avatar" alt=""> <label class="labels">Nome do phenomena</label></div><br>
+                <div class="textarea-style">
+                    <textarea name="textarea" id="textarea" class="textarea-feed" cols="37" rows="4" minlength="3" placeholder="Let's get spooky..."></textarea>
+                </div><br>
+               <buttom type="submit" class="feed-button">Enviar</buttom>
+            </form>
+        </div>
+    </main>
+    <section class="layout-feed-two">
+    <div class="container-text-feed-two">
+        
+           <div class="inline-img-two"> <img src="./img/avatar.png" class="img-avatar" alt=""> <label class="labels">Nome do phenomena</label></div><br>
+            <div class="textarea-style">
+                <div class="publi-feed"></div>
+            </div><br>
+            <div class="container-stepfather">
+            <div class="content-buttom">
+           <buttom type="submit" class="like-buttom"><img src="./img/coracao.png" class="img-like" alt=""></buttom>
+           <label>curtir<label>
+           </div>
+           <div class="content-buttom-two">
+           <buttom>editar</buttom>
+           <buttom>excluir</buttom>
+          </div>
+          </div>
+    </div>
+</section>
   </section>`;
 
  
