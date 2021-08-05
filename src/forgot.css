@@ -1,0 +1,76 @@
+.section-exemple-three {
+    width: 100%;
+    background-color: #131312;
+    position: relative;
+}
+
+section .container-forgot > *{
+    margin: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: start;
+    align-content: space-around;
+    flex-direction: row;
+    justify-content: space-around;
+    
+}
+
+section .container-forgot  {
+    padding: 0.8rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    justify-content: space-evenly;
+    min-height: 100vh;
+}
+
+.forgot-container {
+    background-color: rgb(11 11 11);
+    width: 354px;
+    height: 365px;
+    margin-bottom: 140px;
+    margin-left: auto;
+    margin-right: auto; 
+    padding: 40px 30px; 
+    /*margin-top: 20vh; medida proporcional a tela do usuario*/
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 4px 3px 38px 1px rgb(239 234 228 / 75%);
+    -webkit-box-shadow: 4px 3px 38px 1px rgb(218 215 211 / 75%);
+    -moz-box-shadow: 4px 3px 38px 1px rgba(250, 16, 16, 0.75);
+    overflow: visible;
+  }
+
+.forgot-container h1 {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 1.5rem;
+}
+
+@media (min-width:320px) and (max-width: 430px) {
+    .forgot-container{
+      width: 280px;
+    }
+
+}
+
+.reset {
+    /*usou o type pra acessar apenas o estilo desse input mas podia dar uma id pra ele*/
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1rem;
+    border: none;
+    height: 40px;
+    width: 100%;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    color: #fff;
+    background-color: #900000;
+    cursor: pointer; /*pra aparecer a mãozinha*/
+  }
+  .reset:hover {
+    background-color: #fa0800;
+    transition: .5s; /*pra acontecer a mudança de cor mais lentamente*/
+  }
+ 
+  

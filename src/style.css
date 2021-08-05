@@ -57,7 +57,6 @@ justify-content: space-around;
 align-items: center;
 }
 
-/**/
 section .container-login  {
   padding: 0.8rem;
   display: grid;
@@ -266,6 +265,24 @@ input:focus {
   margin-bottom: 10px;
 }
 
+/*mantenha-se logado*/
+.checkbox {
+  display: flex;
+  flex-direction:row;
+  align-items: right;
+  justify-content: right;   
+  
+}
+
+.logged {
+  font-size: .9rem;
+  margin-left: 50%;
+}
+
+.check {
+width: 30px;
+}
+
 /*Responsive*/
 
 @media (min-width:320px) and (max-width: 430px) {
@@ -277,6 +294,10 @@ input:focus {
   width: 300px;
  }
 
+ .login-container{
+  width: 300px;
+ }
+ 
  .input-icons-register i {
   margin-left: 194px;
  }

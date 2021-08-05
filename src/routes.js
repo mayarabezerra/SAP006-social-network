@@ -3,6 +3,7 @@ import {aboutUs} from './pages/about/index.js'
 import {loginUsuario} from './pages/login/index.js'
 import {registerUsuario} from './pages/register/index.js'
 import {feedConstruct} from './pages/feed/index.js'
+import {forgot} from './pages/forgotpassword/index.js'
 
 
 export const router = () => {
@@ -13,8 +14,9 @@ export const router = () => {
         "/login": loginUsuario,
         "/register": registerUsuario,
        "/feed": feedConstruct,
-       // "/forgot":forgotpassword
+       "/forgot": forgot,
     }
+    
 mainPage.innerHTML = "";
 if(routes[window.location.pathname] != undefined) {
     mainPage.appendChild(routes[window.location.pathname]())
