@@ -1,4 +1,5 @@
 import {navigateTo} from '../../routes.js'
+
 //Firebase
 export const loginOfUser = (email,password) => {
   const loginWithEmail = firebase
@@ -63,12 +64,30 @@ export const registerWithGoogle = () => {
       return providerRegister
   };
 
+
+  export const keepLoggedUser = (persistence) => {
+    firebase.auth().setPersistence(persistence)
+     .then(() => {
+      const provider = new firebase.auth();
+      return firebase.auth().signInWithRedirect(provider);
+     })
+     .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+     });
+     return keepLoggedUser
+   };
+
+
   /*Sign-out 
   firebase.auth().signOut().then(() => {
     // Sign-out successful.
   }).catch((error) => {
     // An error happened.
   });
+
+*/
+
 
 
 export const reset = (email) => {
@@ -87,6 +106,7 @@ export const reset = (email) => {
         const errorCode = error.code;
         const errorMessage = error.message;
        })*/
+
 
  /*email autentication*/  
 

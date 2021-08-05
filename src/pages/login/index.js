@@ -1,6 +1,8 @@
 //import {navigateTo} from '../../routes.js'
 import{loginOfUser} from '../../services/index.js'
 import {loginWithGoogle} from '../../services/index.js'
+import {keepLoggedUser} from '../../services/index.js'
+
 
 export const loginUsuario = () => {
     const newRootElement = document.createElement('div');
@@ -21,8 +23,15 @@ export const loginUsuario = () => {
                         <i class="fa fa-eye" aria-hidden="true" id="eye-one" class="hidden"></i>
                         <input type="password" name="password" class="password" placeholder="Digite sua Senha">
                     </div>
+                    <a href="#" id="forgot-pass">Esqueceu a senha?</a> 
+               
                     <a href="/forgot" id="forgot-pass">Esqueceu a senha?</a> 
+
                 </form>
+                <div class="checkbox">
+                    <label class="logged">Manter-se conectado</label>
+                    <input type="checkbox" id="keep-logged" class="check">
+                    </div>
                 <button type="submit" class="register_btn" id="submit-btn" disabled="disabled">Login</button>
                 <div id="social-container">
                     <p>Ou faça login com sua conta do Google</p>
@@ -64,6 +73,8 @@ export const loginUsuario = () => {
     </div>
 </section>`;
 newRootElement.innerHTML = contentnewElement;
+
+const keepLogged = newRootElement.querySelector('#keep-logged');
 const email = newRootElement.querySelector('#email');
 const password = newRootElement.querySelector('.password');
 const btn = newRootElement.querySelector('#submit-btn');
@@ -74,6 +85,20 @@ const labelPassword = newRootElement.querySelector('#labelPassword');
 const msgError = newRootElement.querySelector('#msgError');
 const msgSuccess = newRootElement.querySelector('#msgSuccess')
 let validPassword = false;
+
+
+
+keepLogged.addEventListener('change', () => {
+    const local = firebase.auth.Auth.Persistence.LOCAL;  
+    const none = firebase.auth.Auth.Persistence.NONE;
+    if (keepLogged.checked === true && btn) {
+      keepLoggedUser(local);
+    } else if (keepLogged.checked === true && logGoogle) {
+      keepLoggedUser(local);
+    }
+    keepLoggedUser(none);
+  });
+
 
 const validateEmail = (event) => {
     const input = event.currentTarget;
@@ -123,18 +148,30 @@ logGoogle.addEventListener('click' , () => {
     loginWithGoogle ();
 });
 
-btnEye.addEventListener('click', () =>{
+logGoogle.addEventListener('click' , () => {
+    loginWithGoogle ();
+})
+ 
+ btnEye.addEventListener('click', () =>{
     let eyePassword = document.querySelector('.password')
+
      if(eyePassword.getAttribute('type') == 'password') {
         eyePassword.setAttribute('type', 'text')
     } else {
         eyePassword.setAttribute('type', 'password')
     }
-    });
+
+    
+    })
 
 
 return newRootElement
 };
 
+    });
+
+
+
 
  
+
