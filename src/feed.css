@@ -1,5 +1,12 @@
 /*feed*/
+* {
+  margin: 0;
+  padding: 0;
+}
 
+body {
+    background: #252525;
+}
 .section-exemple-feed {
   width: 100%;
   background-color: #252525;
@@ -67,7 +74,7 @@ nav {
 }
 
 @media (max-width: 999px) {
-  .section-exemple-feed {
+  body {
     overflow-x: hidden;
   }
   .nav-list {
