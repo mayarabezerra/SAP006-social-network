@@ -121,7 +121,7 @@ export const registerUsuario = () => {
  function isItValid() {
      if (nameValid && passwordValid && confirmPasswordValide) {
         msgSuccess.setAttribute('style', 'display: block')
-        alert('Cadastrado com sucesso, agora faça login') 
+        alert('Confirme o e-mail recebido e depois faça login') 
         msgError.setAttribute('style', 'display: none');
         msgError.innerHTML = '';
         createNewUserWithEmailAndPassword(emailTwo.value, passwordTwo.value); 
