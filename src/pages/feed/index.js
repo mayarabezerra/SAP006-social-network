@@ -67,7 +67,7 @@ newRootElement.querySelector('.postForm').addEventListener('submit', function (e
   event.preventDefault();
   const text = document.querySelector('.textarea').value
   const post = {
-    text: text,
+    text,
     userId: id,
     userName: name,
     userEmail: email,
