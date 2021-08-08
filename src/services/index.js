@@ -1,6 +1,17 @@
 import {navigateTo} from '../../routes.js'
 
-//Firebase
+//FireStore
+export const gettingNewUserData = (userData, nameOfUser) => {
+  const usersCollection = firebase.firestore().collection('users');
+  const user = {
+    id: userData.user.uid,
+    name: nameOfUser,
+    email: userData.user.email
+  };
+  usersCollection.add(user);
+};
+
+//Firebase auth
 export const loginOfUser = (email,password) => {
   const loginWithEmail = firebase
   .auth()
@@ -35,11 +46,12 @@ const provider = new firebase.auth.GoogleAuthProvider();
     return provider
 }
 
-export const createNewUserWithEmailAndPassword = (email, password) => {
-   const newUser = firebase.auth().createUserWithEmailAndPassword(email, password)
-    .then(() => {
-      console.log('yasss')
+export const createNewAccount = (emailTwo, passwordTwo, nameOfUser) => {
+   const newUser = firebase.auth().createUserWithEmailAndPassword(emailTwo, passwordTwo)
+    .then((userData) => {
+      gettingNewUserData(userData, nameOfUser)
       sendVerificationEmail();
+      navigateTo('/login')
     })
     .catch((error) => {
       const errorCode = error.code;
