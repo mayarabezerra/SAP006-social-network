@@ -168,7 +168,7 @@ logGoogle.addEventListener('click' , () => {
 return newRootElement
 };
 
-    });
+    
 
 
 
