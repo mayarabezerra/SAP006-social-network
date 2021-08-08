@@ -36,7 +36,7 @@ export const feedConstruct =  () => {
         
            <div class="inline-img-two"> <img src="./img/avatar.png" class="img-avatar" alt=""> <label class="labels">Nome do phenomena</label></div><br>
             <div class="textarea-style">
-                <div class="publi-feed"></div>
+                <div class="publi-feed" id="publiPosts"></div>
             </div><br>
             <div class="container-stepfather">
             <div class="content-buttom">
@@ -63,9 +63,10 @@ btn.addEventListener('click', () => {
 })*/
 /*Function - class */
 
-newRootElement.querySelector('.postForm').addEventListener('submit', function (event){
+newRootElement.querySelector('#postForm').addEventListener('submit', (event) => {
   event.preventDefault();
-  const text = document.querySelector('.textarea').value
+  const CreatePosts = (id, name, email) => {
+  const text = document.querySelector('#textarea').value
   const post = {
     text,
     userId: id,
@@ -73,11 +74,34 @@ newRootElement.querySelector('.postForm').addEventListener('submit', function (e
     userEmail: email,
     likes: 0,
     comments: [],
-  }
+  }  
   const postsCollection = firebase.firestore().collection('posts')
 
   postsCollection.add(post)
-});
+}});
+
+  function addPost(post) {
+    const postTemplate = `
+    <li id='${post.id}'>
+    ${post.data().text} ${post.data().likes}
+    </li>
+    `
+    newRootElement.querySelector('#publiPosts').innerHTML += postTemplate;
+  }
+
+  function printPost(){
+    const postsCollection = firebase.firestore().collection('posts')
+    newRootElement.querySelector('#publiPosts').innerHTML = "Carregando..."
+    postsCollection.get().then(snap => {
+      newRootElement.querySelector('#publiPosts').innerHTML = ""
+      snap.forEach(post => {
+        addPost(post)
+      })
+    })
+    
+  }
+  printPost()
+
 
 class MobileNavbar {
   constructor(mobileMenu, navList, navLinks) {

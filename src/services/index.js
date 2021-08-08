@@ -12,6 +12,7 @@ export const loginOfUser = (email,password) => {
     //window.location.replace('/feed')
   })
 
+
   .catch((error) =>{
     const errorCode = error.code;
     const errorMessage = error.message;
@@ -20,6 +21,17 @@ export const loginOfUser = (email,password) => {
   })
   return loginWithEmail
 }
+
+//FireStore
+export const gettingNewUserData = (userData, nameOfUser) => {
+  const usersCollection = firebase.firestore().collection('users');
+  const user = {
+    id: userData.user.uid,
+    name: nameOfUser,
+    email: userData.user.email
+  };
+  usersCollection.add(user);
+};
 
 export const loginWithGoogle = () => {
 const provider = new firebase.auth.GoogleAuthProvider();
