@@ -23,10 +23,8 @@ export const loginUsuario = () => {
                         <i class="fa fa-eye" aria-hidden="true" id="eye-one" class="hidden"></i>
                         <input type="password" name="password" class="password" placeholder="Digite sua Senha">
                     </div>
-                    <a href="#" id="forgot-pass">Esqueceu a senha?</a> 
                
                     <a href="/forgot" id="forgot-pass">Esqueceu a senha?</a> 
-
                 </form>
                 <div class="checkbox">
                     <label class="logged">Manter-se conectado</label>
@@ -168,7 +166,6 @@ logGoogle.addEventListener('click' , () => {
 return newRootElement
 };
 
-    
 
 
 

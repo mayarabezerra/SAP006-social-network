@@ -213,7 +213,7 @@ input:focus {
 }
 
 #forgot-pass {
-  text-align: right;
+  text-align: left;
   display: block;
 }
 
@@ -276,11 +276,19 @@ input:focus {
 
 .logged {
   font-size: .9rem;
-  margin-left: 50%;
+  font-weight: normal;
+  font-family: Helvetica, sans-serif;
+  letter-spacing: 1px;
+  margin-left: 0;
+  margin-top: -19px;
+  margin-left: 5px;
+  color: #fff4f4;
 }
 
 .check {
 width: 30px;
+margin-top: -21px;
+margin-right: 11px;
 }
 
 /*Responsive*/
@@ -318,6 +326,9 @@ section .container-login{
   flex-direction: column;
 }
 
+.check {
+  margin-right: -5px;
+}
 }
 
 @media (min-width:440px) and (max-width: 780px) {
@@ -337,5 +348,6 @@ section .container-login{
     height: 296px;
     width: 249px;
 }
+
 }
 
