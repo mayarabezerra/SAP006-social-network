@@ -1,5 +1,5 @@
 //import {navigateTo} from '../../routes.js'
-import {createNewUserWithEmailAndPassword} from '../../services/index.js'
+import {createNewAccount} from '../../services/index.js'
 import {registerWithGoogle} from '../../services/index.js'
 
 export const registerUsuario = () => {
@@ -124,7 +124,7 @@ export const registerUsuario = () => {
         alert('Confirme o e-mail recebido e depois faça login') 
         msgError.setAttribute('style', 'display: none');
         msgError.innerHTML = '';
-        createNewUserWithEmailAndPassword(emailTwo.value, passwordTwo.value); 
+        createNewAccount(emailTwo.value, passwordTwo.value, nameOfUser.value); 
      } else {
          msgError.setAttribute('style', 'display: block')
          msgError.innerHTML = '<strong> <label style="margin-top: 15px; font-size: 1.1rem; color: red; text-align: center"> Preencha corretamente...</label></strong>'

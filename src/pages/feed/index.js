@@ -23,44 +23,25 @@ export const feedConstruct =  () => {
   <main class="layout-feed">
         <div class="container-text-feed">
             <form>
-               <div class="inline-img"> <img src="./img/avatar.png" class="img-avatar" alt=""> <label class="labels">Nome do phenomena</label></div><br>
+               <div class="inline-img"> <img src="./img/avatar.png" class="img-avatar" alt=""> 
+              <label class="labels">Nome do phenomena</label></div><br>
                 <div class="textarea-style">
                     <textarea name="textarea" id="textarea" class="textarea-feed" cols="37" rows="4" minlength="3" placeholder="Let's get spooky..."></textarea>
                 </div><br>
-               <buttom type="submit" class="feed-button">Enviar</buttom>
+               <buttom type="submit" id="submit-text"class="feed-button">Enviar</buttom>
             </form>
         </div>
     </main>
-    <section class="layout-feed-two">
-    <div class="container-text-feed-two">
-        
-           <div class="inline-img-two"> <img src="./img/avatar.png" class="img-avatar" alt=""> <label class="labels">Nome do phenomena</label></div><br>
-            <div class="textarea-style">
-                <div class="publi-feed"></div>
-            </div><br>
-            <div class="container-stepfather">
-            <div class="content-buttom">
-           <buttom type="submit" class="like-buttom"><img src="./img/coracao.png" class="img-like" alt=""></buttom>
-           <label>curtir<label>
-           </div>
-           <div class="content-buttom-two">
-           <buttom>editar</buttom>
-           <buttom>excluir</buttom>
-          </div>
-          </div>
-    </div>
-</section>
-  </section>`;
+    <section class="layout-feed-two" id="container-post">
+  
+    </section>
+    </section>`;
 
  
 newRootElement.innerHTML = contentnewElement; 
 
-/*const btn = newRootElement.querySelector('.submit-btn');
-console.log(btn);
+const submitText = newRootElement.querySelector('#submit-text');
 
-btn.addEventListener('click', () => {
-    navigateTo('/feed')
-})*/
 /*Function - class */
 
 class MobileNavbar {
@@ -107,6 +88,74 @@ const mobileNavbar = new MobileNavbar(
   ".nav-list li",
 );
 mobileNavbar.init();
+
+submitText.addEventListener('click', () => {
+  
+  const newPost = (id, name, email) => {
+    const text = newRootElement.querySelector('#textarea').value;
+    const post = {
+      text,
+      userId: id,
+      userName: name,
+      userEmail: email,
+      likes: 0,
+      comments: [],
+  };
+  const collectionOfPosts = firebase.firestore().collection('posts');
+  collectionOfPosts.add(post);
+};
+ 
+const getUserLoggedFirebase = (userLoggedIn) => {
+  const userCollection = firebase.firestore().collection('users');
+  userCollection.get().then((snap) => {
+    snap.forEach((user) => {
+      if (userLoggedIn === user.data().id) {
+        newPost(user.data().id, user.data().name, user.data().email)
+      }
+    });
+  });
+};
+const userLoggedIn = firebase.auth().currentUser;
+if (userLoggedIn !== 'null') {
+  getUserLoggedFirebase(userLoggedIn.uid)
+}
+});
+
+const addPostFeed = (post) => {
+  const postSection = `<div class="container-text-feed-two" id="${post.userId}"> <div class="inline-img-two"> <img src="./img/avatar.png" class="img-avatar" alt="">${post.userName} <label class="labels"></label></div><br>
+  <div class="textarea-style">
+      <div class="publi-feed">${post.text}</div>
+  </div><br>
+  <div class="container-stepfather">
+  <div class="content-buttom">
+ <buttom type="submit" class="like-buttom"> <img src="img/coracao.png" class="img-like" alt=""></buttom>
+ <label>curtir<label>
+ </div>
+ <div class="content-buttom-two">
+ <buttom>editar</buttom>
+ <buttom>excluir</buttom>
+</div>
+</div>`;
+
+newRootElement.querySelector('#container-post').innerHTML += postSection
+};
+
+const loadPostOnFeed = () => {
+  const postsCollection = firebase.firestore().collection('posts');
+ 
+  newRootElement.querySelector('#container-post').innerHTML = 'Carregando...';
+  
+  postsCollection.get().then((snap) => {
+    newRootElement.querySelector('#container-post').innerHTML = '';
+    snap.docs.map(item  => {
+      addPostFeed(item.data())
+    })
+    
+    
+  });
+};
+loadPostOnFeed();
+
 return newRootElement
 
 }

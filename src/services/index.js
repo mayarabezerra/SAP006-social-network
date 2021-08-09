@@ -1,6 +1,17 @@
 import {navigateTo} from '../../routes.js'
 
-//Firebase
+//FireStore
+export const gettingNewUserData = (userData, nameOfUser) => {
+  const usersCollection = firebase.firestore().collection('users');
+  const user = {
+    id: userData.user.uid,
+    name: nameOfUser,
+    email: userData.user.email
+  };
+  usersCollection.add(user);
+};
+
+//Firebase auth
 export const loginOfUser = (email,password) => {
   const loginWithEmail = firebase
   .auth()
@@ -35,11 +46,12 @@ const provider = new firebase.auth.GoogleAuthProvider();
     return provider
 }
 
-export const createNewUserWithEmailAndPassword = (email, password) => {
-   const newUser = firebase.auth().createUserWithEmailAndPassword(email, password)
-    .then(() => {
-      console.log('yasss')
+export const createNewAccount = (emailTwo, passwordTwo, nameOfUser) => {
+   const newUser = firebase.auth().createUserWithEmailAndPassword(emailTwo, passwordTwo)
+    .then((userData) => {
+      gettingNewUserData(userData, nameOfUser)
       sendVerificationEmail();
+      navigateTo('/login')
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -64,8 +76,7 @@ export const registerWithGoogle = () => {
       return providerRegister
   };
 
-
-  export const keepLoggedUser = (persistence) => {
+export const keepLoggedUser = (persistence) => {
     firebase.auth().setPersistence(persistence)
      .then(() => {
       const provider = new firebase.auth();
@@ -88,8 +99,6 @@ export const registerWithGoogle = () => {
 
 */
 
-
-
 export const reset = (email) => {
   const forgotPassword = firebase.auth().sendPasswordResetEmail(email)
     .then(() => {
@@ -111,11 +120,11 @@ export const reset = (email) => {
  /*email autentication*/  
 
  export const sendVerificationEmail = () => {
-  //Built in firebase function responsible for sending the verification email
+  
   firebase.auth().currentUser.sendEmailVerification()
   .then(() => {
       console.log('Verification Email Sent Successfully !');
-      //redirecting the user to the profile page once everything is done correctly
+    
      navigateTo('/login');
   })
   .catch(error => {
@@ -123,22 +132,5 @@ export const reset = (email) => {
   })
 }
 
-/*antigo createNewUser
-export const createNewUserWithEmailAndPassword = (email, password) => {
-   const newUser = firebase.auth().createUserWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      navigateTo('/login')
-      console.log(user)
-      // ...
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode, errorMessage)
-      // ..
-    });
-  return newUser
-}; */
 
 
