@@ -76,8 +76,7 @@ export const registerWithGoogle = () => {
       return providerRegister
   };
 
-
-  export const keepLoggedUser = (persistence) => {
+export const keepLoggedUser = (persistence) => {
     firebase.auth().setPersistence(persistence)
      .then(() => {
       const provider = new firebase.auth();
