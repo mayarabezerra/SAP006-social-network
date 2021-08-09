@@ -99,8 +99,6 @@ export const keepLoggedUser = (persistence) => {
 
 */
 
-
-
 export const reset = (email) => {
   const forgotPassword = firebase.auth().sendPasswordResetEmail(email)
     .then(() => {
@@ -122,11 +120,11 @@ export const reset = (email) => {
  /*email autentication*/  
 
  export const sendVerificationEmail = () => {
-  //Built in firebase function responsible for sending the verification email
+  
   firebase.auth().currentUser.sendEmailVerification()
   .then(() => {
       console.log('Verification Email Sent Successfully !');
-      //redirecting the user to the profile page once everything is done correctly
+    
      navigateTo('/login');
   })
   .catch(error => {
@@ -134,22 +132,5 @@ export const reset = (email) => {
   })
 }
 
-/*antigo createNewUser
-export const createNewUserWithEmailAndPassword = (email, password) => {
-   const newUser = firebase.auth().createUserWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      navigateTo('/login')
-      console.log(user)
-      // ...
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode, errorMessage)
-      // ..
-    });
-  return newUser
-}; */
 
 
