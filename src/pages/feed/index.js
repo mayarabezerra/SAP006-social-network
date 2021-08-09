@@ -23,7 +23,8 @@ export const feedConstruct =  () => {
   <main class="layout-feed">
         <div class="container-text-feed">
             <form>
-               <div class="inline-img"> <img src="./img/avatar.png" class="img-avatar" alt=""> <label class="labels">Nome do phenomena</label></div><br>
+               <div class="inline-img"> <img src="./img/avatar.png" class="img-avatar" alt=""> 
+              <label class="labels">Nome do phenomena</label></div><br>
                 <div class="textarea-style">
                     <textarea name="textarea" id="textarea" class="textarea-feed" cols="37" rows="4" minlength="3" placeholder="Let's get spooky..."></textarea>
                 </div><br>
@@ -88,8 +89,6 @@ const mobileNavbar = new MobileNavbar(
 );
 mobileNavbar.init();
 
-
-
 submitText.addEventListener('click', () => {
   
   const newPost = (id, name, email) => {
@@ -123,13 +122,13 @@ if (userLoggedIn !== 'null') {
 });
 
 const addPostFeed = (post) => {
-  const postSection = `<div class="container-text-feed-two" id="${post.id}"> <div class="inline-img-two"> <img src="./img/avatar.png" class="img-avatar" alt="">${post.data().name} <label class="labels"></label></div><br>
+  const postSection = `<div class="container-text-feed-two" id="${post.userId}"> <div class="inline-img-two"> <img src="./img/avatar.png" class="img-avatar" alt="">${post.userName} <label class="labels"></label></div><br>
   <div class="textarea-style">
-      <div class="publi-feed">${post.data().text}</div>
+      <div class="publi-feed">${post.text}</div>
   </div><br>
   <div class="container-stepfather">
   <div class="content-buttom">
- <buttom type="submit" class="like-buttom" <img src="./img/coracao.png" class="img-like" alt=""></buttom>
+ <buttom type="submit" class="like-buttom"> <img src="img/coracao.png" class="img-like" alt=""></buttom>
  <label>curtir<label>
  </div>
  <div class="content-buttom-two">
@@ -143,12 +142,16 @@ newRootElement.querySelector('#container-post').innerHTML += postSection
 
 const loadPostOnFeed = () => {
   const postsCollection = firebase.firestore().collection('posts');
+ 
   newRootElement.querySelector('#container-post').innerHTML = 'Carregando...';
+  
   postsCollection.get().then((snap) => {
     newRootElement.querySelector('#container-post').innerHTML = '';
-    snap.forEach((post) =>{
-      addPostFeed(post);
-    });
+    snap.docs.map(item  => {
+      addPostFeed(item.data())
+    })
+    
+    
   });
 };
 loadPostOnFeed();
