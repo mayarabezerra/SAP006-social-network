@@ -101,6 +101,7 @@ export const keepLoggedUser = (persistence) => {
   
 };
 
+//esqueci a senha
 
 export const reset = (email) => {
   const forgotPassword = firebase.auth().sendPasswordResetEmail(email)
