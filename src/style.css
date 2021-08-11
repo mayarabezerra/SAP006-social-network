@@ -250,6 +250,7 @@ input:focus {
   margin-bottom: 15px;
 }
 #social-container button {
+  background-color: rgb(11 11 11);
   height: 40px;
   width: 40px;
   border-radius: 50%; /*para o icone ficar redondo*/

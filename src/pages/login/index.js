@@ -33,7 +33,7 @@ export const loginUsuario = () => {
                 <button type="submit" class="register_btn" id="submit-btn" disabled="disabled">Login</button>
                 <div id="social-container">
                     <p>Ou faça login com sua conta do Google</p>
-                    <button class="fa fa-google-plus-official fa-3x" aria-hidden="true" id="btn-google" ></button>
+                    <button class="fa fa-google fa-3x" aria-hidden="true" id="btn-google" ></button>
                 </div>
                 <div id="register-container" class="bottom-container">
                     <p>Ainda não tem uma conta?</p>

@@ -96,7 +96,6 @@ export const keepLoggedUser = (persistence) => {
   }).catch((error) => {
     // An error happened.
   });
-
 */
 
 export const reset = (email) => {
@@ -131,6 +130,3 @@ export const reset = (email) => {
       console.error(error);
   })
 }
-
-
-

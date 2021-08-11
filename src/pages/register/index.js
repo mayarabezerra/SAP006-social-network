@@ -41,7 +41,7 @@ export const registerUsuario = () => {
                           <button type="submit" class="register_btn" id="btn-register" disabled="disabled">Cadastrar</button>
                           <div id="social-container">
                               <p>Cadastrar com sua conta do Google</p>
-                              <button class="fa fa-google-plus-official fa-3x" aria-hidden="true" id="btngoogle"></button>
+                              <button class="fa fa-google  fa-3x" aria-hidden="true" id="btngoogle"></button>
                           </div>
                           <div id="register-container">
                               <p>Já tem uma conta?</p>
