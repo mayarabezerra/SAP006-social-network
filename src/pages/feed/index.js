@@ -1,5 +1,7 @@
 //import {navigateTo} from '../../routes.js';
 
+import { publicationPost, currentUser } from '../../services/index.js'
+
 export const feedConstruct =  () => {
   const newRootElement = document.createElement('div');
   const contentnewElement = `
@@ -88,39 +90,17 @@ const mobileNavbar = new MobileNavbar(
 );
 mobileNavbar.init();
 
-submitText.addEventListener('click', () => {
 
-const newPost = (id, name, email) => {
-  const text = newRootElement.querySelector('#textarea').value;
-  const post = {
-    text,
-    userId: id,
-    userName: name,
-    userEmail: email,
-    likes: 0,
-    comments: [],
-};
-const collectionOfPosts = firebase.firestore().collection('posts');
-collectionOfPosts.add(post).then(res => {
+/*Feed */
+
+
+submitText.addEventListener('click', () => {
+const publication = newRootElement.querySelector('#textarea').value;
+publicationPost(publication).then(() => {
+  console.log('deu bom')
   newRootElement.querySelector('#textarea').value = ""
   loadPostOnFeed()
-})
-};
-
-const getUserLoggedFirebase = (userLoggedIn) => {
-const userCollection = firebase.firestore().collection('users');
-userCollection.get().then((snap) => {
-  snap.forEach((user) => {
-    if (userLoggedIn === user.data().id) {
-      newPost(user.data().id, user.data().name, user.data().email)
-    }
-  });
 });
-};
-const userLoggedIn = firebase.auth().currentUser;
-if (userLoggedIn !== 'null') {
-getUserLoggedFirebase(userLoggedIn.uid)
-}
 });
 
 const addPostFeed = (post) => {
@@ -138,8 +118,8 @@ const postSection = `<div class="container-text-feed-two" id="${post.userId}"> <
 <buttom>excluir</buttom>
 </div>
 </div>`;
+ return postSection;
 
-newRootElement.querySelector('#container-post').innerHTML += postSection
 };
 
 const loadPostOnFeed = () => {
@@ -150,7 +130,8 @@ newRootElement.querySelector('#container-post').innerHTML = 'Carregando...';
 postsCollection.get().then((snap) => {
   newRootElement.querySelector('#container-post').innerHTML = '';
   snap.docs.map(item  => {
-    addPostFeed(item.data())
+    newRootElement.querySelector('#container-post').innerHTML += addPostFeed(item.data())
+    
   })
   
   
@@ -161,3 +142,38 @@ loadPostOnFeed();
 return newRootElement
 
 }
+
+
+
+/*const newPost = (id, name, email) => {
+  const text = newRootElement.querySelector('#textarea').value;
+  const post = {
+    text,
+    userId: id,
+    userName: name,
+    userEmail: email,
+    likes: 0,
+    comments: [],
+};
+const collectionOfPosts = firebase.firestore().collection('posts');
+collectionOfPosts.add(post).then(res => {
+  newRootElement.querySelector('#textarea').value = ""
+  loadPostOnFeed()
+})
+};*/
+
+/*const getUserLoggedFirebase = (userLoggedIn) => {
+const userCollection = firebase.firestore().collection('users');
+userCollection.get().then((snap) => {
+  snap.forEach((user) => {
+    if (userLoggedIn === user.data().id) {
+      newPost(user.data().id, user.data().name, user.data().email)
+    }
+  });
+});
+};
+const userLoggedIn = firebase.auth().currentUser;
+if (userLoggedIn !== 'null') {
+getUserLoggedFirebase(userLoggedIn.uid)
+}
+});*/

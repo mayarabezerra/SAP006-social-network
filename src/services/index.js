@@ -121,5 +121,26 @@ export const reset = (email) => {
  export const sendVerificationEmail = () => {
   return firebase.auth().currentUser.sendEmailVerification()
  
-  
 }
+
+/*firebase firestore */
+
+export const publicationPost  = (publication) => {
+  
+  const user = firebase.auth().currentUser;
+  const post = {
+    text: publication,
+    userId: user.uid,
+    userName: user.displayName,
+    userEmail: user.email,
+    likes: 0,
+    comments: [],
+  }
+  console.log(user);
+
+  const publiCollection = firebase.firestore()
+  
+  return publiCollection.collection('posts').add(post);
+};
+
+export const currentUser = () => firebase.auth().currentUser;
