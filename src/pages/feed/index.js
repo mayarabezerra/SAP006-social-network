@@ -1,4 +1,4 @@
-//import {navigateTo} from '../../routes.js';
+
 
 import { publicationPost, postsCollection, currentUser,logOut } from '../../services/index.js'
 import { addPostFeed} from '../../components/feed.js'
@@ -6,6 +6,7 @@ import { addPostFeed} from '../../components/feed.js'
 export const feedConstruct = () => {
   const user = currentUser
   console.log(user)
+
   const newRootElement = document.createElement('div');
   const contentnewElement = `
   <section class="section-exemple-feed">
@@ -29,7 +30,9 @@ export const feedConstruct = () => {
       <div class="container-text-feed">
           <form>
              <div class="inline-img"> <img src="./img/avatar.png" class="img-avatar" alt=""> 
+
             <label class="labels">${user}</label></div><br>
+
               <div class="textarea-style">
                   <textarea name="textarea" id="textarea" class="textarea-feed" cols="37" rows="4" minlength="3" placeholder="Let's get spooky..."></textarea>
               </div><br>
@@ -42,9 +45,11 @@ export const feedConstruct = () => {
   </section>`;
 
 
+
   newRootElement.innerHTML = contentnewElement;
 
   const submitText = newRootElement.querySelector('#submit-text');
+
 
   /*Function - class */
 
@@ -131,6 +136,7 @@ const logOutButton = () => {
     event.preventDefault();
     logOut();
   });
+
 };
 logOutButton();
 

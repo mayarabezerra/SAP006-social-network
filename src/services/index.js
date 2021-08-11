@@ -90,6 +90,7 @@ export const keepLoggedUser = (persistence) => {
    };
 
 
+
    /*Sign-out */
    export const logOut = () => { 
      firebase.auth().signOut().then(() => {
@@ -101,6 +102,7 @@ export const keepLoggedUser = (persistence) => {
    return logOut
  };
  
+
 
 export const reset = (email) => {
   const forgotPassword = firebase.auth().sendPasswordResetEmail(email)
