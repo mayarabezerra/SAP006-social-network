@@ -1,4 +1,4 @@
-//import {navigateTo} from '../../routes.js'
+import {navigateTo} from '../../routes.js'
 import {createNewAccount} from '../../services/index.js'
 import {registerWithGoogle} from '../../services/index.js'
 
@@ -41,7 +41,7 @@ export const registerUsuario = () => {
                           <button type="submit" class="register_btn" id="btn-register" disabled="disabled">Cadastrar</button>
                           <div id="social-container">
                               <p>Cadastrar com sua conta do Google</p>
-                              <button class="fa fa-google-plus-official fa-3x" aria-hidden="true" id="btngoogle"></button>
+                              <button class="fa fa-google  fa-3x" aria-hidden="true" id="btngoogle"></button>
                           </div>
                           <div id="register-container">
                               <p>Já tem uma conta?</p>
@@ -124,7 +124,22 @@ export const registerUsuario = () => {
         alert('Confirme o e-mail recebido e depois faça login') 
         msgError.setAttribute('style', 'display: none');
         msgError.innerHTML = '';
-        createNewAccount(emailTwo.value, passwordTwo.value, nameOfUser.value); 
+        createNewAccount(emailTwo.value, passwordTwo.value, nameOfUser.value)
+        
+            .then(() => {
+                console.log('Verification Email Sent Successfully !');
+                navigateTo('/login');
+              })
+              .catch(error => {
+                console.error(error);
+              })
+           
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode, errorMessage)
+            // ..
+          });
      } else {
          msgError.setAttribute('style', 'display: block')
          msgError.innerHTML = '<strong> <label style="margin-top: 15px; font-size: 1.1rem; color: red; text-align: center"> Preencha corretamente...</label></strong>'

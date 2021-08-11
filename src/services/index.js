@@ -1,7 +1,7 @@
 import {navigateTo} from '../../routes.js'
 
 //FireStore
-export const gettingNewUserData = (userData, nameOfUser) => {
+/*export const gettingNewUserData = (userData, nameOfUser) => {
   const usersCollection = firebase.firestore().collection('users');
   const user = {
     id: userData.user.uid,
@@ -9,7 +9,7 @@ export const gettingNewUserData = (userData, nameOfUser) => {
     email: userData.user.email
   };
   usersCollection.add(user);
-};
+};*/
 
 //Firebase auth
 export const loginOfUser = (email,password) => {
@@ -48,17 +48,17 @@ const provider = new firebase.auth.GoogleAuthProvider();
 
 export const createNewAccount = (emailTwo, passwordTwo, nameOfUser) => {
    const newUser = firebase.auth().createUserWithEmailAndPassword(emailTwo, passwordTwo)
-    .then((userData) => {
-      gettingNewUserData(userData, nameOfUser)
-      sendVerificationEmail();
-      navigateTo('/login')
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode, errorMessage)
-      // ..
-    });
+   .then(() => {
+    const user = firebase.auth().currentUser;
+    user.updateProfile({
+      displayName: nameOfUser
+    }).then(() => {
+      return sendVerificationEmail()
+    }).catch((error) => {
+     
+    });  
+  })
+    
   return newUser
 };
 
@@ -90,18 +90,19 @@ export const keepLoggedUser = (persistence) => {
    };
 
 
-  //Sign-out 
-  export const logOut = () => { 
-    firebase.auth().signOut().then(() => {
-    navigateTo('/login') 
-    // Sign-out successful.
-  }).catch((error) => {
-    // An error happened.
-  });
-  
-};
 
-//esqueci a senha
+   /*Sign-out */
+   export const logOut = () => { 
+     firebase.auth().signOut().then(() => {
+     navigateTo('/login') 
+     // Sign-out successful.
+   }).catch((error) => {
+     // An error happened.
+   });
+   return logOut
+ };
+ 
+
 
 export const reset = (email) => {
   const forgotPassword = firebase.auth().sendPasswordResetEmail(email)
@@ -124,17 +125,31 @@ export const reset = (email) => {
  /*email autentication*/  
 
  export const sendVerificationEmail = () => {
-  
-  firebase.auth().currentUser.sendEmailVerification()
-  .then(() => {
-      console.log('Verification Email Sent Successfully !');
-    
-     navigateTo('/login');
-  })
-  .catch(error => {
-      console.error(error);
-  })
+  return firebase.auth().currentUser.sendEmailVerification()
+ 
 }
 
+/*firebase firestore */
+
+export const publicationPost  = (publication) => {
+  
+  const user = firebase.auth().currentUser;
+  const post = {
+    text: publication,
+    userId: user.uid,
+    userName: user.displayName,
+    userEmail: user.email,
+    likes: 0,
+    comments: [],
+  }
+  console.log(user);
+
+  const publiCollection = firebase.firestore()
+  
+  return publiCollection.collection('posts').add(post);
+};
+
+export const postsCollection = () => firebase.firestore().collection('posts').get();
 
 
+export const currentUser = firebase.auth().currentUser;
