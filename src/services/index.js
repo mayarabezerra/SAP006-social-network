@@ -1,7 +1,7 @@
 import {navigateTo} from '../../routes.js'
 
 //FireStore
-export const gettingNewUserData = (userData, nameOfUser) => {
+/*export const gettingNewUserData = (userData, nameOfUser) => {
   const usersCollection = firebase.firestore().collection('users');
   const user = {
     id: userData.user.uid,
@@ -9,7 +9,7 @@ export const gettingNewUserData = (userData, nameOfUser) => {
     email: userData.user.email
   };
   usersCollection.add(user);
-};
+};*/
 
 //Firebase auth
 export const loginOfUser = (email,password) => {
@@ -48,17 +48,17 @@ const provider = new firebase.auth.GoogleAuthProvider();
 
 export const createNewAccount = (emailTwo, passwordTwo, nameOfUser) => {
    const newUser = firebase.auth().createUserWithEmailAndPassword(emailTwo, passwordTwo)
-    .then((userData) => {
-      gettingNewUserData(userData, nameOfUser)
-      sendVerificationEmail();
-      navigateTo('/login')
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode, errorMessage)
-      // ..
-    });
+   .then(() => {
+    const user = firebase.auth().currentUser;
+    user.updateProfile({
+      displayName: nameOfUser
+    }).then(() => {
+      return sendVerificationEmail()
+    }).catch((error) => {
+     
+    });  
+  })
+    
   return newUser
 };
 
@@ -119,14 +119,7 @@ export const reset = (email) => {
  /*email autentication*/  
 
  export const sendVerificationEmail = () => {
+  return firebase.auth().currentUser.sendEmailVerification()
+ 
   
-  firebase.auth().currentUser.sendEmailVerification()
-  .then(() => {
-      console.log('Verification Email Sent Successfully !');
-    
-     navigateTo('/login');
-  })
-  .catch(error => {
-      console.error(error);
-  })
 }

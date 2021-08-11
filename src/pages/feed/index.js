@@ -33,7 +33,6 @@ export const feedConstruct =  () => {
       </div>
   </main>
   <section class="layout-feed-two" id="container-post">
-
   </section>
   </section>`;
 
