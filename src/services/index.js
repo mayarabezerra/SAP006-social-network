@@ -90,13 +90,17 @@ export const keepLoggedUser = (persistence) => {
    };
 
 
-  /*Sign-out 
-  firebase.auth().signOut().then(() => {
-    // Sign-out successful.
-  }).catch((error) => {
-    // An error happened.
-  });
-*/
+   /*Sign-out */
+   export const logOut = () => { 
+     firebase.auth().signOut().then(() => {
+     navigateTo('/login') 
+     // Sign-out successful.
+   }).catch((error) => {
+     // An error happened.
+   });
+   return logOut
+ };
+ 
 
 export const reset = (email) => {
   const forgotPassword = firebase.auth().sendPasswordResetEmail(email)
@@ -143,4 +147,7 @@ export const publicationPost  = (publication) => {
   return publiCollection.collection('posts').add(post);
 };
 
-export const currentUser = () => firebase.auth().currentUser;
+export const postsCollection = () => firebase.firestore().collection('posts').get();
+
+
+export const currentUser = firebase.auth().currentUser;

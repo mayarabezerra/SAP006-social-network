@@ -23,6 +23,18 @@ if(routes[window.location.pathname] != undefined) {
 } else {
     mainPage.appendChild(routes["/page-not-found"]())
 }
+
+//pra proteger a pagina
+firebase.auth().onAuthStateChanged((user) => {
+    if (!user) {
+        if(window.location.pathname == "/feed") {
+            navigateTo("/")}
+
+    }
+  });
+  
+
+
 }
 
 export const navigateTo = (route) => {

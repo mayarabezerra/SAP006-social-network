@@ -1,8 +1,11 @@
 //import {navigateTo} from '../../routes.js';
 
-import { publicationPost, currentUser } from '../../services/index.js'
+import { publicationPost, postsCollection, currentUser,logOut } from '../../services/index.js'
+import { addPostFeed} from '../../components/feed.js'
 
-export const feedConstruct =  () => {
+export const feedConstruct = () => {
+  const user = currentUser
+  console.log(user)
   const newRootElement = document.createElement('div');
   const contentnewElement = `
   <section class="section-exemple-feed">
@@ -18,7 +21,7 @@ export const feedConstruct =  () => {
       <li><a href="#">Perfil</a></li>
       <li><a href="#">Sobre</a></li>
       <li><a href="#">Terror</a></li>
-      <li><a href="#">Logout</a></li>
+      <li id="signOut"><a href="#">Logout</a></li>
     </ul>
   </nav>
 </header>
@@ -26,7 +29,7 @@ export const feedConstruct =  () => {
       <div class="container-text-feed">
           <form>
              <div class="inline-img"> <img src="./img/avatar.png" class="img-avatar" alt=""> 
-            <label class="labels">Nome do phenomena</label></div><br>
+            <label class="labels">${user}</label></div><br>
               <div class="textarea-style">
                   <textarea name="textarea" id="textarea" class="textarea-feed" cols="37" rows="4" minlength="3" placeholder="Let's get spooky..."></textarea>
               </div><br>
@@ -39,141 +42,99 @@ export const feedConstruct =  () => {
   </section>`;
 
 
-newRootElement.innerHTML = contentnewElement; 
+  newRootElement.innerHTML = contentnewElement;
 
-const submitText = newRootElement.querySelector('#submit-text');
+  const submitText = newRootElement.querySelector('#submit-text');
 
-/*Function - class */
+  /*Function - class */
 
-class MobileNavbar {
-constructor(mobileMenu, navList, navLinks) {
-  this.mobileMenu = newRootElement.querySelector(mobileMenu);
-  this.navList = newRootElement.querySelector(navList);
-  this.navLinks = newRootElement.querySelectorAll(navLinks);
-  this.activeClass = "active";
+  class MobileNavbar {
+    constructor(mobileMenu, navList, navLinks) {
+      this.mobileMenu = newRootElement.querySelector(mobileMenu);
+      this.navList = newRootElement.querySelector(navList);
+      this.navLinks = newRootElement.querySelectorAll(navLinks);
+      this.activeClass = "active";
 
-  this.handleClick = this.handleClick.bind(this);
-}
-
-animateLinks() {
-  this.navLinks.forEach((link, index) => {
-    link.style.animation
-      ? (link.style.animation = "")
-      : (link.style.animation = `navLinkFade 0.5s ease forwards ${
-          index / 7 + 0.3
-        }s`);
-  });
-}
-
-handleClick() {
-  this.navList.classList.toggle(this.activeClass);
-  this.mobileMenu.classList.toggle(this.activeClass);
-  this.animateLinks();
-}
-
-addClickEvent() {
-  this.mobileMenu.addEventListener("click", this.handleClick);
-}
-
-init() {
-  if (this.mobileMenu) {
-    this.addClickEvent();
-  }
-  return this;
-}
-}
-
-const mobileNavbar = new MobileNavbar(
-".mobile-menu",
-".nav-list",
-".nav-list li",
-);
-mobileNavbar.init();
-
-
-/*Feed */
-
-
-submitText.addEventListener('click', () => {
-const publication = newRootElement.querySelector('#textarea').value;
-publicationPost(publication).then(() => {
-  console.log('deu bom')
-  newRootElement.querySelector('#textarea').value = ""
-  loadPostOnFeed()
-});
-});
-
-const addPostFeed = (post) => {
-const postSection = `<div class="container-text-feed-two" id="${post.userId}"> <div class="inline-img-two"> <img src="./img/avatar.png" class="img-avatar" alt=""><label class="labels">${post.userName}</label> </div><br>
-<div class="textarea-style">
-    <div class="publi-feed">${post.text}</div>
-</div><br>
-<div class="container-stepfather">
-<div class="content-buttom">
-<buttom type="submit" class="like-buttom"> <img src="img/coracao.png" class="img-like" alt=""></buttom>
-<label>curtir<label>
-</div>
-<div class="content-buttom-two">
-<buttom>editar</buttom>
-<buttom>excluir</buttom>
-</div>
-</div>`;
- return postSection;
-
-};
-
-const loadPostOnFeed = () => {
-const postsCollection = firebase.firestore().collection('posts');
-
-newRootElement.querySelector('#container-post').innerHTML = 'Carregando...';
-
-postsCollection.get().then((snap) => {
-  newRootElement.querySelector('#container-post').innerHTML = '';
-  snap.docs.map(item  => {
-    newRootElement.querySelector('#container-post').innerHTML += addPostFeed(item.data())
-    
-  })
-  
-  
-});
-};
-loadPostOnFeed();
-
-return newRootElement
-
-}
-
-
-
-/*const newPost = (id, name, email) => {
-  const text = newRootElement.querySelector('#textarea').value;
-  const post = {
-    text,
-    userId: id,
-    userName: name,
-    userEmail: email,
-    likes: 0,
-    comments: [],
-};
-const collectionOfPosts = firebase.firestore().collection('posts');
-collectionOfPosts.add(post).then(res => {
-  newRootElement.querySelector('#textarea').value = ""
-  loadPostOnFeed()
-})
-};*/
-
-/*const getUserLoggedFirebase = (userLoggedIn) => {
-const userCollection = firebase.firestore().collection('users');
-userCollection.get().then((snap) => {
-  snap.forEach((user) => {
-    if (userLoggedIn === user.data().id) {
-      newPost(user.data().id, user.data().name, user.data().email)
+      this.handleClick = this.handleClick.bind(this);
     }
+
+    animateLinks() {
+      this.navLinks.forEach((link, index) => {
+        link.style.animation
+          ? (link.style.animation = "")
+          : (link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3
+            }s`);
+      });
+    }
+
+    handleClick() {
+      this.navList.classList.toggle(this.activeClass);
+      this.mobileMenu.classList.toggle(this.activeClass);
+      this.animateLinks();
+    }
+
+    addClickEvent() {
+      this.mobileMenu.addEventListener("click", this.handleClick);
+    }
+
+    init() {
+      if (this.mobileMenu) {
+        this.addClickEvent();
+      }
+      return this;
+    }
+  }
+
+  const mobileNavbar = new MobileNavbar(
+    ".mobile-menu",
+    ".nav-list",
+    ".nav-list li",
+  );
+  mobileNavbar.init();
+
+
+  /*Feed */
+
+
+  submitText.addEventListener('click', () => {
+    const publication = newRootElement.querySelector('#textarea').value;
+    publicationPost(publication).then(() => {
+      console.log('deu bom')
+      newRootElement.querySelector('#textarea').value = ""
+      loadPostOnFeed()
+    });
   });
-});
+
+ 
+
+  const loadPostOnFeed = () => {
+
+
+    newRootElement.querySelector('#container-post').innerHTML = 'Carregando...';
+
+    postsCollection().then((snap) => {
+      newRootElement.querySelector('#container-post').innerHTML = '';
+      snap.docs.map(item => {
+        newRootElement.querySelector('#container-post').innerHTML += addPostFeed(item.data())
+
+      })
+
+
+    });
+  };
+  loadPostOnFeed();
+
+  /*Sign-Out*/
+
+const logOutButton = () => {
+  newRootElement.querySelector('#signOut').addEventListener('click', (event) => {
+    event.preventDefault();
+    logOut();
+  });
 };
-const userLoggedIn = firebase.auth().currentUser;
-if (userLoggedIn !== 'null') {
-getUserLoggedFirebase(userLoggedIn.uid)
+logOutButton();
+
+
+ return newRootElement
+
 }
-});*/
