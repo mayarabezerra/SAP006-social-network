@@ -115,7 +115,7 @@ export const feedConstruct = () => {
     postsCollection().then((snap) => {
       newRootElement.querySelector('#container-post').innerHTML = '';
       snap.docs.map(item => {
-        newRootElement.querySelector('#container-post').innerHTML += addPostFeed(item.data())
+        newRootElement.querySelector('#container-post').appendChild(addPostFeed(item.data()))  
 
       })
 
