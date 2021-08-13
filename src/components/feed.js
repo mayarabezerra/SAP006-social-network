@@ -11,7 +11,7 @@ export const addPostFeed = (id, post) => {
             <label class="labels">${post.userName}</label> 
         </div><br>
         <div class="textarea-style">
-            <div class="publi-feed">${post.text}</div>
+            <textarea class="publi-feed">${post.text}</textarea>
         </div><br>
         <div class="container-stepfather">
             <div class="content-buttom">
@@ -43,6 +43,7 @@ export const addPostFeed = (id, post) => {
         editPost(id, textArea.value)
     });
 
+    
     const section = newRootElement.querySelector("[data-section]");
     section.addEventListener("click", (e) => {
         const { target } = e;

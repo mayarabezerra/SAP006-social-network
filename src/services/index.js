@@ -1,6 +1,7 @@
 import {navigateTo} from '../../routes.js'
 //import { loadPostOnFeed } from '../../pages/feed/index.js'
 
+const db = firebase.firestore()
 //FireStore
 /*export const gettingNewUserData = (userData, nameOfUser) => {
   const usersCollection = firebase.firestore().collection('users');
@@ -151,7 +152,7 @@ export const publicationPost  = (publication) => {
 };
 
 
-export const editPost = (id, valorNovo) => firebase().collection('posts').doc(id).update({
+export const editPost = (id, valorNovo) => db.collection('posts').doc(id).update({
   text: valorNovo,
 })
 .then(()=> true)
@@ -159,8 +160,8 @@ export const editPost = (id, valorNovo) => firebase().collection('posts').doc(id
 
 
 
-export const postsCollection = () => firebase.firestore().collection('posts').get();
-export const collectionPost = firebase.firestore().collection("posts");
+export const postsCollection = () => db.collection('posts').get();
+export const collectionPost = db.collection("posts");
 
 /*User conectado */
 export const currentUser =  firebase.auth().currentUser;
