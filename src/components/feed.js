@@ -1,3 +1,5 @@
+import { deletePublication } from '../../services/index.js'
+
 export const addPostFeed = (post) => {
     const newRootElement = document.createElement('div');
     newRootElement.classList.add("container-text-feed-two");
@@ -13,9 +15,24 @@ export const addPostFeed = (post) => {
 </div>
 <div class="content-buttom-two">
 <button>editar</button>
-<button>excluir</button>
+<button type="submit" id="delete-button" data-deletePostBtn="${post.userId}">excluir</button>
 </div>
 `;
 newRootElement.innerHTML = postSection
+
+
+const deletePost = newRootElement.querySelector('#delete-button');
+
+deletePost.addEventListener('click', (e) => {
+const deleteBtn = e.target.dataset.deletePostBtn;
+if (deleteBtn) {
+  const Confirmation = confirm("Tem certeza que deseja deletar esta publicação?");
+  if (Confirmation)
+    deletePost(post.userId);
+  else
+    return false;
+}});
+deletePublication();
+
 return newRootElement;
 };

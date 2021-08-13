@@ -153,3 +153,7 @@ export const postsCollection = () => firebase.firestore().collection('posts').ge
 
 
 export const currentUser = firebase.auth().currentUser;
+
+//deletar post
+
+export const deletePublication = id => firebase.firestore().collection('posts').doc(id).delete();
