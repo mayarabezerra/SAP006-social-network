@@ -1,4 +1,5 @@
 import {navigateTo} from '../../routes.js'
+//import { loadPostOnFeed } from '../../pages/feed/index.js'
 
 //FireStore
 /*export const gettingNewUserData = (userData, nameOfUser) => {
@@ -139,7 +140,7 @@ export const publicationPost  = (publication) => {
     userId: user.uid,
     userName: user.displayName,
     userEmail: user.email,
-    likes: 0,
+    likes: [],
     comments: [],
   }
   console.log(user);
@@ -159,6 +160,47 @@ export const editPost = (id, valorNovo) => firebase().collection('posts').doc(id
 
 
 export const postsCollection = () => firebase.firestore().collection('posts').get();
+export const collectionPost = firebase.firestore().collection("posts");
 
+/*User conectado */
+export const currentUser =  firebase.auth().currentUser;
 
-export const currentUser = firebase.auth().currentUser;
+export const userConected = firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    const uid = user.uid;
+    const userName = user.displayName
+    console.log(uid, userName)
+    return userName
+    // ...
+  } else {
+    // User is signed out
+    // ...
+  }
+});
+
+/*Like post */
+
+export function modifyLikes (id, userId) {
+  const promiseLike = collectionPost
+  .doc(id)
+  .get()
+  .then((post) => {
+    console.log(post)
+    let likes = post.data().likes;
+   if (likes.includes(userId)){
+     likes = likes.filter(userLikedId => {
+      return userLikedId != userId
+     })
+   } else {
+      likes.push(userId)
+   }
+    
+    return collectionPost
+    .doc(id)
+    .update({
+      likes
+    })
+    
+  })
+  return promiseLike
+}
