@@ -149,6 +149,15 @@ export const publicationPost  = (publication) => {
   return publiCollection.collection('posts').add(post);
 };
 
+
+export const editPost = (id, valorNovo) => firebase().collection('posts').doc(id).update({
+  text: valorNovo,
+})
+.then(()=> true)
+.catch((error) => error);
+
+
+
 export const postsCollection = () => firebase.firestore().collection('posts').get();
 
 
