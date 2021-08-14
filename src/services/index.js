@@ -2,16 +2,6 @@ import {navigateTo} from '../../routes.js'
 //import { loadPostOnFeed } from '../../pages/feed/index.js'
 
 const db = firebase.firestore()
-//FireStore
-/*export const gettingNewUserData = (userData, nameOfUser) => {
-  const usersCollection = firebase.firestore().collection('users');
-  const user = {
-    id: userData.user.uid,
-    name: nameOfUser,
-    email: userData.user.email
-  };
-  usersCollection.add(user);
-};*/
 
 //Firebase auth
 export const loginOfUser = (email,password) => {
