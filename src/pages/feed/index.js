@@ -4,24 +4,9 @@ import { publicationPost, postsCollection, logOut } from '../../services/index.j
 import { addPostFeed } from '../../components/feed.js'
 
 export const feedConstruct = () => {
-<<<<<<< HEAD
    //const user = currentUser
    //console.log(user)
   
-=======
- /* const user = currentUser
-  console.log(user)
-
-  if (user !== null ) {
-    keepLoggedUser()
-    console.log(user)
-  }else {
-    logOut()
-  }*/
-
-
-
->>>>>>> c96d6332a29e6197b53100680888e4bcf8d8ccc0
   const newRootElement = document.createElement('div');
   const contentnewElement = `
   <section class="section-exemple-feed">
@@ -45,13 +30,7 @@ export const feedConstruct = () => {
       <div class="container-text-feed">
           <form>
              <div class="inline-img"> <img src="./img/avatar.png" class="img-avatar" alt=""> 
-<<<<<<< HEAD
             <label class="labels">Nome</label></div><br>
-=======
-
-            <label class="labels">${userConected}</label></div><br>
-
->>>>>>> c96d6332a29e6197b53100680888e4bcf8d8ccc0
               <div class="textarea-style">
                   <textarea name="textarea" id="textarea" class="textarea-feed" cols="37" rows="4" minlength="3" placeholder="Let's get spooky..."></textarea>
               </div><br>
@@ -150,7 +129,6 @@ export const feedConstruct = () => {
 
   /*Sign-Out*/
 
-<<<<<<< HEAD
   const logOutButton = () => {
     newRootElement.querySelector('#signOut').addEventListener('click', (event) => {
       event.preventDefault();
@@ -158,16 +136,6 @@ export const feedConstruct = () => {
     });
   };
   logOutButton();
-=======
-const logOutButton = () => {
-  newRootElement.querySelector('#signOut').addEventListener('click', (event) => {
-    event.preventDefault();
-    logOut();
-  });
-
-};
-logOutButton();
->>>>>>> c96d6332a29e6197b53100680888e4bcf8d8ccc0
 
 
   return newRootElement;

@@ -134,10 +134,21 @@ export const publicationPost  = (publication) => {
 };
 
 export const postsCollection = () => firebase.firestore().collection('posts').get();
+
+
+//deletar post
+
+export const deletePublication = id => firebase
+.firestore()
+.collection("posts")
+.doc(id)
+.delete()
+
+
 export const collectionPost = firebase.firestore().collection("posts");
 
 /*User conectado */
-//export const currentUser =  firebase.auth().currentUser;
+/*export const currentUser =  firebase.auth().currentUser;*/
 
 /*Observe User Logged */
 export const observer = firebase.auth().onAuthStateChanged(user => {
@@ -150,7 +161,6 @@ export const observer = firebase.auth().onAuthStateChanged(user => {
  
   }
  })
-
 
 /*Like post */
 
