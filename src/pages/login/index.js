@@ -1,7 +1,7 @@
 //import {navigateTo} from '../../routes.js'
 import{loginOfUser} from '../../services/index.js'
-import {loginWithGoogle} from '../../services/index.js'
-import {keepLoggedUser} from '../../services/index.js'
+import {loginWithGoogle, keepLoggedUser} from '../../services/index.js'
+import {navigateTo} from '../../routes.js'
 
 
 export const loginUsuario = () => {
@@ -114,6 +114,13 @@ const validateEmail = (event) => {
 function validateLogin() {
     if(validPassword){
     loginOfUser (email.value , password.value)
+    .then(() =>{
+        navigateTo('/feed')
+        console.log('uhuuuuuu')
+    })
+    /*.catch((error) =>{
+        alert('Houve algum problema', error)
+    })*/
     
  }else{
     msgError.setAttribute('style', 'display: block')

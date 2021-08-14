@@ -1,17 +1,6 @@
 import {navigateTo} from '../../routes.js'
-//import { loadPostOnFeed } from '../../pages/feed/index.js'
 
-//FireStore
-/*export const gettingNewUserData = (userData, nameOfUser) => {
-  const usersCollection = firebase.firestore().collection('users');
-  const user = {
-    id: userData.user.uid,
-    name: nameOfUser,
-    email: userData.user.email
-  };
-  usersCollection.add(user);
-};*/
-
+const db = firebase.firestore()
 //Firebase auth
 export const loginOfUser = (email,password) => {
   const loginWithEmail = firebase
@@ -19,9 +8,8 @@ export const loginOfUser = (email,password) => {
   .signInWithEmailAndPassword(email,password)
   .then((userCredential) => {
     const user = userCredential.user
-    navigateTo('/feed')
-    console.log('uhuuuuuu', user)
-    //window.location.replace('/feed')
+    console.log(user)
+   
   })
 
   .catch((error) =>{
@@ -56,10 +44,10 @@ export const createNewAccount = (emailTwo, passwordTwo, nameOfUser) => {
     }).then(() => {
       return sendVerificationEmail()
     }).catch((error) => {
-     
+      alert('Erro ao logar');
+      console.log(error)
     });  
-  })
-    
+  }) 
   return newUser
 };
 
@@ -115,11 +103,6 @@ export const reset = (email) => {
       return forgotPassword
     }
 
-    /*.catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-       })*/
-
 
  /*email autentication*/  
 
@@ -152,20 +135,20 @@ export const postsCollection = () => firebase.firestore().collection('posts').ge
 export const collectionPost = firebase.firestore().collection("posts");
 
 /*User conectado */
-export const currentUser =  firebase.auth().currentUser;
+//export const currentUser =  firebase.auth().currentUser;
 
-export const userConected = firebase.auth().onAuthStateChanged((user) => {
+/*Observe User Logged */
+export const observer = firebase.auth().onAuthStateChanged(user => {
   if (user) {
-    const uid = user.uid;
-    const userName = user.displayName
-    console.log(uid, userName)
-    return userName
-    // ...
+   const { currentUser } = firebase.auth();
+   console.log('Currently logged in user', currentUser, currentUser.uid);
+  
   } else {
-    // User is signed out
-    // ...
+    console.log('errooou')
+ 
   }
-});
+ })
+
 
 /*Like post */
 
@@ -176,13 +159,13 @@ export function modifyLikes (id, userId) {
   .then((post) => {
     console.log(post)
     let likes = post.data().likes;
-   if (likes.includes(userId)){
+    if (likes.includes(userId)){
      likes = likes.filter(userLikedId => {
       return userLikedId != userId
      })
-   } else {
+    } else {
       likes.push(userId)
-   }
+    }
     
     return collectionPost
     .doc(id)
@@ -193,3 +176,6 @@ export function modifyLikes (id, userId) {
   })
   return promiseLike
 }
+
+
+
