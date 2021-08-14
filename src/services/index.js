@@ -1,16 +1,6 @@
 import {navigateTo} from '../../routes.js'
 //import { loadPostOnFeed } from '../../pages/feed/index.js'
 
-//FireStore
-/*export const gettingNewUserData = (userData, nameOfUser) => {
-  const usersCollection = firebase.firestore().collection('users');
-  const user = {
-    id: userData.user.uid,
-    name: nameOfUser,
-    email: userData.user.email
-  };
-  usersCollection.add(user);
-};*/
 
 //Firebase auth
 export const loginOfUser = (email,password) => {
@@ -117,11 +107,6 @@ export const reset = (email) => {
       return forgotPassword
     }
 
-    /*.catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-       })*/
-
 
  /*email autentication*/  
 
@@ -151,23 +136,33 @@ export const publicationPost  = (publication) => {
 };
 
 export const postsCollection = () => firebase.firestore().collection('posts').get();
+
+
+//deletar post
+
+export const deletePublication = id => firebase
+.firestore()
+.collection("posts")
+.doc(id)
+.delete()
+
+
 export const collectionPost = firebase.firestore().collection("posts");
 
 /*User conectado */
-export const currentUser =  firebase.auth().currentUser;
+/*export const currentUser =  firebase.auth().currentUser;*/
 
-export const userConected = firebase.auth().onAuthStateChanged((user) => {
+/*Observe User Logged */
+export const observer = firebase.auth().onAuthStateChanged(user => {
   if (user) {
-    const uid = user.uid;
-    const userName = user.displayName
-    console.log(uid, userName)
-    return userName
-    // ...
+   const { currentUser } = firebase.auth();
+   console.log('Currently logged in user', currentUser, currentUser.uid);
+  
   } else {
-    // User is signed out
-    // ...
+    console.log('errooou')
+ 
   }
-});
+ })
 
 /*Like post */
 

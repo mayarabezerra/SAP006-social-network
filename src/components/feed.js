@@ -1,9 +1,10 @@
-import { modifyLikes } from "../services/index.js";
+
+import { modifyLikes, deletePublication } from "../services/index.js";
 
 export const addPostFeed = (id, post) => {
     const newRootElement = document.createElement('div');
     newRootElement.classList.add("container-text-feed-two");
-    newRootElement.setAttribute('id', post.userId);
+    newRootElement.setAttribute('id', id);
     const postSection = ` <section data-section>
         <div class="inline-img-two"> 
             <img src="./img/avatar.png" class="img-avatar" alt="">
@@ -19,7 +20,8 @@ export const addPostFeed = (id, post) => {
             </div>
         <div class="content-buttom-two">
             <button>editar</button>
-            <button>excluir</button>
+            <button type="submit" id="deleteBtn" class="button-delete" data-item="delete">excluir</button>
+            
         </div>
         </section>`;
 
@@ -32,7 +34,7 @@ export const addPostFeed = (id, post) => {
         
         if(dataLike) {
             console.log('cliquei no botão')
-            modifyLikes (dataLike, post.userId) 
+            modifyLikes (dataLike, post.text) 
             .then((retornaSucess) => {
                 console.log(retornaSucess);
             })
@@ -42,16 +44,34 @@ export const addPostFeed = (id, post) => {
         } 
     });
 
-    
-   
-    /*Like section */
-  
-    /*const likeButtons = newRootElement.querySelector('#like-button');
 
-    likeButtons.addEventListener("click", () => {
-        modifyLikes()
-    });*/
-  
+
+    const selectedPosts = document.querySelectorAll('.container-text-feed-two')
+    for (let post of selectedPosts) {
+        post.addEventListener('click', (e) =>{
+        const postId = post.getAttribute('id')
+        console.log(postId)
+        const target = e.target
+        const targetDataSet = target.dataset.item
+        if (targetDataSet == "delete") {
+            deletePublication(postId)
+            post.remove()
+            }
+        
+         //ver uma forma pelo for pegar todos os posts (verificar se a primeira const está pegando só um, ou a container toda)   
+        })
+    }
+
+    /* if (userId == id){
+     aqui dentro, fazer para aparecer o botão só para o dono do post
+     se o id dela for igual o do post, ela pode apagar, se não, não vai aparecer
+     fazer display none, na opção de deletar e apagar
+     display none no css
+     v
+    }*/
+    
+
+
 
 return newRootElement;
 };
