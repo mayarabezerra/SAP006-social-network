@@ -32,16 +32,13 @@ firebase.auth().onAuthStateChanged((user) => {
 
     }
   });
-  
-
-
-}
+};
 
 export const navigateTo = (route) => {
     history.pushState({}, '', route)
     const popStateEvent = new PopStateEvent('popstate');
     dispatchEvent(popStateEvent);
-}
+};
 
 window.addEventListener('popstate', router);
 window.addEventListener('load', router);

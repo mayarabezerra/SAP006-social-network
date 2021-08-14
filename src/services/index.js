@@ -1,15 +1,6 @@
 import {navigateTo} from '../../routes.js'
+//import { loadPostOnFeed } from '../../pages/feed/index.js'
 
-//FireStore
-/*export const gettingNewUserData = (userData, nameOfUser) => {
-  const usersCollection = firebase.firestore().collection('users');
-  const user = {
-    id: userData.user.uid,
-    name: nameOfUser,
-    email: userData.user.email
-  };
-  usersCollection.add(user);
-};*/
 
 //Firebase auth
 export const loginOfUser = (email,password) => {
@@ -116,11 +107,6 @@ export const reset = (email) => {
       return forgotPassword
     }
 
-    /*.catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-       })*/
-
 
  /*email autentication*/  
 
@@ -139,7 +125,7 @@ export const publicationPost  = (publication) => {
     userId: user.uid,
     userName: user.displayName,
     userEmail: user.email,
-    likes: 0,
+    likes: [],
     comments: [],
   }
   console.log(user);
@@ -152,8 +138,55 @@ export const publicationPost  = (publication) => {
 export const postsCollection = () => firebase.firestore().collection('posts').get();
 
 
-export const currentUser = firebase.auth().currentUser;
-
 //deletar post
 
-export const deletePublication = id => firebase.firestore().collection('posts').doc(id).delete();
+export const deletePublication = id => firebase
+.firestore()
+.collection("posts")
+.doc(id)
+.delete()
+
+
+export const collectionPost = firebase.firestore().collection("posts");
+
+/*User conectado */
+/*export const currentUser =  firebase.auth().currentUser;*/
+
+/*Observe User Logged */
+export const observer = firebase.auth().onAuthStateChanged(user => {
+  if (user) {
+   const { currentUser } = firebase.auth();
+   console.log('Currently logged in user', currentUser, currentUser.uid);
+  
+  } else {
+    console.log('errooou')
+ 
+  }
+ })
+
+/*Like post */
+
+export function modifyLikes (id, userId) {
+  const promiseLike = collectionPost
+  .doc(id)
+  .get()
+  .then((post) => {
+    console.log(post)
+    let likes = post.data().likes;
+   if (likes.includes(userId)){
+     likes = likes.filter(userLikedId => {
+      return userLikedId != userId
+     })
+   } else {
+      likes.push(userId)
+   }
+    
+    return collectionPost
+    .doc(id)
+    .update({
+      likes
+    })
+    
+  })
+  return promiseLike
+}
