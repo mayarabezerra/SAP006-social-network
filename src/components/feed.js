@@ -63,14 +63,6 @@ export const addPostFeed = (id, post) => {
 
 
 
-    /*Like section */
-
-    /*const likeButtons = newRootElement.querySelector('#like-button');
-
-    likeButtons.addEventListener("click", () => {
-        modifyLikes()
-    });*/
-
 
     return newRootElement;
 };
