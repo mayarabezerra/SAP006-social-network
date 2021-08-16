@@ -21,17 +21,33 @@ export const addPostFeed = (id, post) => {
         <div class="content-buttom-two">
             <button>editar</button>
             <button type="submit" id="deleteBtn" class="button-delete" data-item="delete">excluir</button>
+            <div class="popup-wrapper">
+            <div class="popup">
+                <div class="popup-close">x</div>
+                <div class="popup-content">
+                    <h2 class="popup-text">Tem certeza que deseja excluir o post?</h2>
+                    <button id="yes-delete">Confirmar</button>
+                    <button class="popup-no" id="no-delete">Cancelar</button>
+                </div>
+            </div>
+        </div>
             
         </div>
         </section>`;
 
     newRootElement.innerHTML = postSection
-    const btnRemove = newRootElement.querySelector("#remove");
+
+    //const btnRemove = newRootElement.querySelector("#remove");
     const section = newRootElement.querySelector("[data-section]");
+    const popup = document.querySelector('.popup-wrapper');
+    const btnYes = newRootElement.querySelector("#yes-delete")
+    const selectedPosts = document.querySelectorAll('.container-text-feed-two')
+
+    /*Listeners */
+
     section.addEventListener("click", (e) => {
         const {target} = e;
         const dataLike = target.dataset.like;
-        const dataRemove = target.dataset.remove
         if(dataLike) {
             console.log('cliquei no botão')
             modifyLikes (dataLike, post.text) 
@@ -44,9 +60,6 @@ export const addPostFeed = (id, post) => {
         } 
     });
 
-
-
-    const selectedPosts = document.querySelectorAll('.container-text-feed-two')
     for (let post of selectedPosts) {
         post.addEventListener('click', (e) =>{
         const postId = post.getAttribute('id')
@@ -54,11 +67,26 @@ export const addPostFeed = (id, post) => {
         const target = e.target
         const targetDataSet = target.dataset.item
         if (targetDataSet == "delete") {
-            deletePublication(postId)
-            post.remove()
+            popup.style.display = 'block'
+            btnYes.addEventListener("click", () => {
+                deletePublication(postId)
+                popup.style.display = 'none';
+                post.remove()
+                console.log('post apagado')
+            })
+            } else {
+                popup.addEventListener('click', event => {
+                    const classNameOfClickedElement = event.target.classList[0]
+                    const classNames = ['popup-close','popup-wrapper', 'popup-no']
+                    const shouldClosePopup = classNames.some(className => 
+                        className === classNameOfClickedElement)
+                
+                    if(shouldClosePopup){
+                        popup.style.display = 'none'
+                    };
+                });
             }
-        
-         //ver uma forma pelo for pegar todos os posts (verificar se a primeira const está pegando só um, ou a container toda)   
+          
         })
     }
 
