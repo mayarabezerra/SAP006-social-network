@@ -26,7 +26,7 @@ export const addPostFeed = (id, post) => {
                 <div class="popup-close">x</div>
                 <div class="popup-content">
                     <h2 class="popup-text">Tem certeza que deseja excluir o post?</h2>
-                    <button id="yes-delete">Confirmar</button>
+                    <button  class="popup-yes" data-yes="confirm" id="yes-delete">Confirmar</button>
                     <button class="popup-no" id="no-delete">Cancelar</button>
                 </div>
             </div>
@@ -39,7 +39,7 @@ export const addPostFeed = (id, post) => {
 
     //const btnRemove = newRootElement.querySelector("#remove");
     const section = newRootElement.querySelector("[data-section]");
-    const popup = document.querySelector('.popup-wrapper');
+    const popup = newRootElement.querySelector('.popup-wrapper');
     const btnYes = newRootElement.querySelector("#yes-delete")
     const selectedPosts = document.querySelectorAll('.container-text-feed-two')
 
@@ -62,17 +62,47 @@ export const addPostFeed = (id, post) => {
 
     for (let post of selectedPosts) {
         post.addEventListener('click', (e) =>{
-        const postId = post.getAttribute('id')
-        console.log(postId)
-        const target = e.target
-        const targetDataSet = target.dataset.item
-        if (targetDataSet == "delete") {
+            const postId = post.getAttribute('id')
+            console.log(postId)
+            const target = e.target
+            const targetDataSet = target.dataset.item
+
+            if (post) {
+                targetDataSet == "delete"
+                popup.style.display = 'block'
+                console.log('clicou');
+            }
+
+            popup.addEventListener('click', event => {
+                const classNameOfClickedElement = event.target.classList[0]
+                const classNames = ['popup-close','popup-wrapper', 'popup-no']
+                const shouldClosePopup = classNames.some(className => 
+                    className === classNameOfClickedElement)
+            
+                if(shouldClosePopup){
+                    popup.style.display = 'none'
+                };
+            });
+
+            btnYes.addEventListener('click', event => {
+               const {target} = event;
+               const dataConfirm = target.dataset.btnYes;
+               if(dataConfirm == 'confirm')
+               deletePublication(postId)
+               post.remove()
+               popup.style.display = 'none';
+               console.log('post apagado');
+            })
+
+
+
+        });
+    }
+        /*if (targetDataSet == "delete") {
             popup.style.display = 'block'
             btnYes.addEventListener("click", () => {
                 deletePublication(postId)
-                popup.style.display = 'none';
-                post.remove()
-                console.log('post apagado')
+                
             })
             } else {
                 popup.addEventListener('click', event => {
@@ -88,7 +118,7 @@ export const addPostFeed = (id, post) => {
             }
           
         })
-    }
+    }*/
 
     /* if (userId == id){
      aqui dentro, fazer para aparecer o botão só para o dono do post
