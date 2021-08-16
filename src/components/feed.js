@@ -1,5 +1,4 @@
-
-import { modifyLikes, deletePublication } from "../services/index.js";
+import { modifyLikes, editPost, deletePublication } from "../services/index.js";
 
 export const addPostFeed = (id, post) => {
     const newRootElement = document.createElement('div');
@@ -11,28 +10,45 @@ export const addPostFeed = (id, post) => {
             <label class="labels">${post.userName}</label> 
         </div><br>
         <div class="textarea-style">
-            <div class="publi-feed">${post.text}</div>
+            <textarea class="publi-feed">${post.text}</textarea>
         </div><br>
         <div class="container-stepfather">
             <div class="content-buttom">
-            <button type="submit" class="like-buttom" id="like-button"> <img src="img/coracao (2).png" class="img-like" alt="" data-like="${id}"> </button>
-            <label>curtidas ${post.likes.length}<label>
+                <button type="submit" class="like-buttom" id="like-button"> <img src="img/coracao (2).png" class="img-like" alt="" data-like="${id}"> </button>
+                <label>curtidas ${post.likes.length}<label>
             </div>
-        <div class="content-buttom-two">
-            <button>editar</button>
-            <button type="submit" id="deleteBtn" class="button-delete" data-item="delete">excluir</button>
-            
+            <div class="content-buttom-two">
+                <button class="btn-edit">editar</button>
+                <button class="btn-salvar">Salvar</button>
+                <button type="submit" id="deleteBtn" class="button-delete" data-item="delete">excluir</button>
+            </div>
         </div>
-        </section>`;
-
+    </section>
+            `;
     newRootElement.innerHTML = postSection
-   
+
+    const btnEdit = newRootElement.querySelector('.btn-edit')
+    const btnSalvar = newRootElement.querySelector('.btn-salvar')
+    const textArea = newRootElement.querySelector('.publi-feed')
+
+
+    btnEdit.addEventListener('click', () => {
+        textArea.removeAttribute('disabled');
+        textArea.focus()
+    });
+
+    btnSalvar.addEventListener('click', () => {
+        textArea.setAttribute('disabled', " ");
+        editPost(id, textArea.value)
+    });
+
+    
     const section = newRootElement.querySelector("[data-section]");
     section.addEventListener("click", (e) => {
-        const {target} = e;
+        const { target } = e;
         const dataLike = target.dataset.like;
-        
-        if(dataLike) {
+
+        if (dataLike) {
             console.log('cliquei no botão')
             modifyLikes (dataLike, post.text) 
             .then((retornaSucess) => {
