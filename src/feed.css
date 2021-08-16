@@ -319,6 +319,11 @@ nav {
     cursor: pointer;
 }
 
+.button-delete {
+  display: none;
+    
+
+}
 /*Responsive*/
 
 @media (min-width: 320px) {

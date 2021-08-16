@@ -108,11 +108,6 @@ export const reset = (email) => {
       return forgotPassword
     }
 
-    /*.catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-       })*/
-
 
  /*email autentication*/  
 
@@ -153,21 +148,31 @@ export const editPost = (id, valorNovo) => db.collection('posts').doc(id).update
 export const postsCollection = () => db.collection('posts').get();
 export const collectionPost = db.collection("posts");
 
-/*User conectado */
-export const currentUser =  firebase.auth().currentUser;
 
-export const userConected = firebase.auth().onAuthStateChanged((user) => {
+
+//deletar post
+
+export const deletePublication = id => firebase
+.firestore()
+.collection("posts")
+.doc(id)
+.delete()
+
+
+/*User conectado */
+/*export const currentUser =  firebase.auth().currentUser;*/
+
+/*Observe User Logged */
+export const observer = firebase.auth().onAuthStateChanged(user => {
   if (user) {
-    const uid = user.uid;
-    const userName = user.displayName
-    console.log(uid, userName)
-    return userName
-    // ...
+   const { currentUser } = firebase.auth();
+   console.log('Currently logged in user', currentUser, currentUser.uid);
+  
   } else {
-    // User is signed out
-    // ...
+    console.log('errooou')
+ 
   }
-});
+ })
 
 /*Like post */
 
