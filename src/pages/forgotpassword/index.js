@@ -1,8 +1,8 @@
-import {reset} from '../../services/index.js'
+import { reset } from '../../services/index.js';
 
 export const forgot = () => {
-    const rootForgot = document.createElement('div');
-    const contentForgot = `
+  const rootForgot = document.createElement('div');
+  const contentForgot = `
     <section class="section-exemple-three">
     <div class="shadow"></div>
     <div class="container-forgot">
@@ -19,30 +19,13 @@ export const forgot = () => {
             </div>
             `;
 
-rootForgot.innerHTML = contentForgot;
-const btnReset = rootForgot.querySelector('#reset-btn')
+  rootForgot.innerHTML = contentForgot;
+  const btnReset = rootForgot.querySelector('#reset-btn');
 
-btnReset.addEventListener('click', () => {
+  btnReset.addEventListener('click', () => {
     const email = document.getElementById('email').value;
-        reset(email);
-      });
+    reset(email);
+  });
 
-
-return rootForgot
+  return rootForgot;
 };
-
-
-
-
-
-
-
-
-
-
-
-
-/*btnReset.addEventListener('click', () => {
-    const email = document.getElementById('email').value;
-        resetPassword(email);
-      });*/

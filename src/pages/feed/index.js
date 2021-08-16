@@ -1,12 +1,11 @@
-
-
-import { publicationPost, postsCollection, logOut } from '../../services/index.js'
-import { addPostFeed } from '../../components/feed.js'
+import { publicationPost, postsCollection, logOut } from '../../services/index.js';
+import { addPostFeed } from '../../components/feed.js';
+import { navigateTo } from '../../routes.js';
 
 export const feedConstruct = () => {
-   //const user = currentUser
-   //console.log(user)
-  
+  // const user = currentUser
+  // console.log(user)
+
   const newRootElement = document.createElement('div');
   const contentnewElement = `
   <section class="section-exemple-feed">
@@ -42,21 +41,18 @@ export const feedConstruct = () => {
   </section>
   </section>`;
 
-
-
   newRootElement.innerHTML = contentnewElement;
 
   const submitText = newRootElement.querySelector('#submit-text');
 
-
-  /*Function - class */
+  /* Function - class */
 
   class MobileNavbar {
     constructor(mobileMenu, navList, navLinks) {
       this.mobileMenu = newRootElement.querySelector(mobileMenu);
       this.navList = newRootElement.querySelector(navList);
       this.navLinks = newRootElement.querySelectorAll(navLinks);
-      this.activeClass = "active";
+      this.activeClass = 'active';
 
       this.handleClick = this.handleClick.bind(this);
     }
@@ -64,9 +60,9 @@ export const feedConstruct = () => {
     animateLinks() {
       this.navLinks.forEach((link, index) => {
         link.style.animation
-          ? (link.style.animation = "")
+          ? (link.style.animation = '')
           : (link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3
-            }s`);
+          }s`);
       });
     }
 
@@ -77,7 +73,7 @@ export const feedConstruct = () => {
     }
 
     addClickEvent() {
-      this.mobileMenu.addEventListener("click", this.handleClick);
+      this.mobileMenu.addEventListener('click', this.handleClick);
     }
 
     init() {
@@ -89,55 +85,47 @@ export const feedConstruct = () => {
   }
 
   const mobileNavbar = new MobileNavbar(
-    ".mobile-menu",
-    ".nav-list",
-    ".nav-list li",
+    '.mobile-menu',
+    '.nav-list',
+    '.nav-list li',
   );
   mobileNavbar.init();
 
-
-  /*Feed */
-
-
-  submitText.addEventListener('click', () => {
-    const publication = newRootElement.querySelector('#textarea').value;
-    publicationPost(publication).then(() => {
-      console.log('deu bom')
-      newRootElement.querySelector('#textarea').value = ""
-      loadPostOnFeed()
-    });
-  });
-
-
+  /* Feed */
 
   const loadPostOnFeed = () => {
-
-
     newRootElement.querySelector('#container-post').innerHTML = 'Carregando...';
 
     postsCollection().then((snap) => {
       newRootElement.querySelector('#container-post').innerHTML = '';
-      snap.docs.map(item => {
-        newRootElement.querySelector('#container-post').appendChild(addPostFeed(item.id, item.data()))
-
-      })
-
-
+      snap.docs.map((item) => {
+        newRootElement.querySelector('#container-post').appendChild(addPostFeed(item.id, item.data()));
+      });
     });
   };
   loadPostOnFeed();
 
-  /*Sign-Out*/
+  submitText.addEventListener('click', () => {
+    const publication = newRootElement.querySelector('#textarea').value;
+    publicationPost(publication).then(() => {
+      console.log('deu bom');
+      newRootElement.querySelector('#textarea').value = '';
+      loadPostOnFeed();
+    });
+  });
+
+  /* Sign-Out */
 
   const logOutButton = () => {
     newRootElement.querySelector('#signOut').addEventListener('click', (event) => {
       event.preventDefault();
-      logOut();
+      logOut()
+        .then(() => {
+          navigateTo('/login');
+        });
     });
   };
   logOutButton();
 
-
   return newRootElement;
-
-}
+};

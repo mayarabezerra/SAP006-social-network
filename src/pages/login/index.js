@@ -1,12 +1,9 @@
-//import {navigateTo} from '../../routes.js'
-import{loginOfUser} from '../../services/index.js'
-import {loginWithGoogle, keepLoggedUser} from '../../services/index.js'
-import {navigateTo} from '../../routes.js'
-
+import { loginWithGoogle, keepLoggedUser, loginOfUser } from '../../services/index.js';
+import { navigateTo } from '../../routes.js';
 
 export const loginUsuario = () => {
-    const newRootElement = document.createElement('div');
-    const contentnewElement = `
+  const newRootElement = document.createElement('div');
+  const contentnewElement = `
     <section class="section-exemple">
     <div class="shadow"></div>
     <div class="container-login">
@@ -70,24 +67,22 @@ export const loginUsuario = () => {
         </div>
     </div>
 </section>`;
-newRootElement.innerHTML = contentnewElement;
+  newRootElement.innerHTML = contentnewElement;
 
-const keepLogged = newRootElement.querySelector('#keep-logged');
-const email = newRootElement.querySelector('#email');
-const password = newRootElement.querySelector('.password');
-const btn = newRootElement.querySelector('#submit-btn');
-const logGoogle = newRootElement.querySelector('#btn-google');
-const btnEye = newRootElement.querySelector('.fa-eye');
-const labelEmail = newRootElement.querySelector('#labelEmail');
-const labelPassword = newRootElement.querySelector('#labelPassword');
-const msgError = newRootElement.querySelector('#msgError');
-const msgSuccess = newRootElement.querySelector('#msgSuccess')
-let validPassword = false;
+  const keepLogged = newRootElement.querySelector('#keep-logged');
+  const email = newRootElement.querySelector('#email');
+  const password = newRootElement.querySelector('.password');
+  const btn = newRootElement.querySelector('#submit-btn');
+  const logGoogle = newRootElement.querySelector('#btn-google');
+  const btnEye = newRootElement.querySelector('.fa-eye');
+  const labelEmail = newRootElement.querySelector('#labelEmail');
+  const labelPassword = newRootElement.querySelector('#labelPassword');
+  const msgError = newRootElement.querySelector('#msgError');
+  const msgSuccess = newRootElement.querySelector('#msgSuccess');
+  let validPassword = false;
 
-
-
-keepLogged.addEventListener('change', () => {
-    const local = firebase.auth.Auth.Persistence.LOCAL;  
+  keepLogged.addEventListener('change', () => {
+    const local = firebase.auth.Auth.Persistence.LOCAL;
     const none = firebase.auth.Auth.Persistence.NONE;
     if (keepLogged.checked === true && btn) {
       keepLoggedUser(local);
@@ -97,85 +92,74 @@ keepLogged.addEventListener('change', () => {
     keepLoggedUser(none);
   });
 
-
-const validateEmail = (event) => {
+  const validateEmail = (event) => {
     const input = event.currentTarget;
     const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    const emailTest = regex.test(input.value)
-    if(!emailTest) {
-        btn.setAttribute('disabled', 'disabled');
-        labelEmail.innerHTML = '<strong> <label style = "color: red"> *Insira um email valido*</label></strong>'
+    const emailTest = regex.test(input.value);
+    if (!emailTest) {
+      btn.setAttribute('disabled', 'disabled');
+      labelEmail.innerHTML = '<strong> <label style = "color: red"> *Insira um email valido*</label></strong>';
     } else {
-        btn.removeAttribute('disabled', 'disabled');
-        labelEmail.innerHTML = 'Email';
+      btn.removeAttribute('disabled', 'disabled');
+      labelEmail.innerHTML = 'Email';
     }
-};
+  };
 
-function validateLogin() {
-    if(validPassword){
-    loginOfUser (email.value , password.value)
-    .then(() =>{
-        navigateTo('/feed')
-        console.log('uhuuuuuu')
-    })
-    /*.catch((error) =>{
+  function validateLogin() {
+    if (validPassword) {
+      loginOfUser(email.value, password.value)
+        .then(() => {
+          navigateTo('/feed');
+          console.log('uhuuuuuu');
+        });
+      /* .catch((error) =>{
         alert('Houve algum problema', error)
-    })*/
-    
- }else{
-    msgError.setAttribute('style', 'display: block')
-    msgError.innerHTML = '<strong><Label style="margin-top: 15px; font-size: 1.1rem; color: red; text-align: center">Preencha todos os campos corretamente</label></strong>'
-    msgSuccess.setAttribute('style', 'display: none')
-    msgSuccess.innerHTML = '';
- }
- };
- 
-
-email.addEventListener('input', validateEmail);
-
-btn.addEventListener('click', validateLogin);
-
-password.addEventListener('keyup', () => {
-    if(password.value.length <= 8){
-        labelPassword.setAttribute('style', 'color: red')
-        labelPassword.innerHTML = '<strong><label>Senha menor que 8 caracteres</label></strong>'
-        password.setAttribute('style', 'border-color: red')
-        validPassword = false;
+    }) */
     } else {
-        labelPassword.setAttribute('style', 'color:green')
-        labelPassword.innerHTML = '<strong><label>Senha válida</label></strong>'
-        password.setAttribute('style', 'border-color: green')
-        validPassword = true;
-     }
-});
-
-logGoogle.addEventListener('click' , () => {
-    loginWithGoogle ();
-});
-
-logGoogle.addEventListener('click' , () => {
-    loginWithGoogle ();
-})
- 
- btnEye.addEventListener('click', () =>{
-    let eyePassword = document.querySelector('.password')
-
-     if(eyePassword.getAttribute('type') == 'password') {
-        eyePassword.setAttribute('type', 'text')
-    } else {
-        eyePassword.setAttribute('type', 'password')
+      msgError.setAttribute('style', 'display: block');
+      msgError.innerHTML = '<strong><Label style="margin-top: 15px; font-size: 1.1rem; color: red; text-align: center">Preencha todos os campos corretamente</label></strong>';
+      msgSuccess.setAttribute('style', 'display: none');
+      msgSuccess.innerHTML = '';
     }
+  }
 
-    
-    })
+  email.addEventListener('input', validateEmail);
 
+  btn.addEventListener('click', validateLogin);
 
-return newRootElement
+  password.addEventListener('keyup', () => {
+    if (password.value.length <= 8) {
+      labelPassword.setAttribute('style', 'color: red');
+      labelPassword.innerHTML = '<strong><label>Senha menor que 8 caracteres</label></strong>';
+      password.setAttribute('style', 'border-color: red');
+      validPassword = false;
+    } else {
+      labelPassword.setAttribute('style', 'color:green');
+      labelPassword.innerHTML = '<strong><label>Senha válida</label></strong>';
+      password.setAttribute('style', 'border-color: green');
+      validPassword = true;
+    }
+  });
+
+  logGoogle.addEventListener('click', () => {
+    loginWithGoogle()
+      .then(() => {
+        navigateTo('/feed');
+      }).catch((err) => {
+        alert('Erro ao logar');
+        console.log(err);
+      });
+  });
+
+  btnEye.addEventListener('click', () => {
+    const eyePassword = document.querySelector('.password');
+
+    if (eyePassword.getAttribute('type') === 'password') {
+      eyePassword.setAttribute('type', 'text');
+    } else {
+      eyePassword.setAttribute('type', 'password');
+    }
+  });
+
+  return newRootElement;
 };
-
-
-
-
-
- 
-

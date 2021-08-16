@@ -1,6 +1,6 @@
 export const aboutUs = () => {
-    const rootElement = document.createElement('div');
-    const containerElement = ` <div class="content">
+  const rootElement = document.createElement('div');
+  const containerElement = ` <div class="content">
     <div class="glitch">
         <div class="glitch-img"></div>
         <div class="glitch-img"></div>
@@ -22,7 +22,7 @@ export const aboutUs = () => {
         <div>   
    </div> `;
 
-    rootElement.innerHTML = containerElement
+  rootElement.innerHTML = containerElement;
 
-    return rootElement
-}
+  return rootElement;
+};
