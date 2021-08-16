@@ -1,10 +1,9 @@
-import {navigateTo} from '../../routes.js'
-import {createNewAccount} from '../../services/index.js'
-import {registerWithGoogle} from '../../services/index.js'
+import { navigateTo } from '../../routes.js';
+import { createNewAccount, registerWithGoogle } from '../../services/index.js';
 
 export const registerUsuario = () => {
-    const rootElement = document.createElement('div');
-    const contentRegister = `
+  const rootElement = document.createElement('div');
+  const contentRegister = `
     <section class="section-exemple-two">
       <div class="shadow-two"></div>
       <div class="container-register">
@@ -80,128 +79,134 @@ export const registerUsuario = () => {
           </div>
       </div>
   </section>
-    `
+    `;
 
- rootElement.innerHTML = contentRegister
+  rootElement.innerHTML = contentRegister;
 
- 
- const nameOfUser = rootElement.querySelector('#name');
- const labelOfName = rootElement.querySelector('#label-name');
- const emailTwo = rootElement.querySelector('#input-email');
- const labelEmail = rootElement.querySelector('#label-email');
- const passwordTwo = rootElement.querySelector('#input_password');
- const labelPasswordTwo = rootElement.querySelector('#label-password');
- const passwordConfirm = rootElement.querySelector('#confirm_password');
- const labelPasswordConfirm = rootElement.querySelector('#label-confirm-password');
- const btnTwo = rootElement.querySelector('.register_btn');
- const btnEye = rootElement.querySelectorAll('.fa-eye');
- const registerGoogle = rootElement.querySelector('#btngoogle');
- const msgError= rootElement.querySelector('.msg-error');
- const msgSuccess = rootElement.querySelector('.msg-success');
- let nameValid = false;
- let passwordValid = false;
- let confirmPasswordValide = false;
+  const nameOfUser = rootElement.querySelector('#name');
+  const labelOfName = rootElement.querySelector('#label-name');
+  const emailTwo = rootElement.querySelector('#input-email');
+  const labelEmail = rootElement.querySelector('#label-email');
+  const passwordTwo = rootElement.querySelector('#input_password');
+  const labelPasswordTwo = rootElement.querySelector('#label-password');
+  const passwordConfirm = rootElement.querySelector('#confirm_password');
+  const labelPasswordConfirm = rootElement.querySelector('#label-confirm-password');
+  const btnTwo = rootElement.querySelector('.register_btn');
+  const btnEye = rootElement.querySelectorAll('.fa-eye');
+  const registerGoogle = rootElement.querySelector('#btngoogle');
+  const msgError = rootElement.querySelector('.msg-error');
+  const msgSuccess = rootElement.querySelector('.msg-success');
+  let nameValid = false;
+  let passwordValid = false;
+  let confirmPasswordValide = false;
 
-/*Function */
+  /* Function */
 
- const validateEmail = (event) => {
-     const input = event.currentTarget;
-     const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-     const emailTest = regex.test(input.value)
+  const validateEmail = (event) => {
+    const input = event.currentTarget;
+    const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const emailTest = regex.test(input.value);
 
-     if(!emailTest) {
-         btnTwo.setAttribute('disabled', 'disabled');
-         labelEmail.innerHTML = '<strong> <label style = "color: red"> *Insira um email valido*</label></strong>'
-     } else {
-         btnTwo.removeAttribute('disabled', 'disabled');
-         labelEmail.innerHTML = 'Email';
-     }
- };
-
- function isItValid() {
-     if (nameValid && passwordValid && confirmPasswordValide) {
-        msgSuccess.setAttribute('style', 'display: block')
-        alert('Confirme o e-mail recebido e depois faça login') 
-        msgError.setAttribute('style', 'display: none');
-        msgError.innerHTML = '';
-        createNewAccount(emailTwo.value, passwordTwo.value, nameOfUser.value)
-        
-            .then(() => {
-                console.log('Verification Email Sent Successfully !');
-                navigateTo('/login');
-              })
-              .catch(error => {
-                console.error(error);
-              })
-           
-          .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log(errorCode, errorMessage)
-            // ..
-          });
-     } else {
-         msgError.setAttribute('style', 'display: block')
-         msgError.innerHTML = '<strong> <label style="margin-top: 15px; font-size: 1.1rem; color: red; text-align: center"> Preencha corretamente...</label></strong>'
-         msgSuccess.setAttribute('style', 'display: none')
-         msgSuccess.innerHTML = '';
-         console.log('erro')
-     }
- };
-
-/*Listeners */
-
-nameOfUser.addEventListener('keyup', () =>{
-     if (nameOfUser.value.length <= 5) {
-        labelOfName.innerHTML = '<strong> <label style = "color: red"> *Insira no mínimo 5 caracteres*</label></strong>'
-        btnTwo.setAttribute('disabled', 'disabled');
-        nameValid = false;
-     } else {
-        labelOfName.innerHTML = 'Nome e Sobrenome';
-        btnTwo.removeAttribute('disabled', 'disabled');
-        nameValid = true;
-     }
- });
-
-emailTwo.addEventListener('input', validateEmail);
-
-passwordTwo.addEventListener('keyup', () =>{
-    if (passwordTwo.value.length <= 8) {
-       labelPasswordTwo.innerHTML = '<strong> <label style = "color: red"> *Insira no mínimo 8 caracteres*</label></strong>'
-       passwordValid = false;
+    if (!emailTest) {
+      btnTwo.setAttribute('disabled', 'disabled');
+      labelEmail.innerHTML = '<strong> <label style = "color: red"> *Insira um email valido*</label></strong>';
     } else {
-       labelPasswordTwo.innerHTML = 'Senha';  
-       passwordValid = true;
+      btnTwo.removeAttribute('disabled', 'disabled');
+      labelEmail.innerHTML = 'Email';
     }
-});
+  };
 
-passwordConfirm.addEventListener('keyup', () =>{
-    if (passwordTwo.value != passwordConfirm.value) {
-        labelPasswordConfirm.innerHTML = '<strong> <label style = "color: red"> *As senhas não conferem*</label></strong>'
-        confirmPasswordValide = false;
-    } else {   
-        labelPasswordConfirm.innerHTML = 'Confirmar senha';  
-        confirmPasswordValide = true;
+  function isItValid() {
+    if (nameValid && passwordValid && confirmPasswordValide) {
+      msgSuccess.setAttribute('style', 'display: block');
+      alert('Confirme o e-mail recebido e depois faça login');
+      msgError.setAttribute('style', 'display: none');
+      msgError.innerHTML = '';
+      createNewAccount(emailTwo.value, passwordTwo.value, nameOfUser.value)
+
+        .then(() => {
+          console.log('Verification Email Sent Successfully !');
+          navigateTo('/login');
+        })
+        .catch((error) => {
+          console.error(error);
+        })
+
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode, errorMessage);
+          // ..
+        });
+    } else {
+      msgError.setAttribute('style', 'display: block');
+      msgError.innerHTML = '<strong> <label style="margin-top: 15px; font-size: 1.1rem; color: red; text-align: center"> Preencha corretamente...</label></strong>';
+      msgSuccess.setAttribute('style', 'display: none');
+      msgSuccess.innerHTML = '';
+      console.log('erro');
     }
-});
+  }
 
-btnTwo.addEventListener('click', isItValid)
+  /* Listeners */
 
-registerGoogle.addEventListener('click' , () => {
-    registerWithGoogle ()
-})
+  nameOfUser.addEventListener('keyup', () => {
+    if (nameOfUser.value.length <= 5) {
+      labelOfName.innerHTML = '<strong> <label style = "color: red"> *Insira no mínimo 5 caracteres*</label></strong>';
+      btnTwo.setAttribute('disabled', 'disabled');
+      nameValid = false;
+    } else {
+      labelOfName.innerHTML = 'Nome e Sobrenome';
+      btnTwo.removeAttribute('disabled', 'disabled');
+      nameValid = true;
+    }
+  });
 
-btnEye.forEach(btn  =>{
-    btn.addEventListener('click', ()=> {
-        const eyePassword = document.querySelectorAll('.password')
-        eyePassword.forEach( btnT => {
-        if(btnT.getAttribute('type') == 'password') {
-            btnT.setAttribute('type', 'text')
+  emailTwo.addEventListener('input', validateEmail);
+
+  passwordTwo.addEventListener('keyup', () => {
+    if (passwordTwo.value.length <= 8) {
+      labelPasswordTwo.innerHTML = '<strong> <label style = "color: red"> *Insira no mínimo 8 caracteres*</label></strong>';
+      passwordValid = false;
+    } else {
+      labelPasswordTwo.innerHTML = 'Senha';
+      passwordValid = true;
+    }
+  });
+
+  passwordConfirm.addEventListener('keyup', () => {
+    if (passwordTwo.value !== passwordConfirm.value) {
+      labelPasswordConfirm.innerHTML = '<strong> <label style = "color: red"> *As senhas não conferem*</label></strong>';
+      confirmPasswordValide = false;
+    } else {
+      labelPasswordConfirm.innerHTML = 'Confirmar senha';
+      confirmPasswordValide = true;
+    }
+  });
+
+  btnTwo.addEventListener('click', isItValid);
+
+  registerGoogle.addEventListener('click', () => {
+    registerWithGoogle()
+      .then(() => {
+        navigateTo('/feed');
+      }).catch((err) => {
+        alert('Erro ao logar');
+        console.log(err);
+      });
+  });
+
+  btnEye.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const eyePassword = document.querySelectorAll('.password');
+      eyePassword.forEach((btnT) => {
+        if (btnT.getAttribute('type') === 'password') {
+          btnT.setAttribute('type', 'text');
         } else {
-            btnT.setAttribute('type', 'password')
+          btnT.setAttribute('type', 'password');
         }
-    })})   
-});
+      });
+    });
+  });
 
-return rootElement;
-}
+  return rootElement;
+};

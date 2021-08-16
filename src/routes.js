@@ -1,4 +1,3 @@
-
 import {aboutUs} from './pages/about/index.js'
 import {loginUsuario} from './pages/login/index.js'
 import {registerUsuario} from './pages/register/index.js'
