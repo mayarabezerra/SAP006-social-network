@@ -20,12 +20,8 @@ export const addPostFeed = (id, post) => {
             <div class="content-buttom-two">
                 <button class="btn-edit">editar</button>
                 <button class="btn-salvar">Salvar</button>
-                <button>excluir</button>
+                <button type="submit" id="deleteBtn" class="button-delete" data-item="delete">excluir</button>
             </div>
-        <div class="content-buttom-two">
-            <button>editar</button>
-            <button type="submit" id="deleteBtn" class="button-delete" data-item="delete">excluir</button>
-            
         </div>
     </section>
             `;
