@@ -319,9 +319,10 @@ nav {
     cursor: pointer;
 }
 
-/*.button-delete {
-  display: none;
-}*/
+.button-delete {
+  display: block;
+}
+
 /*PopUp - excluir post*/
 
 .popup-wrapper {

@@ -1,19 +1,19 @@
 
-import { modifyLikes, deletePublication } from "../services/index.js";
+import { modifyLikes, deletePublication, observer} from "../services/index.js";
 
 export const addPostFeed = (id, post) => {
     const newRootElement = document.createElement('div');
     newRootElement.classList.add("container-text-feed-two");
     newRootElement.setAttribute('id', id);
-    const postSection = ` <section data-section>
+    const postSection = ` <section class="text-test" data-section>
         <div class="inline-img-two"> 
             <img src="./img/avatar.png" class="img-avatar" alt="">
-            <label class="labels">${post.userName}</label> 
+            <label data-userlog="${post.userId}"class="labels">${post.userName}</label> 
         </div><br>
         <div class="textarea-style">
             <div class="publi-feed">${post.text}</div>
         </div><br>
-        <div class="container-stepfather">
+        <div data-postid ="${id}"class="container-stepfather">
             <div class="content-buttom">
             <button type="submit" class="like-buttom" id="like-button"> <img src="img/coracao (2).png" class="img-like" alt="" data-like="${id}"> </button>
             <label>curtidas ${post.likes.length}<label>
@@ -36,12 +36,12 @@ export const addPostFeed = (id, post) => {
         </section>`;
 
     newRootElement.innerHTML = postSection
-
-    //const btnRemove = newRootElement.querySelector("#remove");
+    
+    
     const section = newRootElement.querySelector("[data-section]");
     const popup = newRootElement.querySelector('.popup-wrapper');
-    const btnYes = newRootElement.querySelector("#yes-delete")
-    const selectedPosts = document.querySelectorAll('.container-text-feed-two')
+    const btnYes = newRootElement.querySelector("#yes-delete");
+    const selectedPosts = document.querySelectorAll('.container-text-feed-two');
 
     /*Listeners */
 
@@ -58,6 +58,7 @@ export const addPostFeed = (id, post) => {
                 console.log(error)
             })
         } 
+        
     });
 
     for (let post of selectedPosts) {
@@ -65,10 +66,15 @@ export const addPostFeed = (id, post) => {
             const postId = post.getAttribute('id')
             console.log(postId)
             const target = e.target
+            const userLogged = target.dataset.userlog
+            const identification = target.dataset.postid
             const targetDataSet = target.dataset.item
 
-            if (post) {
-                targetDataSet == "delete"
+            if( observer() === userLogged) {
+                newRootElement.querySelector("#deleteBtn").style.display = "none"
+            }
+
+            if (targetDataSet == "delete") {
                 popup.style.display = 'block'
                 console.log('clicou');
             }
@@ -86,19 +92,24 @@ export const addPostFeed = (id, post) => {
 
             btnYes.addEventListener('click', event => {
                const {target} = event;
-               const dataConfirm = target.dataset.btnYes;
-               if(dataConfirm == 'confirm')
-               deletePublication(postId)
-               post.remove()
-               popup.style.display = 'none';
-               console.log('post apagado');
+               const dataConfirm = target.dataset.yes;
+               console.log(dataConfirm)
+               if(dataConfirm == 'confirm'){
+                deletePublication(postId)
+                post.remove()
+                popup.style.display = 'none';
+                console.log('post apagado');
+               }
+               
             })
-
-
-
         });
     }
-        /*if (targetDataSet == "delete") {
+        
+return newRootElement;
+};
+
+
+/*if (targetDataSet == "delete") {
             popup.style.display = 'block'
             btnYes.addEventListener("click", () => {
                 deletePublication(postId)
@@ -128,8 +139,3 @@ export const addPostFeed = (id, post) => {
      v
     }*/
     
-
-
-
-return newRootElement;
-};

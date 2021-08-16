@@ -138,12 +138,21 @@ export const postsCollection = () => firebase.firestore().collection('posts').ge
 
 //deletar post
 
-export const deletePublication = id => firebase
-.firestore()
-.collection("posts")
-.doc(id)
-.delete()
-
+export const deletePublication = id =>{
+  console.log(id)
+  firebase
+  .firestore()
+  .collection("posts")
+  .doc(id)
+  .delete()
+  .then( () => {
+    console.log('caiu no sucesso')
+  })
+  .catch ( (erro) => {
+  console.log(erro)
+  })
+  
+} 
 
 export const collectionPost = firebase.firestore().collection("posts");
 
@@ -151,17 +160,19 @@ export const collectionPost = firebase.firestore().collection("posts");
 /*export const currentUser =  firebase.auth().currentUser;*/
 
 /*Observe User Logged */
-export const observer = firebase.auth().onAuthStateChanged(user => {
+export const observer = () => {firebase.auth().onAuthStateChanged(user => {
   if (user) {
    const { currentUser } = firebase.auth();
    console.log('Currently logged in user', currentUser, currentUser.uid);
+   return currentUser.uid
   
   } else {
     console.log('errooou')
- 
   }
- })
 
+ 
+ })}
+observer()
 /*Like post */
 
 export function modifyLikes (id, userId) {
