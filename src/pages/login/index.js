@@ -143,12 +143,12 @@ export const loginUsuario = () => {
 
   logGoogle.addEventListener('click', () => {
     loginWithGoogle()
-      .then(() => {
-        navigateTo('/feed');
-      }).catch((err) => {
-        alert('Erro ao logar');
-        console.log(err);
-      });
+    /*.then (() => {
+      navigateTo('/feed')
+    })
+    .catch((err) => {
+      console.log(err);
+    });*/
   });
 
   btnEye.addEventListener('click', () => {

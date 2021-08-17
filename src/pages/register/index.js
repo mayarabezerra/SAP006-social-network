@@ -187,12 +187,14 @@ export const registerUsuario = () => {
 
   registerGoogle.addEventListener('click', () => {
     registerWithGoogle()
-      .then(() => {
-        navigateTo('/feed');
-      }).catch((err) => {
-        alert('Erro ao logar');
-        console.log(err);
-      });
+    /*.then( result => {
+      navigateTo('/feed')
+      console.log(result)
+    })
+    .catch(err => {
+      alert('Erro ao logar');
+      console.log(err)
+    })*/
   });
 
   btnEye.forEach((btn) => {

@@ -1,3 +1,4 @@
+import { navigateTo } from '../../routes.js';
 /* Register */
 
 export const sendVerificationEmail = () => firebase.auth().currentUser.sendEmailVerification();
@@ -23,6 +24,11 @@ export const registerWithGoogle = () => {
   firebase.auth().signInWithPopup(providerRegister)
     .then((result) => {
       console.log(result);
+      navigateTo('/feed');
+    })
+    .catch((err) => {
+      alert('Erro ao logar');
+      console.log(err);
     });
   return providerRegister;
 };
@@ -51,9 +57,13 @@ export const loginWithGoogle = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
   provider.addScope('https://www.googleapis.com/auth/userinfo.email');
   firebase.auth().signInWithPopup(provider)
-    .then((result) => {
-      console.log(result);
-    });
+  .then((result) => {
+    console.log(result)
+    navigateTo('/feed');
+ }).catch((err) => {
+   alert('Erro ao logar');
+   console.log(err);
+ })
   return provider;
 };
 

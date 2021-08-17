@@ -1,4 +1,5 @@
-import { publicationPost, postsCollection, logOut } from '../../services/index.js';
+import { publicationPost, postsCollection, logOut, editPost } from '../../services/index.js';
+
 import { addPostFeed } from '../../components/feed.js';
 import { navigateTo } from '../../routes.js';
 
@@ -18,7 +19,6 @@ export const feedConstruct = () => {
       <div class="line3"></div>
     </div>
     <ul class="nav-list">
-      <li><a href="#">Perfil</a></li>
       <li><a href="#">Sobre</a></li>
       <li><a href="#">Terror</a></li>
       <li id="signOut"><a href="#">Logout</a></li>
@@ -92,6 +92,39 @@ export const feedConstruct = () => {
   mobileNavbar.init();
 
   /* Feed */
+  const containerPosts = newRootElement.querySelector('.layout-feed-two');
+  console.log(containerPosts)
+  const btnSave = newRootElement.querySelector('.btn-salvar');
+  const txtArea = newRootElement.querySelector('.publi-feed');
+  console.log(txtArea)
+
+  containerPosts.addEventListener('click', (event) => {
+    //console.log(event.target)
+    
+    /*if(event.target.classList.contains('button-delete')) {
+      const gigante = (event.target.parentNode.parentNode.parentNode.querySelector('.popup-wrapper'))
+      gigante.style.display = 'block'
+      const classNameOfClickedElement = event.target.classList[0]
+      console.log(classNameOfClickedElement)
+      const classNames = ['popup-close','popup-wrapper', 'popup-no']
+      const shouldClosePopup = classNames.some(className => 
+        className === classNameOfClickedElement);
+      if (shouldClosePopup) {
+        gigante.style.display = 'none';
+      };
+    }*/
+
+    if(event.target.classList.contains('btn-edit')) {
+      const txtArea = newRootElement.querySelector('.publi-feed');
+      txtArea.removeAttribute('disabled');
+      txtArea.focus();
+    }
+    if(event.target.classList.contains('btn-salvar')) {
+      const txtArea = newRootElement.querySelector('.publi-feed');
+      txtArea.setAttribute('disabled', '');
+      editPost(id, txtArea.value);
+    }
+  })
 
   const loadPostOnFeed = () => {
     newRootElement.querySelector('#container-post').innerHTML = 'Carregando...';
