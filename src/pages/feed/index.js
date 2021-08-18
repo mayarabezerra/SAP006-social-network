@@ -1,4 +1,6 @@
-import { publicationPost, postsCollection, logOut, editPost, modifyLikes } from '../../services/index.js';
+import {
+  publicationPost, postsCollection, logOut, editPost, modifyLikes,
+} from '../../services/index.js';
 
 import { addPostFeed } from '../../components/feed.js';
 import { navigateTo } from '../../routes.js';
@@ -93,72 +95,42 @@ export const feedConstruct = () => {
 
   /* Feed */
   const containerPosts = newRootElement.querySelector('.layout-feed-two');
-  
-
-  /*const txtArea = newRootElement.querySelector('.publi-feed');
-  console.log(txtArea)*/
 
   containerPosts.addEventListener('click', (event) => {
-    //console.log(event.target)
-    
-    if(event.target.classList.contains('button-delete')) {
-      const gigante = event.target.parentNode.parentNode.parentNode.querySelector('.popup-wrapper')
-      console.log(gigante)
-       gigante.style.display = 'block'
-      if (event.target.parentNode.parentNode.parentNode.querySelector('#no-delete')) {
-        gigante.style.display = 'none'
-      }
-     
-
-    }
-
-  /*  if(event.target.classList.contains('popup-wrapper')) {
-      const pequena = event.target.parentNode.parentNode.parentNode.querySelector('#no-delete')
-      console.log(pequena)
-      pequena.style.display = 'none'
-    }
-     /* const shouldClosePopup = event.target.parentNode.querySelector('.popup-no')
-      console.log(shouldClosePopup)
-      if (shouldClosePopup) {
-        console.log('clicou')
-        gigante.style.display = 'none';
-      };*/
-    
-
-    if(event.target.classList.contains('btn-edit')) {
-      const txtArea = event.target.parentNode.parentNode.parentNode.parentNode.querySelector('.publi-feed')
-      console.log(txtArea)
+    if (event.target.classList.contains('btn-edit')) {
+      const txtArea = event.target.parentNode.parentNode.parentNode.parentNode.querySelector('.publi-feed');
+      console.log(txtArea);
       txtArea.removeAttribute('disabled');
       txtArea.focus();
     }
-    if(event.target.classList.contains('btn-salvar')) {
-      const txtArea = event.target.parentNode.parentNode.parentNode.parentNode.querySelector('.publi-feed')
-    
-      const getId = event.target.parentNode.parentNode.dataset.postid
-       console.log(getId)
+    if (event.target.classList.contains('btn-salvar')) {
+      const txtArea = event.target.parentNode.parentNode.parentNode.parentNode.querySelector('.publi-feed');
+
+      const getId = event.target.parentNode.parentNode.dataset.postid;
+      console.log(getId);
       editPost(getId, txtArea.value);
-      txtArea.setAttribute('disabled', '')
+      txtArea.setAttribute('disabled', '');
     }
 
-    //console.log(event.target)
-    if(event.target.classList.contains('img-like')) {
-    const dataLikes = event.target.dataset.like
-    const postText = event.target.parentNode.parentNode.parentNode.parentNode.querySelector('.publi-feed')
-    //const postText= event.target.parentNode.parentNode.dataset.thisuser
-    console.log(postText)
+    if (event.target.classList.contains('img-like')) {
+      const dataLikes = event.target.dataset.like;
+      const postText = event.target.parentNode.parentNode.parentNode.parentNode.querySelector('.publi-feed');
+      // const postText= event.target.parentNode.parentNode.dataset.thisuser
+      console.log(postText);
 
-     if (dataLikes) {
-      console.log('cliquei no botão');
-      modifyLikes(dataLikes, postText.value)
-        .then((retornaSucess) => {
-          console.log(retornaSucess);
-          loadPostOnFeed()
-        })
-        .catch((error) => {
-          console.log(error);
-        }); 
-  }}
-    })
+      if (dataLikes) {
+        console.log('cliquei no botão');
+        modifyLikes(dataLikes, postText.value)
+          .then((retornaSucess) => {
+            console.log(retornaSucess);
+            loadPostOnFeed();
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+    }
+  });
 
   const loadPostOnFeed = () => {
     newRootElement.querySelector('#container-post').innerHTML = 'Carregando...';
