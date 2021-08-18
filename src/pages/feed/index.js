@@ -102,18 +102,28 @@ export const feedConstruct = () => {
     //console.log(event.target)
     
     if(event.target.classList.contains('button-delete')) {
-      const gigante = (event.target.parentNode.parentNode.parentNode.querySelector('.popup-wrapper'))
-      gigante.style.display = 'block'
-      const classNameOfClickedElement = gigante.classList[0]
-      console.log(classNameOfClickedElement)
-      
-      const classNames = ['popup-close','popup-wrapper', 'popup-no']
-      const shouldClosePopup = classNames.some(className => 
-        className === classNameOfClickedElement);
-      if (shouldClosePopup) {
-        gigante.style.display = 'none';
-      };
+      const gigante = event.target.parentNode.parentNode.parentNode.querySelector('.popup-wrapper')
+      console.log(gigante)
+       gigante.style.display = 'block'
+      if (event.target.parentNode.parentNode.parentNode.querySelector('#no-delete')) {
+        gigante.style.display = 'none'
+      }
+     
+
     }
+
+  /*  if(event.target.classList.contains('popup-wrapper')) {
+      const pequena = event.target.parentNode.parentNode.parentNode.querySelector('#no-delete')
+      console.log(pequena)
+      pequena.style.display = 'none'
+    }
+     /* const shouldClosePopup = event.target.parentNode.querySelector('.popup-no')
+      console.log(shouldClosePopup)
+      if (shouldClosePopup) {
+        console.log('clicou')
+        gigante.style.display = 'none';
+      };*/
+    
 
     if(event.target.classList.contains('btn-edit')) {
       const txtArea = event.target.parentNode.parentNode.parentNode.parentNode.querySelector('.publi-feed')
@@ -130,7 +140,7 @@ export const feedConstruct = () => {
       txtArea.setAttribute('disabled', '')
     }
 
-    console.log(event.target)
+    //console.log(event.target)
     if(event.target.classList.contains('img-like')) {
     const dataLikes = event.target.dataset.like
     const postText = event.target.parentNode.parentNode.parentNode.parentNode.querySelector('.publi-feed')
