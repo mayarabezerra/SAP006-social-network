@@ -3,7 +3,7 @@ import {
 } from '../../services/index.js';
 
 import { addPostFeed } from '../../components/feed.js';
-import { navigateTo } from '../../routes.js';
+import { navigateTo } from '../../routes/navigation.js';
 
 export const feedConstruct = () => {
   // const user = currentUser
@@ -59,19 +59,9 @@ export const feedConstruct = () => {
       this.handleClick = this.handleClick.bind(this);
     }
 
-    animateLinks() {
-      this.navLinks.forEach((link, index) => {
-        link.style.animation
-          ? (link.style.animation = '')
-          : (link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3
-          }s`);
-      });
-    }
-
     handleClick() {
       this.navList.classList.toggle(this.activeClass);
       this.mobileMenu.classList.toggle(this.activeClass);
-      this.animateLinks();
     }
 
     addClickEvent() {
@@ -95,8 +85,25 @@ export const feedConstruct = () => {
 
   /* Feed */
   const containerPosts = newRootElement.querySelector('.layout-feed-two');
+  const loadPostOnFeed = () => {
+    newRootElement.querySelector('#container-post').innerHTML = 'Carregando...';
+
+    postsCollection().then((snap) => {
+      newRootElement.querySelector('#container-post').innerHTML = '';
+      snap.docs.forEach((item) => {
+        newRootElement.querySelector('#container-post').appendChild(addPostFeed(item.id, item.data()));
+      });
+    });
+  };
+  loadPostOnFeed();
 
   containerPosts.addEventListener('click', (event) => {
+    if (event.target.classList.contains('button-delete')) {
+      const gigante = event.target.parentNode.parentNode.parentNode.querySelector('.popup-wrapper');
+      gigante.style.display = 'block';
+      console.log(gigante);
+    }
+
     if (event.target.classList.contains('btn-edit')) {
       const txtArea = event.target.parentNode.parentNode.parentNode.parentNode.querySelector('.publi-feed');
       console.log(txtArea);
@@ -131,18 +138,6 @@ export const feedConstruct = () => {
       }
     }
   });
-
-  const loadPostOnFeed = () => {
-    newRootElement.querySelector('#container-post').innerHTML = 'Carregando...';
-
-    postsCollection().then((snap) => {
-      newRootElement.querySelector('#container-post').innerHTML = '';
-      snap.docs.map((item) => {
-        newRootElement.querySelector('#container-post').appendChild(addPostFeed(item.id, item.data()));
-      });
-    });
-  };
-  loadPostOnFeed();
 
   submitText.addEventListener('click', () => {
     const publication = newRootElement.querySelector('#textarea').value;

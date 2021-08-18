@@ -1,10 +1,11 @@
-const actionFromPost = () => { return `<button class="btn-edit">editar</button>
-  <button class="btn-salvar">Salvar</button>
-  <button type="submit" id="deleteBtn" class="button-delete" data-item="delete">excluir</button>`
-}
+const actionFromPost = () => `
+    <button class="btn-edit">editar</button>
+    <button class="btn-salvar">Salvar</button>
+    <button type="submit" id="deleteBtn" class="button-delete" data-item="delete">excluir</button>
+`;
+
 export const addPostFeed = (id, post) => {
-  console.log(post.userEmail === firebase.auth().currentUser.email)
-  
+  console.log(post.userEmail === firebase.auth().currentUser.email);
   const newRootElement = document.createElement('div');
   newRootElement.classList.add('container-text-feed-two');
   newRootElement.setAttribute('id', id);

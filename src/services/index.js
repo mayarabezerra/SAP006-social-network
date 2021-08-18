@@ -1,4 +1,4 @@
-import { navigateTo } from '../../routes.js';
+import { navigateTo } from '../routes/navigation.js';
 /* Register */
 
 export const sendVerificationEmail = () => firebase.auth().currentUser.sendEmailVerification();
@@ -56,7 +56,7 @@ export const loginOfUser = (email, password) => {
 export const loginWithGoogle = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
   provider.addScope('https://www.googleapis.com/auth/userinfo.email');
-  firebase.auth().signInWithPopup(provider)
+  return firebase.auth().signInWithPopup(provider)
     .then((result) => {
       console.log(result);
       navigateTo('/feed');
@@ -64,21 +64,12 @@ export const loginWithGoogle = () => {
       alert('Erro ao logar');
       console.log(err);
     });
-  return provider;
 };
 
 /* Observe User Logged */
-export const observer = () => {
-  firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      const { currentUser } = firebase.auth();
-      console.log('Currently logged in user', currentUser, currentUser.uid);
-      return currentUser.uid;
-    }
-    console.log('errooou');
-  });
+export const observer = (cb) => {
+  firebase.auth().onAuthStateChanged(cb);
 };
-observer();
 
 /* Keep Logged */
 

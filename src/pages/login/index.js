@@ -1,5 +1,5 @@
 import { loginWithGoogle, keepLoggedUser, loginOfUser } from '../../services/index.js';
-import { navigateTo } from '../../routes.js';
+import { navigateTo } from '../../routes/navigation.js';
 
 export const loginUsuario = () => {
   const newRootElement = document.createElement('div');
@@ -142,13 +142,7 @@ export const loginUsuario = () => {
   });
 
   logGoogle.addEventListener('click', () => {
-    loginWithGoogle()
-    /*.then (() => {
-      navigateTo('/feed')
-    })
-    .catch((err) => {
-      console.log(err);
-    });*/
+    loginWithGoogle();
   });
 
   btnEye.addEventListener('click', () => {
