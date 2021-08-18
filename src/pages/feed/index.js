@@ -1,4 +1,4 @@
-import { publicationPost, postsCollection, logOut, editPost } from '../../services/index.js';
+import { publicationPost, postsCollection, logOut, editPost, modifyLikes } from '../../services/index.js';
 
 import { addPostFeed } from '../../components/feed.js';
 import { navigateTo } from '../../routes.js';
@@ -93,10 +93,10 @@ export const feedConstruct = () => {
 
   /* Feed */
   const containerPosts = newRootElement.querySelector('.layout-feed-two');
-  console.log(containerPosts)
+  
 
-  const txtArea = newRootElement.querySelector('.publi-feed');
-  console.log(txtArea)
+  /*const txtArea = newRootElement.querySelector('.publi-feed');
+  console.log(txtArea)*/
 
   containerPosts.addEventListener('click', (event) => {
     //console.log(event.target)
@@ -104,8 +104,9 @@ export const feedConstruct = () => {
     if(event.target.classList.contains('button-delete')) {
       const gigante = (event.target.parentNode.parentNode.parentNode.querySelector('.popup-wrapper'))
       gigante.style.display = 'block'
-      const classNameOfClickedElement = event.target.classList[0]
+      const classNameOfClickedElement = gigante.classList[0]
       console.log(classNameOfClickedElement)
+      
       const classNames = ['popup-close','popup-wrapper', 'popup-no']
       const shouldClosePopup = classNames.some(className => 
         className === classNameOfClickedElement);
@@ -115,18 +116,39 @@ export const feedConstruct = () => {
     }
 
     if(event.target.classList.contains('btn-edit')) {
-      const txtArea = newRootElement.querySelector('.publi-feed');
+      const txtArea = event.target.parentNode.parentNode.parentNode.parentNode.querySelector('.publi-feed')
+      console.log(txtArea)
       txtArea.removeAttribute('disabled');
       txtArea.focus();
     }
     if(event.target.classList.contains('btn-salvar')) {
-      const txtArea = newRootElement.querySelector('.publi-feed');
-      postsCollection().then((snap) => {snap.docs.map((item) =>
-        editPost(item.id, txtArea.value));
-        txtArea.setAttribute('disabled', '')
-      });
+      const txtArea = event.target.parentNode.parentNode.parentNode.parentNode.querySelector('.publi-feed')
+    
+      const getId = event.target.parentNode.parentNode.dataset.postid
+       console.log(getId)
+      editPost(getId, txtArea.value);
+      txtArea.setAttribute('disabled', '')
     }
-  })
+
+    console.log(event.target)
+    if(event.target.classList.contains('img-like')) {
+    const dataLikes = event.target.dataset.like
+    const postText = event.target.parentNode.parentNode.parentNode.parentNode.querySelector('.publi-feed')
+    //const postText= event.target.parentNode.parentNode.dataset.thisuser
+    console.log(postText)
+
+     if (dataLikes) {
+      console.log('cliquei no botão');
+      modifyLikes(dataLikes, postText.value)
+        .then((retornaSucess) => {
+          console.log(retornaSucess);
+          loadPostOnFeed()
+        })
+        .catch((error) => {
+          console.log(error);
+        }); 
+  }}
+    })
 
   const loadPostOnFeed = () => {
     newRootElement.querySelector('#container-post').innerHTML = 'Carregando...';

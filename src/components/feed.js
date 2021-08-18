@@ -19,22 +19,22 @@ export const addPostFeed = (id, post) => {
         <div class="textarea-style">
             <textarea class="publi-feed">${post.text}</textarea>
         </div><br>
-        <div data-postid ="${id}"class="container-stepfather">
-            <div class="content-buttom">
+        <div data-postid ="${id}"  id="${id} "class="container-stepfather">
+            <div class="content-buttom" data-thisuser ="${post.userId}">
                 <button type="submit" class="like-buttom" id="like-button"> <img src="img/coracao (2).png" class="img-like" alt="" data-like="${id}"> </button>
                 <label>curtidas ${post.likes.length}<label>
             </div>
             <div class="content-buttom-two">
                     ${post.userEmail === firebase.auth().currentUser.email ? actionFromPost() : ''}
 
-                    <div class="popup-wrapper">
+                    <div class="popup-wrapper" data-cancel>
                         <div class="popup">
-                            <div class="popup-close">x
+                            <div class="popup-close" data-cancel>x
                             </div>
                                 <div class="popup-content">
                                     <h2 class="popup-text">Tem certeza que deseja excluir o post?</h2>
                                     <button  class="popup-yes" data-yes="confirm" id="yes-delete">Confirmar</button>
-                                    <button class="popup-no" id="no-delete">Cancelar</button>
+                                    <button class="popup-no" id="no-delete" data-cancel>Cancelar</button>
                                 </div>
                         </div>
                      </div>

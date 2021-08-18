@@ -192,7 +192,10 @@ export function modifyLikes(id, userId) {
         .doc(id)
         .update({
           likes,
+          
         });
+        
+        
     });
   return promiseLike;
 }
