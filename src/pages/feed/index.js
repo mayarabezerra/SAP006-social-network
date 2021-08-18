@@ -94,14 +94,14 @@ export const feedConstruct = () => {
   /* Feed */
   const containerPosts = newRootElement.querySelector('.layout-feed-two');
   console.log(containerPosts)
-  const btnSave = newRootElement.querySelector('.btn-salvar');
+
   const txtArea = newRootElement.querySelector('.publi-feed');
   console.log(txtArea)
 
   containerPosts.addEventListener('click', (event) => {
     //console.log(event.target)
     
-    /*if(event.target.classList.contains('button-delete')) {
+    if(event.target.classList.contains('button-delete')) {
       const gigante = (event.target.parentNode.parentNode.parentNode.querySelector('.popup-wrapper'))
       gigante.style.display = 'block'
       const classNameOfClickedElement = event.target.classList[0]
@@ -112,7 +112,7 @@ export const feedConstruct = () => {
       if (shouldClosePopup) {
         gigante.style.display = 'none';
       };
-    }*/
+    }
 
     if(event.target.classList.contains('btn-edit')) {
       const txtArea = newRootElement.querySelector('.publi-feed');
@@ -121,8 +121,10 @@ export const feedConstruct = () => {
     }
     if(event.target.classList.contains('btn-salvar')) {
       const txtArea = newRootElement.querySelector('.publi-feed');
-      txtArea.setAttribute('disabled', '');
-      editPost(id, txtArea.value);
+      postsCollection().then((snap) => {snap.docs.map((item) =>
+        editPost(item.id, txtArea.value));
+        txtArea.setAttribute('disabled', '')
+      });
     }
   })
 
