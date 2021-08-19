@@ -1,6 +1,9 @@
-import { publicationPost, postsCollection, logOut } from '../../services/index.js';
+import {
+  publicationPost, postsCollection, logOut, editPost, modifyLikes,
+} from '../../services/index.js';
+
 import { addPostFeed } from '../../components/feed.js';
-import { navigateTo } from '../../routes.js';
+import { navigateTo } from '../../routes/navigation.js';
 
 export const feedConstruct = () => {
   // const user = currentUser
@@ -18,7 +21,6 @@ export const feedConstruct = () => {
       <div class="line3"></div>
     </div>
     <ul class="nav-list">
-      <li><a href="#">Perfil</a></li>
       <li><a href="#">Sobre</a></li>
       <li><a href="#">Terror</a></li>
       <li id="signOut"><a href="#">Logout</a></li>
@@ -57,19 +59,9 @@ export const feedConstruct = () => {
       this.handleClick = this.handleClick.bind(this);
     }
 
-    animateLinks() {
-      this.navLinks.forEach((link, index) => {
-        link.style.animation
-          ? (link.style.animation = '')
-          : (link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3
-          }s`);
-      });
-    }
-
     handleClick() {
       this.navList.classList.toggle(this.activeClass);
       this.mobileMenu.classList.toggle(this.activeClass);
-      this.animateLinks();
     }
 
     addClickEvent() {
@@ -92,18 +84,60 @@ export const feedConstruct = () => {
   mobileNavbar.init();
 
   /* Feed */
-
+  const containerPosts = newRootElement.querySelector('.layout-feed-two');
   const loadPostOnFeed = () => {
     newRootElement.querySelector('#container-post').innerHTML = 'Carregando...';
 
     postsCollection().then((snap) => {
       newRootElement.querySelector('#container-post').innerHTML = '';
-      snap.docs.map((item) => {
+      snap.docs.forEach((item) => {
         newRootElement.querySelector('#container-post').appendChild(addPostFeed(item.id, item.data()));
       });
     });
   };
   loadPostOnFeed();
+
+  containerPosts.addEventListener('click', (event) => {
+    if (event.target.classList.contains('button-delete')) {
+      const gigante = event.target.parentNode.parentNode.parentNode.querySelector('.popup-wrapper');
+      gigante.style.display = 'block';
+      console.log(gigante);
+    }
+
+    if (event.target.classList.contains('btn-edit')) {
+      const txtArea = event.target.parentNode.parentNode.parentNode.parentNode.querySelector('.publi-feed');
+      console.log(txtArea);
+      txtArea.removeAttribute('disabled');
+      txtArea.focus();
+    }
+    if (event.target.classList.contains('btn-salvar')) {
+      const txtArea = event.target.parentNode.parentNode.parentNode.parentNode.querySelector('.publi-feed');
+
+      const getId = event.target.parentNode.parentNode.dataset.postid;
+      console.log(getId);
+      editPost(getId, txtArea.value);
+      txtArea.setAttribute('disabled', '');
+    }
+
+    if (event.target.classList.contains('img-like')) {
+      const dataLikes = event.target.dataset.like;
+      const postText = event.target.parentNode.parentNode.parentNode.parentNode.querySelector('.publi-feed');
+      // const postText= event.target.parentNode.parentNode.dataset.thisuser
+      console.log(postText);
+
+      if (dataLikes) {
+        console.log('cliquei no botão');
+        modifyLikes(dataLikes, postText.value)
+          .then((retornaSucess) => {
+            console.log(retornaSucess);
+            loadPostOnFeed();
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+    }
+  });
 
   submitText.addEventListener('click', () => {
     const publication = newRootElement.querySelector('#textarea').value;
