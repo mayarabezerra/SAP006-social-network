@@ -186,7 +186,15 @@ export const registerUsuario = () => {
   btnTwo.addEventListener('click', isItValid);
 
   registerGoogle.addEventListener('click', () => {
-    registerWithGoogle();
+    registerWithGoogle()
+      .then((result) => {
+        console.log(result);
+        navigateTo('/feed');
+      })
+      .catch((err) => {
+        alert('Erro ao logar');
+        console.log(err);
+      });
 
     btnEye.forEach((btn) => {
       btn.addEventListener('click', () => {
@@ -200,7 +208,6 @@ export const registerUsuario = () => {
         });
       });
     });
-
-    return rootElement;
   });
+  return rootElement;
 };

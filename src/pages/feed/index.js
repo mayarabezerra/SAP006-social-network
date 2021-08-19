@@ -1,5 +1,5 @@
 import {
-  publicationPost, postsCollection, logOut, editPost, modifyLikes,
+  publicationPost, postsCollection, logOut, editPost, modifyLikes, deletePublication,
 } from '../../services/index.js';
 
 import { addPostFeed } from '../../components/feed.js';
@@ -59,9 +59,19 @@ export const feedConstruct = () => {
       this.handleClick = this.handleClick.bind(this);
     }
 
+    animateLinks() {
+      this.navLinks.forEach((link, index) => {
+        link.style.animation
+          ? (link.style.animation = '')
+          : (link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3
+          }s`);
+      });
+    }
+
     handleClick() {
       this.navList.classList.toggle(this.activeClass);
       this.mobileMenu.classList.toggle(this.activeClass);
+      this.animateLinks();
     }
 
     addClickEvent() {
@@ -105,13 +115,26 @@ export const feedConstruct = () => {
     }
 
     if (event.target.classList.contains('popup-no')) {
-      const classNames = ['popup-no', 'popup-close', 'popup-wrapper'];
       const classNameOfClickedElement = event.target.parentNode.parentNode;
-      const shouldClosePopu = classNames.some((classNam) => classNam === classNameOfClickedElement);
-      if (shouldClosePopu) {
-        const gigante = event.target.parentNode.parentNode.parentNode.querySelector('.popup-wrapper');
+      console.log(classNameOfClickedElement);
+      if (classNameOfClickedElement) {
+        const gigante = event.target.parentNode.parentNode.parentNode;
         gigante.style.display = 'none';
         console.log(gigante);
+      }
+    }
+
+    if (event.target.classList.contains('popup-yes')) {
+      const gigante = event.target.parentNode.parentNode.parentNode;
+      gigante.style.display = 'none';
+      const { target } = event;
+      const dataConfirm = target.dataset.yes;
+      const dataId = target.dataset.id;
+      console.log(dataConfirm);
+      if (dataConfirm == 'confirm') {
+        const theParent = document.querySelector(`.container-text-feed-two#${dataId}`);
+        deletePublication(dataId);
+        theParent.remove();
       }
     }
 
@@ -133,12 +156,11 @@ export const feedConstruct = () => {
     if (event.target.classList.contains('img-like')) {
       const dataLikes = event.target.dataset.like;
       const postText = event.target.parentNode.parentNode.parentNode.parentNode.querySelector('.publi-feed');
-      // const postText= event.target.parentNode.parentNode.dataset.thisuser
       console.log(postText);
 
       if (dataLikes) {
         console.log('cliquei no botão');
-        modifyLikes(dataLikes, postText.value)
+        modifyLikes(dataLikes, firebase.auth().currentUser.uid)
           .then((retornaSucess) => {
             console.log(retornaSucess);
             loadPostOnFeed();

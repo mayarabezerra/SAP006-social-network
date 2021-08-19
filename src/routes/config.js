@@ -5,9 +5,9 @@ import { feedConstruct } from '../pages/feed/index.js';
 import { forgot } from '../pages/forgotpassword/index.js';
 
 export const routes = {
-    '/': aboutUs,
-    '/login': loginUsuario,
-    '/register': registerUsuario,
-    '/feed': feedConstruct,
-    '/forgot': forgot,
-  };
+  '/': aboutUs,
+  '/login': loginUsuario,
+  '/register': registerUsuario,
+  '/feed': feedConstruct,
+  '/forgot': forgot,
+};
