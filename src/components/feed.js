@@ -52,6 +52,18 @@ export const addPostFeed = (id, post) => {
     editPost(id, textArea.value);
   });
 
+ /*function visibilityOfUser = () => {
+    if (user !== firebase.auth().currentUser.email) ????? `  {
+    btnEdit.hidden = false;
+    btnSalvar.hidden = false;
+ } else {
+    btnEdit.hidden = true;
+    btnSalvar.hidden = true;
+ }
+} visibilityOfUSer();
+ */
+ 
+
   const section = newRootElement.querySelector('[data-section]');
   const popup = newRootElement.querySelector('.popup-wrapper');
   const btnYes = newRootElement.querySelector('#yes-delete');
