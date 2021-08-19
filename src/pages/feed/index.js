@@ -104,6 +104,17 @@ export const feedConstruct = () => {
       console.log(gigante);
     }
 
+    if (event.target.classList.contains('popup-no')) {
+      const classNames = ['popup-no', 'popup-close', 'popup-wrapper'];
+      const classNameOfClickedElement = event.target.parentNode.parentNode;
+      const shouldClosePopu = classNames.some((classNam) => classNam === classNameOfClickedElement);
+      if (shouldClosePopu) {
+        const gigante = event.target.parentNode.parentNode.parentNode.querySelector('.popup-wrapper');
+        gigante.style.display = 'none';
+        console.log(gigante);
+      }
+    }
+
     if (event.target.classList.contains('btn-edit')) {
       const txtArea = event.target.parentNode.parentNode.parentNode.parentNode.querySelector('.publi-feed');
       console.log(txtArea);
