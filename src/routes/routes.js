@@ -1,12 +1,12 @@
-import{routes} from './config.js';
-import {navigateTo} from './navigation.js';
-import{observer} from '../services/index.js';
+import { routes } from './config.js';
+import { navigateTo } from './navigation.js';
+import { observer } from '../services/index.js';
 
 const navigateAnonymousUser = (user) => {
   if (!user && window.location.pathname === '/feed') {
     navigateTo('/');
   }
-}
+};
 export const router = () => {
   const mainPage = document.querySelector('#root');
 
@@ -20,5 +20,3 @@ export const router = () => {
   // pra proteger a pagina
   observer(navigateAnonymousUser);
 };
-
-

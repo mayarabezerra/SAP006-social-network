@@ -142,7 +142,14 @@ export const loginUsuario = () => {
   });
 
   logGoogle.addEventListener('click', () => {
-    loginWithGoogle();
+    loginWithGoogle()
+      .then((result) => {
+        console.log(result);
+        navigateTo('/feed');
+      }).catch((err) => {
+        alert('Erro ao logar');
+        console.log(err);
+      });
   });
 
   btnEye.addEventListener('click', () => {
