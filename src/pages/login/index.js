@@ -31,6 +31,7 @@ export const loginUsuario = () => {
                 <div id="social-container">
                     <p>Ou faça login com sua conta do Google</p>
                     <button class="fa fa-google fa-3x" aria-hidden="true" id="btn-google" ></button>
+                    <div id="errorGoogle" class="text-error"></div>
                 </div>
                 <div id="register-container" class="bottom-container">
                     <p>Ainda não tem uma conta?</p>
@@ -79,7 +80,9 @@ export const loginUsuario = () => {
   const labelPassword = newRootElement.querySelector('#labelPassword');
   const msgError = newRootElement.querySelector('#msgError');
   const msgSuccess = newRootElement.querySelector('#msgSuccess');
+  const errorGoogle = newRootElement.querySelector('#errorGoogle')
   let validPassword = false;
+  let validGoogle = false;
 
   keepLogged.addEventListener('change', () => {
     const local = firebase.auth.Auth.Persistence.LOCAL;
@@ -141,16 +144,29 @@ export const loginUsuario = () => {
     }
   });
 
-  logGoogle.addEventListener('click', () => {
+ /* logGoogle.addEventListener('click',  () => {
     loginWithGoogle()
-    .then((result) => {
-      console.log(result);
-      navigateTo('/feed');
-    }).catch((err) => {
-      alert('Erro ao logar');
-      console.log(err);
-    });
-  });
+      .then((result) => {
+        console.log(result);
+        navigateTo('/feed');
+      }).catch((err) => {
+        alert('Erro ao logar');
+        console.log(err);
+      });
+  });*/
+  logGoogle.addEventListener('click' , loginGoogle)
+  
+  function loginGoogle() {
+    if (!validGoogle) 
+    loginWithGoogle()
+      .then(() => {
+        navigateTo('/feed');
+      });
+    else {
+      errorGoogle.setAttribute('style', 'display: block');
+      errorGoogle.innerHTML = '<Label style="margin-top: 12px; font-size: 0.7rem; color: red; text-align: center">Erro ao logar com google</label>';
+    }
+  }
 
   btnEye.addEventListener('click', () => {
     const eyePassword = document.querySelector('.password');

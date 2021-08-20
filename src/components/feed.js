@@ -31,7 +31,7 @@ export const addPostFeed = (id, post) => {
                             </div>
                                 <div class="popup-content">
                                     <h2 class="popup-text">Tem certeza que deseja excluir o post?</h2>
-                                    <button  class="popup-yes" data-yes="confirm" id="yes-delete">Confirmar</button>
+                                    <button  class="popup-yes" data-yes="confirm" data-id="${id}" id="yes-delete">Confirmar</button>
                                     <button class="popup-no" id="no-delete" data-cancel="cancel">Cancelar</button>
                                 </div>
                         </div>

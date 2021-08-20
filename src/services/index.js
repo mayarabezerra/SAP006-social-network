@@ -1,4 +1,3 @@
-
 /* Register */
 
 export const sendVerificationEmail = () => firebase.auth().currentUser.sendEmailVerification();
@@ -21,8 +20,7 @@ export const createNewAccount = (emailTwo, passwordTwo, nameOfUser) => {
 export const registerWithGoogle = () => {
   const providerRegister = new firebase.auth.GoogleAuthProvider();
   providerRegister.addScope('https://www.googleapis.com/auth/userinfo.email');
-  return firebase.auth().signInWithPopup(providerRegister)
-
+  return firebase.auth().signInWithPopup(providerRegister);
 };
 
 /* Login */
@@ -48,7 +46,7 @@ export const loginOfUser = (email, password) => {
 export const loginWithGoogle = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
   provider.addScope('https://www.googleapis.com/auth/userinfo.email');
-  return firebase.auth().signInWithPopup(provider)
+  return firebase.auth().signInWithPopup(provider);
 };
 
 /* Observe User Logged */
