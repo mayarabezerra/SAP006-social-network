@@ -219,7 +219,7 @@ nav {
   overflow: hidden;
   transition: 0.2s;
   border-radius: 5px;
-  cursor: pointer;
+  /*cursor: pointer;*/
   box-shadow: 4px 3px 38px 1px rgb(18 18 16 / 59%);
   -webkit-box-shadow: 4px 3px 38px 1px rgb(18 18 16 / 59%);
   -moz-box-shadow: 4px 3px 38px 1px rgb(18 18 16 / 59%);
@@ -236,6 +236,7 @@ nav {
 }
 
 .feed-button:hover {
+  
   color: #84252d;
   background: #f44336;
   -webkit-box-shadow: 0 0 10px #f44336, 0 0 40px #f44336, 0 0 80px #f44336;

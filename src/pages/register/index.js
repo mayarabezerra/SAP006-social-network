@@ -1,4 +1,4 @@
-import { navigateTo } from '../../routes.js';
+import { navigateTo } from '../../routes/navigation.js';
 import { createNewAccount, registerWithGoogle } from '../../services/index.js';
 
 export const registerUsuario = () => {
@@ -187,26 +187,28 @@ export const registerUsuario = () => {
 
   registerGoogle.addEventListener('click', () => {
     registerWithGoogle()
-      .then(() => {
-        navigateTo('/feed');
-      }).catch((err) => {
-        alert('Erro ao logar');
-        console.log(err);
-      });
-  });
+    .then((result) => {
+      console.log(result);
+      navigateTo('/feed');
+    })
+    .catch((err) => {
+      alert('Erro ao logar');
+      console.log(err);
+    });
 
-  btnEye.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const eyePassword = document.querySelectorAll('.password');
-      eyePassword.forEach((btnT) => {
-        if (btnT.getAttribute('type') === 'password') {
-          btnT.setAttribute('type', 'text');
-        } else {
-          btnT.setAttribute('type', 'password');
-        }
+    btnEye.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const eyePassword = document.querySelectorAll('.password');
+        eyePassword.forEach((btnT) => {
+          if (btnT.getAttribute('type') === 'password') {
+            btnT.setAttribute('type', 'text');
+          } else {
+            btnT.setAttribute('type', 'password');
+          }
+        });
       });
     });
-  });
 
+  });
   return rootElement;
 };
