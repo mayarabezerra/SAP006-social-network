@@ -107,7 +107,6 @@ nav {
 
 .layout-feed {
   display: grid;
-  
   background: rgb(41, 41, 41);
   justify-content: space-around;
   align-items: center;
@@ -344,11 +343,11 @@ nav {
   max-width: 300px;
   margin: 10% auto;
   padding: 20px;
-  background: #5e5959;
+  background: /*#5e5959*/#0e0e0e;;
   position: relative;
-  box-shadow: 4px 3px 38px 1px rgb(18 18 16 / 79%);
-  -webkit-box-shadow: 4px 3px 38px 1px rgb(18 18 16 / 79%);
-  -moz-box-shadow: 4px 3px 38px 1px rgb(18 18 16 / 79%);
+  box-shadow: 4px 3px 38px 1px rgb(109 4 4 / 79%);
+  -webkit-box-shadow: 4px 3px 38px 1px rgb(109 4 4 / 79%);
+  -moz-box-shadow: 4px 3px 38px 1px rgb(109 4 4 / 79%);
 }
 
 .popup-content h2 {
@@ -358,8 +357,15 @@ nav {
 .popup-content button {
   border: 0;
   padding: 12px 10px;
+  background: #420202;
+  box-shadow: 4px 3px 38px 1px rgb(82 82 82 / 79%);
+  -webkit-box-shadow: 4px 3px 38px 1px rgb(82 82 82 / 79%);
+  -moz-box-shadow: 4px 3px 38px 1px rgb(82 82 82 / 79%);
   text-decoration: none;
- 
+  transition: 0.3s;
+}
+.popup-content button:hover {
+  background: #ca0c0c;
 }
 
 .popup-close {

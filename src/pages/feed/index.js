@@ -6,9 +6,6 @@ import { addPostFeed } from '../../components/feed.js';
 import { navigateTo } from '../../routes/navigation.js';
 
 export const feedConstruct = () => {
-  // const user = currentUser
-  // console.log(user)
-
   const newRootElement = document.createElement('div');
   const contentnewElement = `
   <section class="section-exemple-feed">
@@ -21,7 +18,7 @@ export const feedConstruct = () => {
       <div class="line3"></div>
     </div>
     <ul class="nav-list">
-      <li><a href="#">Sobre</a></li>
+      <li><a href="/who">Sobre</a></li>
       <li><a href="#">Terror</a></li>
       <li id="signOut"><a href="#">Logout</a></li>
     </ul>
@@ -61,10 +58,12 @@ export const feedConstruct = () => {
 
     animateLinks() {
       this.navLinks.forEach((link, index) => {
-        link.style.animation
-          ? (link.style.animation = '')
-          : (link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3
-          }s`);
+        const value = link;
+        if (value.style.animation) {
+          value.style.animation = '';
+        } else {
+          value.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
+        }
       });
     }
 
@@ -131,7 +130,7 @@ export const feedConstruct = () => {
       const dataConfirm = target.dataset.yes;
       const dataId = target.dataset.id;
       console.log(dataConfirm);
-      if (dataConfirm == 'confirm') {
+      if (dataConfirm === 'confirm') {
         const theParent = document.querySelector(`.container-text-feed-two#${dataId}`);
         deletePublication(dataId);
         theParent.remove();
