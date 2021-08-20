@@ -1,0 +1,98 @@
+.about-section{
+    background: url(img/phenomena-i.jpg) no-repeat left;
+    background-size: 40%;
+    background-color: #220000;
+    overflow: hidden;
+    padding: 100px 0;
+}
+
+.inner-container{
+    width: 55%;
+    float: right;
+    background-color:#151414;
+    box-shadow: 4px 3px 38px 1px rgb(239 10 10);
+    -webkit-box-shadow: 4px 3px 38px 1px rgb(239 10 10);
+    -moz-box-shadow: 4px 3px 38px 1px rgb(239 10 10);
+    padding: 150px;
+}
+
+.display-content{
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-around;
+}
+
+.display-content a{
+    text-decoration: none;
+}
+.inner-container h1{
+    color:#fcf9f8;
+    margin-bottom: 20px;
+    font-size:1.8rem;
+    font-weight: 900;
+}
+
+.inner-container img {
+    width: 84px;
+    height: 56px;
+    border-radius: 50%;
+    margin-left: 150px;
+}
+
+.text{
+    font-size: 1.2rem;
+    color: #c2bfbf;
+    line-height: 30px;
+    margin-top: 15px;
+    text-align: justify;
+    margin-bottom: 40px;
+}
+
+.inner-container a {
+    text-decoration: none;
+    color: #c2bfbf;
+}
+
+.skills{
+    display: flex;
+    justify-content: space-between;  
+}
+
+.skills a {
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #c2bfbf;
+}
+.inner-container a:hover{
+    color: rgb(144, 33, 33);
+}
+.skills a:hover{
+    color:red;
+}
+
+@media screen and (max-width:1200px){
+    .inner-container{
+        padding: 80px;
+    }
+}
+
+@media screen and (max-width:1000px){
+    .about-section{
+        background:#151414;
+        padding: 100px 40px;
+    }
+    .inner-container{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width:600px){
+    .about-section{
+        padding: 0;
+    }
+    .inner-container{
+        padding: 60px;
+    }
+}
