@@ -30,9 +30,9 @@ export const feedConstruct = () => {
              <div class="inline-img"> <img src="./img/avatar.png" class="img-avatar" alt=""> 
             <label class="labels">Nome</label></div><br>
               <div class="textarea-style">
-                  <textarea name="textarea" id="textarea" class="textarea-feed" cols="37" rows="4" minlength="3" placeholder="Let's get spooky..."></textarea>
+                  <textarea name="textarea" id="textareaid" class="textarea-feed" cols="37" rows="4" minlength="3" placeholder="Let's get spooky..." required></textarea>
               </div><br>
-             <buttom type="submit" id="submit-text"class="feed-button">Enviar</buttom>
+             <button type="submit" id="submit-text"class="feed-button">Enviar</button>
           </form>
       </div>
   </main>
@@ -172,10 +172,10 @@ export const feedConstruct = () => {
   });
 
   submitText.addEventListener('click', () => {
-    const publication = newRootElement.querySelector('#textarea').value;
+    const publication = newRootElement.querySelector('#textareaid').value;
     publicationPost(publication).then(() => {
       console.log('deu bom');
-      newRootElement.querySelector('#textarea').value = '';
+      newRootElement.querySelector('#textareaid').value = '';
       loadPostOnFeed();
     });
   });
