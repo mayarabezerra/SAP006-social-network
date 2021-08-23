@@ -113,7 +113,7 @@
 }
  body {
 	 margin: 0;
-	 overflow: hidden;
+	/* overflow: hidden;*/
 	 background: #000;
 }
  body .container {
