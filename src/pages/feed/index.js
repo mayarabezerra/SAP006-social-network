@@ -26,7 +26,7 @@ export const feedConstruct = () => {
   </header>
   <main class="layout-feed">
       <div class="container-text-feed">
-          <form>
+          <form id="formid">
              <div class="inline-img"> <img src="./img/avatar.png" class="img-avatar" alt=""> 
             <label class="labels">Nome</label></div><br>
               <div class="textarea-style">
@@ -42,7 +42,7 @@ export const feedConstruct = () => {
 
   newRootElement.innerHTML = contentnewElement;
 
-  const submitText = newRootElement.querySelector('#submit-text');
+  const submitText = newRootElement.querySelector('#formid');
 
   /* Function - class */
 
@@ -171,7 +171,8 @@ export const feedConstruct = () => {
     }
   });
 
-  submitText.addEventListener('click', () => {
+  submitText.addEventListener('submit', (event) => {
+    event.preventDefault();
     const publication = newRootElement.querySelector('#textareaid').value;
     publicationPost(publication).then(() => {
       console.log('deu bom');
