@@ -155,16 +155,17 @@ export const loginUsuario = () => {
       });
   });*/
   logGoogle.addEventListener('click' , loginGoogle)
-  
+
   function loginGoogle() {
-    if (!validGoogle) 
+    if (validGoogle) 
     loginWithGoogle()
       .then(() => {
-        navigateTo('/feed');
-      });
-    else {
+        navigateTo('/feed');       
+      })
+    if (!validGoogle)  {
       errorGoogle.setAttribute('style', 'display: block');
-      errorGoogle.innerHTML = '<Label style="margin-top: 12px; font-size: 0.7rem; color: red; text-align: center">Erro ao logar com google</label>';
+      errorGoogle.innerHTML = '<Label style="margin-top: 12px; font-size: 0.7rem; color: red; text-align: center">Erro ao logar com google</label>'; 
+      validGoogle = true  
     }
   }
 

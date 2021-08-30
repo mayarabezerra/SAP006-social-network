@@ -37,7 +37,6 @@ export const loginOfUser = (email, password) => {
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      alert('Email ou senha inválido');
       console.log('viiiish', errorCode, errorMessage);
     });
   return loginWithEmail;
