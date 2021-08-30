@@ -1,11 +1,10 @@
 const actionFromPost = () => `
     <button class="btn-edit">editar</button>
-    <button class="btn-salvar">Salvar</button>
+    <button class="btn-salvar">salvar</button>
     <button type="submit" id="deleteBtn" class="button-delete" data-item="delete">excluir</button>
 `;
 
 export const addPostFeed = (id, post) => {
-  console.log(post.userEmail === firebase.auth().currentUser.email);
   const newRootElement = document.createElement('div');
   newRootElement.classList.add('container-text-feed-two');
   newRootElement.setAttribute('id', id);
@@ -27,8 +26,7 @@ export const addPostFeed = (id, post) => {
 
                     <div class="popup-wrapper">
                         <div class="popup">
-                            <div class="popup-close">x
-                            </div>
+                            
                                 <div class="popup-content">
                                     <h2 class="popup-text">Tem certeza que deseja excluir o post?</h2>
                                     <button  class="popup-yes" data-yes="confirm" data-id="${id}" id="yes-delete">Confirmar</button>

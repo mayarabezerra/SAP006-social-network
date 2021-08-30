@@ -41,6 +41,7 @@ export const registerUsuario = () => {
                           <div id="social-container">
                               <p>Cadastrar com sua conta do Google</p>
                               <button class="fa fa-google  fa-3x" aria-hidden="true" id="btngoogle"></button>
+                              <div id="errGoogle" class="text-error"></div>
                           </div>
                           <div id="register-container">
                               <p>Já tem uma conta?</p>
@@ -96,6 +97,7 @@ export const registerUsuario = () => {
   const registerGoogle = rootElement.querySelector('#btngoogle');
   const msgError = rootElement.querySelector('.msg-error');
   const msgSuccess = rootElement.querySelector('.msg-success');
+  const errGoogle = rootElement.querySelector('#errGoogle')
   let nameValid = false;
   let passwordValid = false;
   let confirmPasswordValide = false;
@@ -125,11 +127,9 @@ export const registerUsuario = () => {
       createNewAccount(emailTwo.value, passwordTwo.value, nameOfUser.value)
 
         .then(() => {
-          console.log('Verification Email Sent Successfully !');
           navigateTo('/login');
         })
         .catch((error) => {
-          console.error(error);
         })
 
         .catch((error) => {
@@ -143,7 +143,6 @@ export const registerUsuario = () => {
       msgError.innerHTML = '<strong> <label style="margin-top: 15px; font-size: 1.1rem; color: red; text-align: center"> Preencha corretamente...</label></strong>';
       msgSuccess.setAttribute('style', 'display: none');
       msgSuccess.innerHTML = '';
-      console.log('erro');
     }
   }
 
@@ -185,16 +184,18 @@ export const registerUsuario = () => {
 
   btnTwo.addEventListener('click', isItValid);
 
-  registerGoogle.addEventListener('click', () => {
+  registerGoogle.addEventListener('click', regisGoogle)
+
+  function regisGoogle() {
     registerWithGoogle()
-      .then((result) => {
-        console.log(result);
+      .then(() => {
         navigateTo('/feed');
       })
-      .catch((err) => {
-        alert('Erro ao logar');
-        console.log(err);
+      .catch(() => {
+        errGoogle.setAttribute('style', 'display: block');
+        errGoogle.innerHTML = '<Label style="margin-top: 5px; font-size: 0.7rem; color: red; text-align: center">Erro no registro com Google</label>'; 
       });
+  }
 
     btnEye.forEach((btn) => {
       btn.addEventListener('click', () => {
@@ -208,6 +209,5 @@ export const registerUsuario = () => {
         });
       });
     });
-  });
   return rootElement;
 };

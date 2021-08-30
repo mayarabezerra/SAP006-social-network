@@ -82,7 +82,7 @@ export const loginUsuario = () => {
   const msgSuccess = newRootElement.querySelector('#msgSuccess');
   const errorGoogle = newRootElement.querySelector('#errorGoogle')
   let validPassword = false;
-  let validGoogle = false;
+
 
   keepLogged.addEventListener('change', () => {
     const local = firebase.auth.Auth.Persistence.LOCAL;
@@ -144,29 +144,18 @@ export const loginUsuario = () => {
     }
   });
 
- /* logGoogle.addEventListener('click',  () => {
-    loginWithGoogle()
-      .then((result) => {
-        console.log(result);
-        navigateTo('/feed');
-      }).catch((err) => {
-        alert('Erro ao logar');
-        console.log(err);
-      });
-  });*/
   logGoogle.addEventListener('click' , loginGoogle)
 
   function loginGoogle() {
-    if (validGoogle) 
     loginWithGoogle()
       .then(() => {
         navigateTo('/feed');       
       })
-    if (!validGoogle)  {
-      errorGoogle.setAttribute('style', 'display: block');
-      errorGoogle.innerHTML = '<Label style="margin-top: 12px; font-size: 0.7rem; color: red; text-align: center">Erro ao logar com google</label>'; 
-      validGoogle = true  
-    }
+      .catch((err) => {
+        errorGoogle.setAttribute('style', 'display: block');
+        errorGoogle.innerHTML = '<Label style="margin-top: 12px; font-size: 0.7rem; color: red; text-align: center">Erro ao logar com google</label>';  
+        console.log(err);
+      }); 
   }
 
   btnEye.addEventListener('click', () => {

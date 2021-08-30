@@ -6,9 +6,6 @@ import { addPostFeed } from '../../components/feed.js';
 import { navigateTo } from '../../routes/navigation.js';
 
 export const feedConstruct = () => {
-  // const user = currentUser
-  // console.log(user)
-
   const newRootElement = document.createElement('div');
   const contentnewElement = `
   <section class="section-exemple-feed">
@@ -21,7 +18,7 @@ export const feedConstruct = () => {
       <div class="line3"></div>
     </div>
     <ul class="nav-list">
-      <li><a href="#">Sobre</a></li>
+      <li><a href="/who">Sobre</a></li>
       <li><a href="#">Terror</a></li>
       <li id="signOut"><a href="#">Logout</a></li>
     </ul>
@@ -29,13 +26,13 @@ export const feedConstruct = () => {
   </header>
   <main class="layout-feed">
       <div class="container-text-feed">
-          <form>
+          <form id="formid">
              <div class="inline-img"> <img src="./img/avatar.png" class="img-avatar" alt=""> 
             <label class="labels">Nome</label></div><br>
               <div class="textarea-style">
-                  <textarea name="textarea" id="textarea" class="textarea-feed" cols="37" rows="4" minlength="3" placeholder="Let's get spooky..."></textarea>
+                  <textarea name="textarea" id="textareaid" class="textarea-feed" cols="37" rows="4" minlength="3" placeholder="Let's get spooky..." required></textarea>
               </div><br>
-             <buttom type="submit" id="submit-text"class="feed-button">Enviar</buttom>
+             <button type="submit" id="submit-text"class="feed-button">Enviar</button>
           </form>
       </div>
   </main>
@@ -45,7 +42,7 @@ export const feedConstruct = () => {
 
   newRootElement.innerHTML = contentnewElement;
 
-  const submitText = newRootElement.querySelector('#submit-text');
+  const submitText = newRootElement.querySelector('#formid');
 
   /* Function - class */
 
@@ -73,6 +70,17 @@ export const feedConstruct = () => {
           ? (link.style.animation = '')
           : (link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3
           }s`);
+      });
+    }
+
+    animateLinks() {
+      this.navLinks.forEach((link, index) => {
+        const value = link;
+        if (value.style.animation) {
+          value.style.animation = '';
+        } else {
+          value.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
+        }
       });
     }
 
@@ -139,7 +147,7 @@ export const feedConstruct = () => {
       const dataConfirm = target.dataset.yes;
       const dataId = target.dataset.id;
       console.log(dataConfirm);
-      if (dataConfirm == 'confirm') {
+      if (dataConfirm === 'confirm') {
         const theParent = document.querySelector(`.container-text-feed-two#${dataId}`);
         deletePublication(dataId);
         theParent.remove();
@@ -180,11 +188,12 @@ export const feedConstruct = () => {
     }
   });
 
-  submitText.addEventListener('click', () => {
-    const publication = newRootElement.querySelector('#textarea').value;
+  submitText.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const publication = newRootElement.querySelector('#textareaid').value;
     publicationPost(publication).then(() => {
       console.log('deu bom');
-      newRootElement.querySelector('#textarea').value = '';
+      newRootElement.querySelector('#textareaid').value = '';
       loadPostOnFeed();
     });
   });
