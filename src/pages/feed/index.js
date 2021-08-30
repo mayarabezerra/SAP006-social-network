@@ -1,10 +1,8 @@
 import {
   publicationPost, postsCollection, logOut, editPost, modifyLikes, deletePublication,
 } from '../../services/index.js';
-
 import { addPostFeed } from '../../components/feed.js';
 import { navigateTo } from '../../routes/navigation.js';
-
 export const feedConstruct = () => {
   const newRootElement = document.createElement('div');
   const contentnewElement = `
@@ -39,40 +37,17 @@ export const feedConstruct = () => {
   <section class="layout-feed-two" id="container-post">
   </section>
   </section>`;
-
   newRootElement.innerHTML = contentnewElement;
-
   const submitText = newRootElement.querySelector('#formid');
-
   /* Function - class */
-
   class MobileNavbar {
     constructor(mobileMenu, navList, navLinks) {
       this.mobileMenu = newRootElement.querySelector(mobileMenu);
       this.navList = newRootElement.querySelector(navList);
       this.navLinks = newRootElement.querySelectorAll(navLinks);
       this.activeClass = 'active';
-
       this.handleClick = this.handleClick.bind(this);
     }
-    animateLinks() {
-      this.navLinks.forEach((link, index) => {
-        link.style.animation
-          ? (link.style.animation = "")
-          : (link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3
-            }s`);
-      });
-    }
-
-    animateLinks() {
-      this.navLinks.forEach((link, index) => {
-        link.style.animation
-          ? (link.style.animation = '')
-          : (link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3
-          }s`);
-      });
-    }
-
     animateLinks() {
       this.navLinks.forEach((link, index) => {
         const value = link;
@@ -83,17 +58,14 @@ export const feedConstruct = () => {
         }
       });
     }
-
     handleClick() {
       this.navList.classList.toggle(this.activeClass);
       this.mobileMenu.classList.toggle(this.activeClass);
       this.animateLinks();
     }
-
     addClickEvent() {
       this.mobileMenu.addEventListener('click', this.handleClick);
     }
-
     init() {
       if (this.mobileMenu) {
         this.addClickEvent();
@@ -101,19 +73,16 @@ export const feedConstruct = () => {
       return this;
     }
   }
-
   const mobileNavbar = new MobileNavbar(
     '.mobile-menu',
     '.nav-list',
     '.nav-list li',
   );
   mobileNavbar.init();
-
   /* Feed */
   const containerPosts = newRootElement.querySelector('.layout-feed-two');
   const loadPostOnFeed = () => {
     newRootElement.querySelector('#container-post').innerHTML = 'Carregando...';
-
     postsCollection().then((snap) => {
       newRootElement.querySelector('#container-post').innerHTML = '';
       snap.docs.forEach((item) => {
@@ -122,14 +91,12 @@ export const feedConstruct = () => {
     });
   };
   loadPostOnFeed();
-
   containerPosts.addEventListener('click', (event) => {
     if (event.target.classList.contains('button-delete')) {
       const gigante = event.target.parentNode.parentNode.parentNode.querySelector('.popup-wrapper');
       gigante.style.display = 'block';
       console.log(gigante);
     }
-
     if (event.target.classList.contains('popup-no')) {
       const classNameOfClickedElement = event.target.parentNode.parentNode;
       console.log(classNameOfClickedElement);
@@ -139,7 +106,6 @@ export const feedConstruct = () => {
         console.log(gigante);
       }
     }
-
     if (event.target.classList.contains('popup-yes')) {
       const gigante = event.target.parentNode.parentNode.parentNode;
       gigante.style.display = 'none';
@@ -153,7 +119,6 @@ export const feedConstruct = () => {
         theParent.remove();
       }
     }
-
     if (event.target.classList.contains('btn-edit')) {
       const txtArea = event.target.parentNode.parentNode.parentNode.parentNode.querySelector('.publi-feed');
       console.log(txtArea);
@@ -162,18 +127,15 @@ export const feedConstruct = () => {
     }
     if (event.target.classList.contains('btn-salvar')) {
       const txtArea = event.target.parentNode.parentNode.parentNode.parentNode.querySelector('.publi-feed');
-
       const getId = event.target.parentNode.parentNode.dataset.postid;
       console.log(getId);
       editPost(getId, txtArea.value);
       txtArea.setAttribute('disabled', '');
     }
-
     if (event.target.classList.contains('img-like')) {
       const dataLikes = event.target.dataset.like;
       const postText = event.target.parentNode.parentNode.parentNode.parentNode.querySelector('.publi-feed');
       console.log(postText);
-
       if (dataLikes) {
         console.log('cliquei no botão');
         modifyLikes(dataLikes, firebase.auth().currentUser.uid)
@@ -187,7 +149,6 @@ export const feedConstruct = () => {
       }
     }
   });
-
   submitText.addEventListener('submit', (event) => {
     event.preventDefault();
     const publication = newRootElement.querySelector('#textareaid').value;
@@ -197,9 +158,7 @@ export const feedConstruct = () => {
       loadPostOnFeed();
     });
   });
-
   /* Sign-Out */
-
   const logOutButton = () => {
     newRootElement.querySelector('#signOut').addEventListener('click', (event) => {
       event.preventDefault();
@@ -210,6 +169,10 @@ export const feedConstruct = () => {
     });
   };
   logOutButton();
-
   return newRootElement;
 };
+
+
+
+
+
