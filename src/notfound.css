@@ -113,7 +113,11 @@
 }
  body {
 	 margin: 0;
+<<<<<<< HEAD
 	/* overflow: hidden;*/
+=======
+	 /*overflow: hidden;*/
+>>>>>>> 5ad388a4dd6d4dfd59a0595e80ed4fea5110ff89
 	 background: #000;
 }
  body .container {
