@@ -1,6 +1,6 @@
 const actionFromPost = () => `
     <button class="btn-edit">editar</button>
-    <button class="btn-salvar">Salvar</button>
+    <button class="btn-salvar">salvar</button>
     <button type="submit" id="deleteBtn" class="button-delete" data-item="delete">excluir</button>
 `;
 
