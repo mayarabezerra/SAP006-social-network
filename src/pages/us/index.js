@@ -7,7 +7,7 @@ export const whoWeAre = () => {
             <a href="/feed"><img src="img/logo4.png" alt="movie-poster"></a>
         </div>
         <p class="text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus velit ducimus, enim inventore earum, eligendi nostrum pariatur necessitatibus eius dicta a voluptates sit deleniti autem error eos totam nisi neque voluptates sit deleniti autem error eos totam nisi neque.
+           A rede social 
             <a href="https://github.com/tenorionique/SAP006-social-network" target="_blank">Repo</a>
         </p>
         <div class="skills">
