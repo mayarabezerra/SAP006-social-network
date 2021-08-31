@@ -80,9 +80,8 @@ export const loginUsuario = () => {
   const labelPassword = newRootElement.querySelector('#labelPassword');
   const msgError = newRootElement.querySelector('#msgError');
   const msgSuccess = newRootElement.querySelector('#msgSuccess');
-  const errorGoogle = newRootElement.querySelector('#errorGoogle')
+  const errorGoogle = newRootElement.querySelector('#errorGoogle');
   let validPassword = false;
-
 
   keepLogged.addEventListener('change', () => {
     const local = firebase.auth.Auth.Persistence.LOCAL;
@@ -144,19 +143,19 @@ export const loginUsuario = () => {
     }
   });
 
-  logGoogle.addEventListener('click' , loginGoogle)
-
   function loginGoogle() {
     loginWithGoogle()
       .then(() => {
-        navigateTo('/feed');       
+        navigateTo('/feed');
       })
       .catch((err) => {
         errorGoogle.setAttribute('style', 'display: block');
-        errorGoogle.innerHTML = '<Label style="margin-top: 12px; font-size: 0.7rem; color: red; text-align: center">Erro ao logar com google</label>';  
+        errorGoogle.innerHTML = '<Label style="margin-top: 12px; font-size: 0.7rem; color: red; text-align: center">Erro ao logar com google</label>';
         console.log(err);
-      }); 
+      });
   }
+
+  logGoogle.addEventListener('click', loginGoogle);
 
   btnEye.addEventListener('click', () => {
     const eyePassword = document.querySelector('.password');

@@ -3,6 +3,7 @@ import {
 } from '../../services/index.js';
 import { addPostFeed } from '../../components/feed.js';
 import { navigateTo } from '../../routes/navigation.js';
+
 export const feedConstruct = () => {
   const newRootElement = document.createElement('div');
   const contentnewElement = `
@@ -48,6 +49,7 @@ export const feedConstruct = () => {
       this.activeClass = 'active';
       this.handleClick = this.handleClick.bind(this);
     }
+
     animateLinks() {
       this.navLinks.forEach((link, index) => {
         const value = link;
@@ -58,14 +60,17 @@ export const feedConstruct = () => {
         }
       });
     }
+
     handleClick() {
       this.navList.classList.toggle(this.activeClass);
       this.mobileMenu.classList.toggle(this.activeClass);
       this.animateLinks();
     }
+
     addClickEvent() {
       this.mobileMenu.addEventListener('click', this.handleClick);
     }
+
     init() {
       if (this.mobileMenu) {
         this.addClickEvent();
@@ -171,8 +176,3 @@ export const feedConstruct = () => {
   logOutButton();
   return newRootElement;
 };
-
-
-
-
-
