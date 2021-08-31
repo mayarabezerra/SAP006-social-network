@@ -100,8 +100,6 @@ export const reset = (email) => {
 
 /* Firebase Firestore */
 
-const db = firebase.firestore();
-
 export const publicationPost = (publication) => {
   const user = firebase.auth().currentUser;
   const post = {
@@ -121,14 +119,16 @@ export const publicationPost = (publication) => {
 
 /* Edit */
 
-export const editPost = (id, valorNovo) => db.collection('posts').doc(id).update({
+export const editPost = (id, valorNovo) => {
+  const db = firebase.firestore();
+  return db.collection('posts').doc(id).update({
   text: valorNovo,
 })
   .then(() => true)
-  .catch((error) => error);
+  .catch((error) => error)};
 
-export const postsCollection = () => db.collection('posts').get();
-export const collectionPost = db.collection('posts');
+/*export const postsCollection = () => db.collection('posts').get();
+export const collectionPost = db.collection('posts');*/
 
 /* Delete */
 
