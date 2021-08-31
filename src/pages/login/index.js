@@ -31,6 +31,7 @@ export const loginUsuario = () => {
                 <div id="social-container">
                     <p>Ou faça login com sua conta do Google</p>
                     <button class="fa fa-google fa-3x" aria-hidden="true" id="btn-google" ></button>
+                    <div id="errorGoogle" class="text-error"></div>
                 </div>
                 <div id="register-container" class="bottom-container">
                     <p>Ainda não tem uma conta?</p>

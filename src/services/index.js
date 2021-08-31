@@ -1,6 +1,8 @@
 /* Register */
+import { getFirebase } from './firebase.js';
 
-export const sendVerificationEmail = () => firebase.auth().currentUser.sendEmailVerification();
+const db = getFirebase().firestore();
+export const sendVerificationEmail = () => getFirebase().auth().currentUser.sendEmailVerification();
 
 export const createNewAccount = (emailTwo, passwordTwo, nameOfUser) => {
   const newUser = firebase.auth().createUserWithEmailAndPassword(emailTwo, passwordTwo)
@@ -99,8 +101,6 @@ export const reset = (email) => {
 };
 
 /* Firebase Firestore */
-
-const db = firebase.firestore();
 
 export const publicationPost = (publication) => {
   const user = firebase.auth().currentUser;
