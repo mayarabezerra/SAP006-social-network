@@ -135,27 +135,33 @@
  body .container:last-of-type {
 	 pointer-events: none;
 }
+
+body .container .ellipse {
+	position: relative;
+	width: 36vmin;
+	height: 27vmin;
+	background: #fffee2;
+	border-radius: 50%;
+	z-index: 1;
+}
+
  body .container #switch {
 	 display: none;
 }
+
+body .container .ray {
+	position: relative;
+	border-top: 36vmin solid #8d8e7e;
+	border-left: 11.7vmin solid transparent;
+	border-right: 11.7vmin solid transparent;
+	margin-top: -12.6vmin;
+}
+
  body .container #switch:checked ~ .ellipse, body .container #switch:checked ~ .ray {
 	 opacity: 0;
 }
- body .container .ellipse {
-	 position: relative;
-	 width: 36vmin;
-	 height: 27vmin;
-	 background: #fffee2;
-	 border-radius: 50%;
-	 z-index: 1;
-}
- body .container .ray {
-	 position: relative;
-	 border-top: 36vmin solid #8d8e7e;
-	 border-left: 11.7vmin solid transparent;
-	 border-right: 11.7vmin solid transparent;
-	 margin-top: -12.6vmin;
-}
+
+
  body .container .head {
 	 position: relative;
 	 width: 14.4vmin;

@@ -129,6 +129,8 @@ export const editPost = (id, valorNovo) => db.collection('posts').doc(id).update
 
 export const postsCollection = () => db.collection('posts').get();
 export const collectionPost = db.collection('posts');
+// const db = firebase.firestore();
+/* trocar o db pelo firebase.firestore() */
 
 /* Delete */
 

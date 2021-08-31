@@ -4,7 +4,7 @@
 	font-family: 'Melted Monster';
 	src: url('font/Melted Monster.ttf') format('truetype');
 }
-main{display:block;}html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;}body{margin:0;}
+
 *,
 *::after,
 *::before {
@@ -12,10 +12,14 @@ main{display:block;}html{font-family:sans-serif;-ms-text-size-adjust:100%;-webki
 }
 
 html {
+	font-family:sans-serif;
 	background: #1d2121;
+	-ms-text-size-adjust:100%;
+	-webkit-text-size-adjust:100%;
 }
 
 body {
+	margin:0;
 	font-family: sans-serif;
 	min-height: 100vh;
 	color: #57585c;
@@ -25,11 +29,16 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
+
+main{
+	display:block;
+}
+
 .content {
 	position: relative;
 	display: flex;
 	justify-content: center;
-	margin-top: 21%;
+	/*margin-top: 21%;*/
 	align-items: center;
 	margin: 0 auto;
 	min-height: 100vh;
@@ -45,7 +54,7 @@ body {
 	margin-left: 204px;
 }
 .links-about a {
-    font-family: 'Melted Monster';
+    font-family: 'Melted Monster', Arial, Helvetica, sans-serif;
 	letter-spacing: 4px;
     font-size: 2rem;
     /*font-weight: bolder;*/
@@ -154,9 +163,6 @@ body {
 
 .glitch-img:nth-child(n+2) {
 	opacity: 0;
-}
-
-.glitch-img:nth-child(n+2) {
 	animation-duration: 4s;
 	animation-delay: 2s;
 	animation-timing-function: linear;
@@ -240,7 +246,8 @@ body {
 	letter-spacing: 1px;
 }
 
-};
+}
+
 @media (max-width: 1440px){
 	.content-title {
 		font-size: 15vw;
