@@ -1,7 +1,8 @@
-.about-section{
-    background: url(img/phenomena-i.jpg) no-repeat left;
+.about-section {
+    background: url('poster/phenomena-poster.png') no-repeat left;
     background-size: 40%;
-    background-color: #220000;
+    margin-left: 16px;
+    /*background-color: #220000;*/
     overflow: hidden;
     padding: 100px 0;
 }

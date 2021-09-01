@@ -1,15 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&display=swap');
-
 /*Geral*/
-/*Reset css*/
-
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;  /*box-sizing do tamanho das bordas da caixa serve para input pra igualar o tamanho com p*/
-  font-family: Helvetica, Arial, sans-serif; /*mudar depois*/
-  color:#fff;
-  border: none;
+@font-face {
+	font-family: 'Melted Monster';
+	src: url('font/Melted Monster.ttf') format('truetype');
 }
 
 .section-exemple {

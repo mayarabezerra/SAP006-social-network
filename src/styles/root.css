@@ -1,0 +1,26 @@
+:root {
+    --back-black: #000;
+    --back-white:#fff;
+    --back-grey-feed: #252525;
+    --back-medium-black: #181717;
+    --back-light-yellow: #fffee2;
+    --back-yellow:#ffab2b;
+    --back-medium-grey: #646464;
+    --back-wine: #862a2a;
+    --back-dark-grey:rgb(41, 41, 41);
+    --back-container: rgba(54, 54, 54, 0.589);
+    --back-grey-grey: rgb(76, 71, 71);
+    --back-popup:#0e0e0e;
+    --back-wrapper:rgba(0, 0, 0, .5);
+    --letter-grey: #57585c;
+    --letter-black: #000;
+    --letter-white: #fff;
+    --letter-offwhite: rgb(224, 221, 220);
+    --letter-redwine: #9a3d37;
+    --letter-hover-red: #84252d;
+    --border-white: #fff;
+    --label-offwhite: #eae5e5;
+    --btn-wine:#420202;
+    --btn-red: #ca0c0c;
+    
+}
