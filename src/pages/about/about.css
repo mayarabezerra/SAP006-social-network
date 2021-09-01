@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Playfair+Display:900');
-@import url('https://fonts.googleapis.com/css?family=IM+Fell+English');
 @font-face {
 	font-family: 'Melted Monster';
 	src: url('font/Melted Monster.ttf') format('truetype');
@@ -10,7 +8,6 @@
 *::before {
 	box-sizing: border-box;
 }
-
 html {
 	font-family:sans-serif;
 	background: #1d2121;
@@ -22,10 +19,10 @@ body {
 	margin:0;
 	font-family: sans-serif;
 	min-height: 100vh;
-	color: #57585c;
-	color: #fff;
-	background-color: #fff;
-	background-color: #000;
+	color: var(--letter-grey) ;
+	color: var(--letter-white);
+	background-color: var(--back-white);
+	background-color: var(--back-black);
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
@@ -187,7 +184,7 @@ main{
 }
 
 .glitch-img:nth-child(5) {
-	background-color: #862a2a;
+	background-color: var(--back-wine);
 	background-blend-mode: overlay;
 	animation-name: glitch-anim-flash;
 }
@@ -222,11 +219,11 @@ main{
     padding: 20px;
     margin-left: 20px;
     margin-top: 10px;
-    border: white;
+    border: var(--border-white);
     border-style: solid;
 	border-width: 0.5px;
     z-index: 20;
-    color: white;
+    color: var(--letter-white);
     text-decoration: none;
 
 }
@@ -237,13 +234,13 @@ main{
 	display: flex;
     align-items: flex-end;
     z-index: 20;
-	margin-top: 8%;
+	margin-top: 3%;
     margin-left: 30px;
  }
  .links-about a {
 	margin-right: 11px;
     margin-left: -6px;
-	letter-spacing: 1px;
+	/*letter-spacing: 1px;*/
 }
 
 }

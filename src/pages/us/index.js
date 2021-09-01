@@ -4,7 +4,7 @@ export const whoWeAre = () => {
     <div class="inner-container">
         <div class="display-content">
             <h1>Sobre nós</h1>
-            <a href="/feed"><img src="img/logo4.png" alt="movie-poster"></a>
+            <a href="/feed"><img src="img/logo4.png" alt="logo"></a>
         </div>
         <p class="text">
         Esta rede social homenageia o filme de terror  <a href="https://www.imdb.com/title/tt0087909/" target="_blank">Phenomena</a>, dirigido por Dario Argento. Criamos essa rede com intuito de unir a comunidade fã do genero terror, que há muito tempo não encontra um espaço para compartilhar sobre a temática. Se você se encaixa nesse perfil, está no lugar certo. Foi desenvolvido por três mulheres durante o bootcamp da Laboratória. Saiba mais sobre o nosso projeto clicando 
