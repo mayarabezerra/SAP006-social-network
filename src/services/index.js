@@ -28,7 +28,7 @@ export const registerWithGoogle = () => {
 /* Login */
 
 export const loginOfUser = (email, password) => {
-  const loginWithEmail = firebase
+  const loginWithEmail = getFirebase()
     .auth()
     .signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
