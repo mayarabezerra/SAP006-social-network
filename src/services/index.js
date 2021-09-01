@@ -118,17 +118,17 @@ export const publicationPost = (publication) => {
 };
 
 /* Edit */
+const db = firebase.firestore();
 
 export const editPost = (id, valorNovo) => {
-  const db = firebase.firestore();
-  return db.collection('posts').doc(id).update({
+  db.collection('posts').doc(id).update({
   text: valorNovo,
 })
   .then(() => true)
   .catch((error) => error)};
 
-/*export const postsCollection = () => db.collection('posts').get();
-export const collectionPost = db.collection('posts');*/
+export const postsCollection = () => db.collection('posts').get();
+export const collectionPost = db.collection('posts');
 
 /* Delete */
 
