@@ -7,8 +7,8 @@ export const whoWeAre = () => {
             <a href="/feed"><img src="img/logo4.png" alt="movie-poster"></a>
         </div>
         <p class="text">
-        Esta rede social homenageia o filme de terror  <a href="https://www.imdb.com/title/tt0087909/" target="_blank">Phenomena</a>, dirigido por Dario Argento. Criamos essa rede com intuito de unir a comunidade fã do genero terror, que há muito tempo não encontra um espaço para compartilhar sobre a temática. Se você se encaixa nesse perfil, está no lugar certo. Foi desenvolvido por três mulheres durante o bootcamp da Laboratória. Saiba mais sobre o nosso projeto clicando 
-        <a href="https://github.com/tenorionique/SAP006-social-network" target="_blank">aqui</a>
+          Esta rede social homenageia o filme de terror  <a href="https://www.imdb.com/title/tt0087909/" target="_blank">Phenomena</a>, dirigido por Dario Argento. Criamos essa rede com intuito de unir a comunidade fã do genero terror, que há muito tempo não encontra um espaço para compartilhar sobre a temática. Se você se encaixa nesse perfil, está no lugar certo. Foi desenvolvido por três mulheres durante o bootcamp da Laboratória. Saiba mais sobre o nosso projeto clicando 
+            <a href="https://github.com/tenorionique/SAP006-social-network" target="_blank">aqui</a>
         </p>
         <div class="skills">
             <a href="https://github.com/Giuthamie" target="_blank">Giuliana Thamiê</a>

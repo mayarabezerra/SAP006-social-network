@@ -120,8 +120,14 @@ export const publicationPost = (publication) => {
 };
 
 /* Edit */
+const db = firebase.firestore();
 
+<<<<<<< HEAD
+export const editPost = (id, valorNovo) => {
+  db.collection('posts').doc(id).update({
+=======
 export const editPost = (id, valorNovo) => db.collection('posts').doc(id).update({
+>>>>>>> 36f4cb0dda9c283ac98cbb2d0fb382a06f434970
   text: valorNovo,
 })
   .then(() => true)
@@ -129,8 +135,11 @@ export const editPost = (id, valorNovo) => db.collection('posts').doc(id).update
 
 export const postsCollection = () => db.collection('posts').get();
 export const collectionPost = db.collection('posts');
+<<<<<<< HEAD
+=======
 // const db = firebase.firestore();
 /* trocar o db pelo firebase.firestore() */
+>>>>>>> 36f4cb0dda9c283ac98cbb2d0fb382a06f434970
 
 /* Delete */
 
