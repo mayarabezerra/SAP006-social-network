@@ -120,8 +120,6 @@ export const publicationPost = (publication) => {
 };
 
 /* Edit */
-const db = firebase.firestore();
-
 
 export const editPost = (id, valorNovo) => db.collection('posts').doc(id).update({
   text: valorNovo,
