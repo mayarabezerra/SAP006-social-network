@@ -1,6 +1,8 @@
 /* Register */
+import { getFirebase } from './firebase.js';
 
-export const sendVerificationEmail = () => firebase.auth().currentUser.sendEmailVerification();
+const db = getFirebase().firestore();
+export const sendVerificationEmail = () => getFirebase().auth().currentUser.sendEmailVerification();
 
 export const createNewAccount = (emailTwo, passwordTwo, nameOfUser) => {
   const newUser = firebase.auth().createUserWithEmailAndPassword(emailTwo, passwordTwo)
@@ -120,15 +122,24 @@ export const publicationPost = (publication) => {
 /* Edit */
 const db = firebase.firestore();
 
+<<<<<<< HEAD
 export const editPost = (id, valorNovo) => {
   db.collection('posts').doc(id).update({
+=======
+export const editPost = (id, valorNovo) => db.collection('posts').doc(id).update({
+>>>>>>> 36f4cb0dda9c283ac98cbb2d0fb382a06f434970
   text: valorNovo,
 })
   .then(() => true)
-  .catch((error) => error)};
+  .catch((error) => error);
 
 export const postsCollection = () => db.collection('posts').get();
 export const collectionPost = db.collection('posts');
+<<<<<<< HEAD
+=======
+// const db = firebase.firestore();
+/* trocar o db pelo firebase.firestore() */
+>>>>>>> 36f4cb0dda9c283ac98cbb2d0fb382a06f434970
 
 /* Delete */
 

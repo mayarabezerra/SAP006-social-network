@@ -18,7 +18,7 @@ export const feedConstruct = () => {
     </div>
     <ul class="nav-list">
       <li><a href="/who">Sobre</a></li>
-      <li><a href="#">Terror</a></li>
+      <li><a href="https://www.indiewire.com/feature/best-horror-movies-all-time-scary-films-1202012183/" target="_blank">Terror</a></li>
       <li id="signOut"><a href="#">Logout</a></li>
     </ul>
   </nav>

@@ -16,6 +16,8 @@
 
 Phenomena é uma Rede Social que permite à qualquer usuário criar uma conta de acesso, logar-se com ela, criar, editar, deletar e dar likes em publicações.
 
+ Esta rede social homenageia o filme de terror [PHENOMENA](https://www.imdb.com/title/tt0087909/), dirigido por Dario Argento. Criamos essa rede com intuito de unir a comunidade fã do genero terror, que há muito tempo não encontra um espaço para compartilhar sobre a temática. Se você se encaixa nesse perfil, está no lugar certo. 
+
 O projeto foi realizado no  _bootcamp_ da [LABORATÓRIA](https://www.laboratoria.la/br).
 
 ## 2. Histórias de usuários :receipt:
