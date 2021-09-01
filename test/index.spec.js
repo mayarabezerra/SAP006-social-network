@@ -1,8 +1,42 @@
-// importamos a função que vamos testar
-import { myFunction } from '../src/lib/index';
+import { sendVerificationEmail, logOut } from '../src/services/index.js';
+/* import { getFirebase } from '../src/services/firebase.js'; */
 
-describe('myFunction', () => {
+const mockSendEmail = jest.fn();
+jest.mock('../src/services/firebase.js', () => ({
+  getFirebase: jest.fn(() => ({
+    firestore: jest.fn(() => ({
+      collection: jest.fn(),
+    })),
+    auth: jest.fn(() => ({
+      currentUser: {
+        sendEmailVerification: mockSendEmail,
+      },
+    })),
+  })),
+}));
+
+describe('sendVerificationEmail', () => {
   it('should be a function', () => {
-    expect(typeof myFunction).toBe('function');
+    sendVerificationEmail();
+    expect(mockSendEmail).toHaveBeenCalledTimes(1);
+  });
+});
+
+const mockLogOut = jest.fn();
+jest.mock('../src/services/firebase.js', () => ({
+  getFirebase: jest.fn(() => ({
+    firestore: jest.fn(() => ({
+      collection: jest.fn(),
+    })),
+    auth: jest.fn(() => ({
+      signOut: mockLogOut,
+    })),
+  })),
+}));
+
+describe('logOut', () => {
+  it('should be called once', () => {
+    logOut();
+    expect(mockLogOut).toHaveBeenCalledTimes(1);
   });
 });

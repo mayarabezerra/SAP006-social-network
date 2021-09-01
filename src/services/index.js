@@ -1,11 +1,13 @@
 /* Register */
+import { getFirebase } from './firebase.js';
 
-export const sendVerificationEmail = () => firebase.auth().currentUser.sendEmailVerification();
+const db = getFirebase().firestore();
+export const sendVerificationEmail = () => getFirebase().auth().currentUser.sendEmailVerification();
 
 export const createNewAccount = (emailTwo, passwordTwo, nameOfUser) => {
-  const newUser = firebase.auth().createUserWithEmailAndPassword(emailTwo, passwordTwo)
+  const newUser = getFirebase().auth().createUserWithEmailAndPassword(emailTwo, passwordTwo)
     .then(() => {
-      const user = firebase.auth().currentUser;
+      const user = getFirebase().auth().currentUser;
       user.updateProfile({
         displayName: nameOfUser,
       }).then(() => sendVerificationEmail())
@@ -74,7 +76,7 @@ export const keepLoggedUser = (persistence) => {
 /* Sign-out */
 
 export const logOut = () => {
-  firebase.auth().signOut()
+  getFirebase().auth().signOut()
     .catch((error) => {
       const errorCode = error.code;
       return errorCode;
@@ -100,8 +102,6 @@ export const reset = (email) => {
 
 /* Firebase Firestore */
 
-const db = firebase.firestore();
-
 export const publicationPost = (publication) => {
   const user = firebase.auth().currentUser;
   const post = {
@@ -120,6 +120,8 @@ export const publicationPost = (publication) => {
 };
 
 /* Edit */
+const db = firebase.firestore();
+
 
 export const editPost = (id, valorNovo) => db.collection('posts').doc(id).update({
   text: valorNovo,

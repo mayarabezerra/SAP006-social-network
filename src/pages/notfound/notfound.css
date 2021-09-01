@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Fjalla+One);
+
  @-webkit-keyframes rotate {
 	 25% {
 		 -webkit-transform: rotate(-28deg);
@@ -113,12 +113,8 @@
 }
  body {
 	 margin: 0;
-<<<<<<< HEAD
 	/* overflow: hidden;*/
-=======
-	 /*overflow: hidden;*/
->>>>>>> 5ad388a4dd6d4dfd59a0595e80ed4fea5110ff89
-	 background: #000;
+	 background: var(--back-black);
 }
  body .container {
 	 position: absolute;
@@ -139,33 +135,39 @@
  body .container:last-of-type {
 	 pointer-events: none;
 }
+
+body .container .ellipse {
+	position: relative;
+	width: 36vmin;
+	height: 27vmin;
+	background: var(--back-light-yellow);
+	border-radius: 50%;
+	z-index: 1;
+}
+
  body .container #switch {
 	 display: none;
 }
+
+body .container .ray {
+	position: relative;
+	border-top: 36vmin solid #8d8e7e;
+	border-left: 11.7vmin solid transparent;
+	border-right: 11.7vmin solid transparent;
+	margin-top: -12.6vmin;
+}
+
  body .container #switch:checked ~ .ellipse, body .container #switch:checked ~ .ray {
 	 opacity: 0;
 }
- body .container .ellipse {
-	 position: relative;
-	 width: 36vmin;
-	 height: 27vmin;
-	 background: #fffee2;
-	 border-radius: 50%;
-	 z-index: 1;
-}
- body .container .ray {
-	 position: relative;
-	 border-top: 36vmin solid #8d8e7e;
-	 border-left: 11.7vmin solid transparent;
-	 border-right: 11.7vmin solid transparent;
-	 margin-top: -12.6vmin;
-}
+
+
  body .container .head {
 	 position: relative;
 	 width: 14.4vmin;
 	 height: 1.8vmin;
 	 margin-left: 10.8vmin;
-	 background: #ffab2b;
+	 background: var(--back-yellow);
 }
  body .container .neck {
 	 position: relative;
@@ -180,7 +182,7 @@
 	 width: 7.308vmin;
 	 margin-left: 14.4vmin;
 	 height: 21.6vmin;
-	 background: #646464;
+	 background: var(--back-medium-grey);
 }
  body .container label {
 	 position: absolute;
@@ -189,7 +191,7 @@
 	 width: 1.44vmin;
 	 height: 3.6vmin;
 	 border: 0.432vmin solid #333;
-	 background: #ffab2b;
+	 background: var(--back-yellow);
 	 border-radius: 10px;
 	 cursor: pointer;
 }
@@ -200,7 +202,7 @@
 	 left: 50%;
 	 text-align: center;
 	 font-family: 'Fjalla One', sans-serif;
-	 color: #000;
+	 color: var(--letter-black);
 	 -webkit-user-select: none;
 	 -moz-user-select: none;
 	 -ms-user-select: none;

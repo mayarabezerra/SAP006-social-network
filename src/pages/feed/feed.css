@@ -1,26 +1,22 @@
+/* feed */
 @font-face {
 	font-family: 'Melted Monster';
 	src: url('font/Melted Monster.ttf') format('truetype');
 }
 
-/*feed*/
-* {
-  margin: 0;
-  padding: 0;
-}
+/* body {
+  background: #252525;
+} */
 
-body {
-    background: #252525;
-}
 .section-exemple-feed {
   /*width: 100%;*/
-  background-color: #252525;
-  height: 100hv;
+  background-color:var(--back-grey-feed);
+  height: 100vh;
   /*position: relative;*/
 }
 
 .nav-list a {
-  color: #fff;
+  color: var(--letter-white);
   text-decoration: none;
   transition: 0.3s;
 }
@@ -48,7 +44,7 @@ nav {
   justify-content: space-around;
   align-items: center;
   font-family: system-ui, -apple-system, Helvetica, Arial, sans-serif;
-  background: #181717;
+  background:var(--back-medium-black);
   height: 15vh;
   box-shadow: 4px 3px 38px 1px rgb(239 234 228 / 75%);
   -webkit-box-shadow: 4px 3px 38px 1px rgb(218 215 211 / 75%);
@@ -74,7 +70,7 @@ nav {
 .mobile-menu div {
   width: 32px;
   height: 2px;
-  background: #fff;
+  background: var(--back-white);
   margin: 8px;
   transition: 0.3s;
 }
@@ -107,7 +103,7 @@ nav {
 
 .layout-feed {
   display: grid;
-  background: rgb(41, 41, 41);
+  background:var(--back-dark-grey);
   justify-content: space-around;
   align-items: center;
   justify-items: center;
@@ -116,14 +112,14 @@ nav {
 .layout-feed-two {
   display: grid;
   margin-bottom: 30px;
-  background: rgb(41, 41, 41);
+  background:var(--back-dark-grey);
   justify-content: space-around;
   align-items: center;
   justify-items: center;
 }
 
 .container-text-feed {
-  background: rgba(54, 54, 54, 0.589);
+  background:var(--back-container);
   display: flex;
   justify-content: space-evenly;
   margin-top: 10%;
@@ -137,7 +133,7 @@ nav {
 }
 
 .container-text-feed-two {
-  background: rgba(54, 54, 54, 0.589);
+  background: var(--back-container);
   display: flex;
   width: 530px;
   height: 368px;
@@ -153,7 +149,7 @@ nav {
 }
 
 .container-text-feed label {
- font-family: 'Melted Monster';
+ font-family: 'Melted Monster', Arial, Helvetica, sans-serif;
  font-size: 1.5rem;
  letter-spacing: 5px;
  margin-left: 50px;
@@ -164,7 +160,7 @@ nav {
 }
 
 .container-text-feed-two label {
-  font-family: 'Melted Monster';
+  font-family: 'Melted Monster', Arial, Helvetica, sans-serif;
   font-size: 1.5rem;
   letter-spacing: 5px;
   margin-left: 50px;
@@ -175,8 +171,8 @@ nav {
  }
 
 .textarea-feed {
-  background: rgb(76 71 71);
-  color: rgb(224, 221, 220);
+  background: var(--back-grey-grey);
+  color: var(--letter-offwhite);
   font-size: 1.2rem;
   border-radius: 5px;
   width: 478px;
@@ -188,8 +184,8 @@ nav {
 }
 
 .publi-feed {
-  background: rgb(76 71 71);
-  color: rgb(224, 221, 220);
+  background: var(--back-grey-grey);
+  color:var(--letter-offwhite);
   font-size: 1.2rem;
   border-radius: 5px;
   width: 478px;
@@ -209,7 +205,7 @@ nav {
   display: block;
   padding: 15px 15px 15px 15px;
   text-align: center;
-  color: #9a3d37;
+  color: var(--letter-redwine);
   text-transform: uppercase;
   letter-spacing: 4px;
   text-decoration: none;
@@ -231,12 +227,12 @@ nav {
   display: block;
   /*padding: 15px 15px 15px 15px;*/
   cursor: pointer;
-  background-color: rgba(54, 54, 54, 0.589);
+  background-color:var(--back-container);
 }
 
 .feed-button:hover {
   
-  color: #84252d;
+  color:var(--letter-hover-red);
   background: #f44336;
   -webkit-box-shadow: 0 0 10px #f44336, 0 0 40px #f44336, 0 0 80px #f44336;
   -moz-box-shadow: 0 0 10px #f44336, 0 0 40px #f44336, 0 0 80px #f44336;
@@ -245,7 +241,7 @@ nav {
 }
 
 .like-button:hover {
-  color: #84252d;
+  color: var(--letter-hover-red);
   background: #f44336;
   -webkit-box-shadow: 0 0 10px #f44336, 0 0 40px #f44336, 0 0 80px #f44336;
   -moz-box-shadow: 0 0 10px #f44336, 0 0 40px #f44336, 0 0 80px #f44336;
@@ -293,7 +289,7 @@ nav {
 
 .content-buttom label {
   font-size: .8rem;
-  color: #eae5e5;
+  color: var(--label-offwhite);
   font-family: Arial, Helvetica, sans-serif;
   margin-left: 0;
 }
@@ -312,8 +308,8 @@ nav {
     margin: 5px;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-    background-color: rgba(54, 54, 54, 0.589);
-    color: #eae5e5;
+    background-color:var(--back-container);
+    color: var(--label-offwhite);
     letter-spacing: 4px;
     text-align: center;
     cursor: pointer;
@@ -327,7 +323,7 @@ nav {
 
 .popup-wrapper {
   display: none;
-  background: rgba(0, 0, 0, .5);
+  background: var(--back-wrapper);
   position: fixed;
   top:0;
   left: 0;
@@ -343,7 +339,7 @@ nav {
   max-width: 300px;
   margin: 10% auto;
   padding: 20px;
-  background: /*#5e5959*/#0e0e0e;;
+  background:var(--back-popup);
   position: relative;
   box-shadow: 4px 3px 38px 1px rgb(109 4 4 / 79%);
   -webkit-box-shadow: 4px 3px 38px 1px rgb(109 4 4 / 79%);
@@ -357,7 +353,7 @@ nav {
 .popup-content button {
   border: 0;
   padding: 12px 10px;
-  background: #420202;
+  background:var(--btn-wine);
   box-shadow: 4px 3px 38px 1px rgb(82 82 82 / 79%);
   -webkit-box-shadow: 4px 3px 38px 1px rgb(82 82 82 / 79%);
   -moz-box-shadow: 4px 3px 38px 1px rgb(82 82 82 / 79%);
@@ -365,7 +361,7 @@ nav {
   transition: 0.3s;
 }
 .popup-content button:hover {
-  background: #ca0c0c;
+  background:var(--btn-red);
 }
 
 .popup-close {
@@ -386,7 +382,7 @@ nav {
     right: 0;
     width: 50vw;
     height: 92vh;
-    background: #181717;
+    background: var(--back-medium-black);
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
@@ -408,7 +404,7 @@ nav {
 
 @media (min-width:320px) and (max-width: 500px) {
   .container-text-feed {
-    background: rgba(54, 54, 54, 0.589);
+    background:var(--back-container);
     display: flex;
     width: 350px;
     justify-content: space-evenly;
@@ -421,7 +417,7 @@ nav {
 }
 
 .container-text-feed-two {
-  background: rgba(54, 54, 54, 0.589);
+  background:var(--back-container);
   padding: 19px;
   display: flex;
   width: 301px;

@@ -97,7 +97,7 @@ export const registerUsuario = () => {
   const registerGoogle = rootElement.querySelector('#btngoogle');
   const msgError = rootElement.querySelector('.msg-error');
   const msgSuccess = rootElement.querySelector('.msg-success');
-  const errGoogle = rootElement.querySelector('#errGoogle')
+  const errGoogle = rootElement.querySelector('#errGoogle');
   let nameValid = false;
   let passwordValid = false;
   let confirmPasswordValide = false;
@@ -129,7 +129,7 @@ export const registerUsuario = () => {
         .then(() => {
           navigateTo('/login');
         })
-        .catch((error) => {
+        .catch(() => {
         })
 
         .catch((error) => {
@@ -184,8 +184,6 @@ export const registerUsuario = () => {
 
   btnTwo.addEventListener('click', isItValid);
 
-  registerGoogle.addEventListener('click', regisGoogle)
-
   function regisGoogle() {
     registerWithGoogle()
       .then(() => {
@@ -193,21 +191,23 @@ export const registerUsuario = () => {
       })
       .catch(() => {
         errGoogle.setAttribute('style', 'display: block');
-        errGoogle.innerHTML = '<Label style="margin-top: 5px; font-size: 0.7rem; color: red; text-align: center">Erro no registro com Google</label>'; 
+        errGoogle.innerHTML = '<Label style="margin-top: 5px; font-size: 0.7rem; color: red; text-align: center">Erro no registro com Google</label>';
       });
   }
 
-    btnEye.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const eyePassword = document.querySelectorAll('.password');
-        eyePassword.forEach((btnT) => {
-          if (btnT.getAttribute('type') === 'password') {
-            btnT.setAttribute('type', 'text');
-          } else {
-            btnT.setAttribute('type', 'password');
-          }
-        });
+  registerGoogle.addEventListener('click', regisGoogle);
+
+  btnEye.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const eyePassword = document.querySelectorAll('.password');
+      eyePassword.forEach((btnT) => {
+        if (btnT.getAttribute('type') === 'password') {
+          btnT.setAttribute('type', 'text');
+        } else {
+          btnT.setAttribute('type', 'password');
+        }
       });
     });
+  });
   return rootElement;
 };
