@@ -30,7 +30,6 @@ describe('sendVerificationEmail', () => {
 });
 
 describe('logOut', () => {
-  console.log(mockLogOut);
   it('should be called once', () => {
     logOut();
     expect(mockLogOut).toHaveBeenCalledTimes(1);

@@ -26,10 +26,11 @@ export const feedConstruct = () => {
   <main class="layout-feed">
       <div class="container-text-feed">
           <form id="formid">
-             <div class="inline-img"> <img src="./img/avatar.png" class="img-avatar" alt=""> 
-            <label class="labels"></label></div><br>
+             <div class="inline-img">
+                <label class="labels">Let's get spooky...</label>
+            </div><br>
               <div class="textarea-style">
-                  <textarea name="textarea" id="textareaid" class="textarea-feed" cols="37" rows="4" minlength="3" placeholder="Let's get spooky..." required></textarea>
+                  <textarea name="textarea" id="textareaid" class="textarea-feed" cols="37" rows="4" minlength="3" placeholder="Escreva seu texto aqui" required></textarea>
               </div><br>
              <button type="submit" id="submit-text"class="feed-button">Enviar</button>
           </form>
@@ -98,26 +99,22 @@ export const feedConstruct = () => {
   loadPostOnFeed();
   containerPosts.addEventListener('click', (event) => {
     if (event.target.classList.contains('button-delete')) {
-      const gigante = event.target.parentNode.parentNode.parentNode.querySelector('.popup-wrapper');
-      gigante.style.display = 'block';
-      console.log(gigante);
+      const feedAddPostSelect = event.target.parentNode.parentNode.parentNode.querySelector('.popup-wrapper');
+      feedAddPostSelect.style.display = 'block';
     }
     if (event.target.classList.contains('popup-no')) {
       const classNameOfClickedElement = event.target.parentNode.parentNode;
-      console.log(classNameOfClickedElement);
       if (classNameOfClickedElement) {
-        const gigante = event.target.parentNode.parentNode.parentNode;
-        gigante.style.display = 'none';
-        console.log(gigante);
+        const feedAddPostSelect = event.target.parentNode.parentNode.parentNode;
+        feedAddPostSelect.style.display = 'none';
       }
     }
     if (event.target.classList.contains('popup-yes')) {
-      const gigante = event.target.parentNode.parentNode.parentNode;
-      gigante.style.display = 'none';
+      const feedAddPostSelect = event.target.parentNode.parentNode.parentNode;
+      feedAddPostSelect.style.display = 'none';
       const { target } = event;
       const dataConfirm = target.dataset.yes;
       const dataId = target.dataset.id;
-      console.log(dataConfirm);
       if (dataConfirm === 'confirm') {
         const theParent = document.querySelector(`.container-text-feed-two#${dataId}`);
         deletePublication(dataId);
@@ -126,30 +123,25 @@ export const feedConstruct = () => {
     }
     if (event.target.classList.contains('btn-edit')) {
       const txtArea = event.target.parentNode.parentNode.parentNode.parentNode.querySelector('.publi-feed');
-      console.log(txtArea);
       txtArea.removeAttribute('disabled');
       txtArea.focus();
     }
     if (event.target.classList.contains('btn-salvar')) {
       const txtArea = event.target.parentNode.parentNode.parentNode.parentNode.querySelector('.publi-feed');
       const getId = event.target.parentNode.parentNode.dataset.postid;
-      console.log(getId);
       editPost(getId, txtArea.value);
       txtArea.setAttribute('disabled', '');
     }
     if (event.target.classList.contains('img-like')) {
       const dataLikes = event.target.dataset.like;
-      const postText = event.target.parentNode.parentNode.parentNode.parentNode.querySelector('.publi-feed');
-      console.log(postText);
       if (dataLikes) {
-        console.log('cliquei no botão');
         modifyLikes(dataLikes, firebase.auth().currentUser.uid)
-          .then((retornaSucess) => {
-            console.log(retornaSucess);
+          .then(() => {
             loadPostOnFeed();
           })
           .catch((error) => {
-            console.log(error);
+            const errorCode = error.code;
+            return errorCode;
           });
       }
     }
@@ -158,7 +150,6 @@ export const feedConstruct = () => {
     event.preventDefault();
     const publication = newRootElement.querySelector('#textareaid').value;
     publicationPost(publication).then(() => {
-      console.log('deu bom');
       newRootElement.querySelector('#textareaid').value = '';
       loadPostOnFeed();
     });

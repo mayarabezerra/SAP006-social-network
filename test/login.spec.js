@@ -11,7 +11,9 @@ jest.mock('../src/services/firebase.js', () => ({
       collection: jest.fn(),
     })),
     auth: jest.fn(() => ({
-      signInWithEmailAndPassword: mockLogin,
+      signInWithEmailAndPassword: mockLogin
+        .mockResolvedValueOnce('first call')
+        .mockRejectedValueOnce(new Error('Async error')),
     })),
   })),
 }));
@@ -23,6 +25,7 @@ jest.mock('../src/services/firebase.js', () => ({
 })); */
 
 describe('loginPage', () => {
+  console.log(mockLogin);
   it('should return login page', () => {
     const page = loginUsuario();
     page.querySelector('#email').value = 'exemplo@exemplo.com';

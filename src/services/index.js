@@ -12,8 +12,9 @@ export const createNewAccount = (emailTwo, passwordTwo, nameOfUser) => {
         displayName: nameOfUser,
       }).then(() => sendVerificationEmail())
         .catch((error) => {
-          alert('Erro ao logar');
-          console.log(error);
+          alert('Erro ao cadastrar');
+          const errorError = error.code;
+          return errorError;
         });
     });
   return newUser;
@@ -37,10 +38,9 @@ export const loginOfUser = (email, password) => {
     })
 
     .catch((error) => {
-      const errorCode = error.code;
       const errorMessage = error.message;
       alert('Email ou senha inválido');
-      console.log('viiiish', errorCode, errorMessage);
+      return errorMessage;
     });
   return loginWithEmail;
 };
@@ -95,7 +95,8 @@ export const reset = (email) => {
     })
     .catch((err) => {
       alert('Erro ao logar');
-      console.log(err);
+      const errorCode = err.code;
+      return errorCode;
     });
   return forgotPassword;
 };
@@ -112,7 +113,6 @@ export const publicationPost = (publication) => {
     likes: [],
     comments: [],
   };
-  console.log(user);
 
   const publiCollection = firebase.firestore();
 
@@ -132,7 +132,6 @@ export const collectionPost = db.collection('posts');
 /* Delete */
 
 export const deletePublication = (id) => {
-  console.log(id);
   firebase
     .firestore()
     .collection('posts')
@@ -142,7 +141,8 @@ export const deletePublication = (id) => {
       console.log('caiu no sucesso');
     })
     .catch((erro) => {
-      console.log(erro);
+      const errorCode = erro.code;
+      return errorCode;
     });
 };
 
@@ -153,7 +153,6 @@ export function modifyLikes(id, userId) {
     .doc(id)
     .get()
     .then((post) => {
-      console.log(post);
       let likes = post.data().likes;
       if (likes.includes(userId)) {
         likes = likes.filter((userLikedId) => userLikedId !== userId);

@@ -134,9 +134,7 @@ export const registerUsuario = () => {
 
         .catch((error) => {
           const errorCode = error.code;
-          const errorMessage = error.message;
-          console.log(errorCode, errorMessage);
-          // ..
+          return errorCode;
         });
     } else {
       msgError.setAttribute('style', 'display: block');
