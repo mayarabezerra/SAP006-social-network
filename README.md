@@ -61,7 +61,7 @@ Por meio de gifs vamos demonstrar a usabilidade do nosso produto em formato Desk
 <p align="center">  <img src="assets/cadastrologin.gif" heigh="125" width="500" alt="gif-desktop-login"> </p>
 
 
-**Demonstração funcionalidades do feed Desktop**>
+**Demonstração funcionalidades do feed Desktop**
 <p align="center">  <img src="assets/feeddesk.gif" heigh="125" width="500" alt="gif-desktop-feed"> </p>
 
 
@@ -102,8 +102,6 @@ Para executar o projeto é preciso ter instalado no seu computador:
 [Git](https://git-scm.com/downloads) [Node/NPM](https://nodejs.org/en/download/)
 
 Agora faça uma instalação do Firebase na sua máquina - dessa maneira:
-
-Esta etapa deve ser realizada por **TODAS integrantes**.
 
 Este projeto está configurado para rodar por meio do servidor do Firebase. Para isso, será necessário possuir o [Firebase CLI](https://firebase.google.com/docs/cli#install_the_firebase_cli) instalado globalmente em sua máquina. Utilize o comando a seguir no seu terminal:
 
