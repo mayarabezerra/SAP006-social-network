@@ -1,4 +1,4 @@
-<img src="./src/assert/logo4.png" heigh="125" width="500">
+<img src="logo4.png" heigh="125" width="500">
 
 ## :round_pushpin: Índice
 
