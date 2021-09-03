@@ -1,4 +1,4 @@
-<img src="logo.jpeg" alt="Logo Phenomena"> 
+<img src="./src/assert/logo4.png" heigh="125" width="500">
 
 ## :round_pushpin: Índice
 
@@ -43,7 +43,7 @@ Uma história do usuário é uma explicação informal e geral sobre um recurso 
 O usuário tem a opção de se cadastrar na rede social Phenomena caso não tenha conta de acesso:
 
 **Inserir GIf da page de cadastro**
-
+<img src="./src/assert/cadastrologin.gif" heigh="125" width="500">
 
 O usuário que possui uma conta de acesso poderá logar-se a rede:
 
