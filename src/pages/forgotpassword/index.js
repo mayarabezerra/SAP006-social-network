@@ -8,7 +8,7 @@ export const forgot = () => {
     <div class="container-forgot">
         <div class="content-forgot">
             <section id="forgot-container" class="forgot-container"> 
-                <h1>Redefinir senha</h1>
+                <h1 id="change-text">Redefinir senha</h1>
     
                 <form action="">
                     <label for="email" id="labelEmail">E-mail</label>
@@ -21,10 +21,17 @@ export const forgot = () => {
 
   rootForgot.innerHTML = contentForgot;
   const btnReset = rootForgot.querySelector('#reset-btn');
+  const changeText = rootForgot.querySelector('#change-text');
 
   btnReset.addEventListener('click', () => {
     const email = document.getElementById('email').value;
-    reset(email);
+    reset(email)
+      .then(() => {
+        changeText.innerHTML = 'Email enviado com sucesso';
+      })
+      .catch(() => {
+        changeText.innerHTML = 'Ops algo deu errado';
+      });
   });
 
   return rootForgot;

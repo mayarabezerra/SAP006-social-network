@@ -112,11 +112,7 @@ export const loginUsuario = () => {
       loginOfUser(email.value, password.value)
         .then(() => {
           navigateTo('/feed');
-          console.log('uhuuuuuu');
         });
-      /* .catch((error) =>{
-        alert('Houve algum problema', error)
-    }) */
     } else {
       msgError.setAttribute('style', 'display: block');
       msgError.innerHTML = '<strong><Label style="margin-top: 15px; font-size: 1.1rem; color: red; text-align: center">Preencha todos os campos corretamente</label></strong>';
@@ -151,7 +147,8 @@ export const loginUsuario = () => {
       .catch((err) => {
         errorGoogle.setAttribute('style', 'display: block');
         errorGoogle.innerHTML = '<Label style="margin-top: 12px; font-size: 0.7rem; color: red; text-align: center">Erro ao logar com google</label>';
-        console.log(err);
+        const errorCode = err.code;
+        return errorCode;
       });
   }
 
