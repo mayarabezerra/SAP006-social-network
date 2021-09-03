@@ -117,6 +117,7 @@ export const publicationPost = (publication) => {
 };
 
 /* Edit */
+
 export const editPost = (id, valorNovo) => db.collection('posts').doc(id).update({
   text: valorNovo,
 })
