@@ -469,4 +469,38 @@ nav {
   font-size: .8rem;
 }
 
+.popup-wrapper {
+  display: none;
+  background: var(--back-wrapper);
+  position: fixed;
+  top: 0;
+  left: -104px;
+  width: 100%;
+  height: 100%;
+}
+
+.container-stepfather {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 22px;
+}
+
+.content-buttom-two button {
+  font-size: .9rem;
+    margin: 5px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color:var(--back-container);
+    color: var(--label-offwhite);
+    letter-spacing: 4px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.content-buttom-two {
+  margin-left: 68px;
+}
 }

@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import { routes } from './config.js';
 import { navigateTo } from './navigation.js';
 import { observer } from '../services/index.js';

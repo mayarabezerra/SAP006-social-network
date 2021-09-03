@@ -202,7 +202,7 @@ main{
 
 @media (min-width:320px) and (max-width:768px){ 
 	.content-title{
-		margin: 35vh 0 0 0;
+		margin: 35vh 0 0 23px;
 		letter-spacing: 0.8rem;
 	} 
 
@@ -218,7 +218,7 @@ main{
     font-size: 1.5rem;
     padding: 20px;
     margin-left: 20px;
-    margin-top: 10px;
+    margin-top: 40px;
     border: var(--border-white);
     border-style: solid;
 	border-width: 0.5px;
@@ -248,7 +248,7 @@ main{
 @media (max-width: 1440px){
 	.content-title {
 		font-size: 15vw;
-		margin: 13vh 0 0 0;
+		/*margin: 13vh 0 0 0;*/
 
 	}
 }

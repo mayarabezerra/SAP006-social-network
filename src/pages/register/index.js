@@ -10,7 +10,7 @@ export const registerUsuario = () => {
           <div class="content-register">
               <section class="three-section">
                       <section id="register-container" class="register-container"> 
-                          <h1>Cadastrar</h1>
+                          <h1 id="email-confirmation">Cadastrar</h1>
                           <div class="msg-error"></div>
                           <div class="msg-success"></div>
                           <form action="" id="register-now">
@@ -98,6 +98,7 @@ export const registerUsuario = () => {
   const msgError = rootElement.querySelector('.msg-error');
   const msgSuccess = rootElement.querySelector('.msg-success');
   const errGoogle = rootElement.querySelector('#errGoogle');
+  const sendEmailChangeName = rootElement.querySelector('#email-confirmation');
   let nameValid = false;
   let passwordValid = false;
   let confirmPasswordValide = false;
@@ -121,7 +122,7 @@ export const registerUsuario = () => {
   function isItValid() {
     if (nameValid && passwordValid && confirmPasswordValide) {
       msgSuccess.setAttribute('style', 'display: block');
-      alert('Confirme o e-mail recebido e depois faça login');
+      sendEmailChangeName.innerHTML = 'Confirme o e-mail recebido e depois faça login';
       msgError.setAttribute('style', 'display: none');
       msgError.innerHTML = '';
       createNewAccount(emailTwo.value, passwordTwo.value, nameOfUser.value)

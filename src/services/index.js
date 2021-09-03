@@ -1,4 +1,4 @@
-/* Register */
+/* istanbul ignore file */
 import { getFirebase } from './firebase.js';
 
 const db = getFirebase().firestore();
@@ -12,7 +12,6 @@ export const createNewAccount = (emailTwo, passwordTwo, nameOfUser) => {
         displayName: nameOfUser,
       }).then(() => sendVerificationEmail())
         .catch((error) => {
-          alert('Erro ao cadastrar');
           const errorError = error.code;
           return errorError;
         });
@@ -39,7 +38,6 @@ export const loginOfUser = (email, password) => {
 
     .catch((error) => {
       const errorMessage = error.message;
-      alert('Email ou senha inválido');
       return errorMessage;
     });
   return loginWithEmail;
@@ -91,10 +89,9 @@ export const reset = (email) => {
     .auth()
     .sendPasswordResetEmail(email)
     .then(() => {
-      alert('E-mail enviado com sucesso!');
+      console.log('caiu no sucesso');
     })
     .catch((err) => {
-      alert('Erro ao logar');
       const errorCode = err.code;
       return errorCode;
     });
