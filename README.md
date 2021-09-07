@@ -43,9 +43,9 @@ Uma história do usuário é uma explicação informal e geral sobre um recurso 
 Um website nada mais é que um produto, dessa forma é muito importante o processo de construção do mesmo. 
 Após as definições das necessidades dos usuários e pensando em sua experiencia com o produto, foram feitos os primeiros esboços dos esqueletos do site. Seguindo o requisito proposto pelo projeto, nosso Wireframe é considerado de Baixa Fidelidade, foi construido manualmente, com lápis e papel.
 Os desenhos foram feitos já pensando na responsividade da tela, e projetados primeiramente para Mobile. 
-Abaixo temos os desenhos das interfaces agrupadas por tamanho de tela: Desktop, Tablet e Mobile. 
+Abaixo temos um exemplo das telas de login e feed para mobile. 
 
-**INSERIR PRINT DOS PROTÓTIPOS**
+<p align="center">  <img src="assets/mobile-first.jpeg" heigh="125" width="500" alt="wireframe"> </p>
 
 ### Paleta de cores :red_circle: :black_circle:
 
